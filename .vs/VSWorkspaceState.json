@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\DataAccess",
+    "\\DataModels",
+    "\\DataSources",
+    "\\Logic",
+    "\\Presentation"
+  ],
+  "SelectedNode": "\\Presentation\\UserLogin.cs",
+  "PreviewInSolutionExplorer": false
+}
