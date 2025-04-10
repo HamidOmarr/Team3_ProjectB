@@ -1,6 +1,5 @@
 ﻿static class UserRegister
 {
-
     public static void Register()
     {
         Console.WriteLine("Welcome to the registration page");
