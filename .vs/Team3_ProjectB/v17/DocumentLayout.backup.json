@@ -1,26 +1,69 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Dell\\Downloads\\Team3_ProjectB\\",
+  "WorkspaceRootPath": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Dell\\Downloads\\Team3_ProjectB\\Presentation\\Menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Presentation\\Menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\Presentation\\ShowMovies.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Presentation\\ShowMovies.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Dell\\Downloads\\Team3_ProjectB\\Presentation\\UserLogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\Presentation\\UserLogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Presentation\\UserLogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Dell\\Downloads\\Team3_ProjectB\\Logic\\AccountsLogic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\Presentation\\Menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Presentation\\Menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\Logic\\ReservationSystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Logic\\ReservationSystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\Logic\\AccountsLogic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Logic\\AccountsLogic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Dell\\Downloads\\Team3_ProjectB\\DataAccess\\AccountsAccess.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\DataModels\\FullMovieSessionModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:DataModels\\FullMovieSessionModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\DataModels\\Auditorium.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:DataModels\\Auditorium.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\DataModels\\AccountModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:DataModels\\AccountModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\DataAccess\\AccountsAccess.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:DataAccess\\AccountsAccess.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Dell\\Downloads\\Team3_ProjectB\\DataModels\\AccountModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:DataModels\\AccountModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\DataAccess\\MoviesAcces.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:DataAccess\\MoviesAcces.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\DataModels\\MovieSessionModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:DataModels\\MovieSessionModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\Logic\\ShowMoviesLogic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Logic\\ShowMoviesLogic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\DataModels\\MovieModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:DataModels\\MovieModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\dotnet\\sdk\\9.0.102\\Sdks\\Microsoft.NET.Sdk\\targets\\Microsoft.PackageDependencyResolution.targets||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,72 +73,215 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "AccountsLogic.cs",
-              "DocumentMoniker": "C:\\Users\\Dell\\Downloads\\Team3_ProjectB\\Logic\\AccountsLogic.cs",
-              "RelativeDocumentMoniker": "Logic\\AccountsLogic.cs",
-              "ToolTip": "C:\\Users\\Dell\\Downloads\\Team3_ProjectB\\Logic\\AccountsLogic.cs",
-              "RelativeToolTip": "Logic\\AccountsLogic.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAA4AAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "ReservationSystem.cs",
+              "DocumentMoniker": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\Logic\\ReservationSystem.cs",
+              "RelativeDocumentMoniker": "Logic\\ReservationSystem.cs",
+              "ToolTip": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\Logic\\ReservationSystem.cs",
+              "RelativeToolTip": "Logic\\ReservationSystem.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-09T14:00:51.854Z",
+              "WhenOpened": "2025-04-10T12:17:50.278Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
+              "Title": "FullMovieSessionModel.cs",
+              "DocumentMoniker": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\DataModels\\FullMovieSessionModel.cs",
+              "RelativeDocumentMoniker": "DataModels\\FullMovieSessionModel.cs",
+              "ToolTip": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\DataModels\\FullMovieSessionModel.cs",
+              "RelativeToolTip": "DataModels\\FullMovieSessionModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-10T12:11:27.708Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ShowMovies.cs",
+              "DocumentMoniker": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\Presentation\\ShowMovies.cs",
+              "RelativeDocumentMoniker": "Presentation\\ShowMovies.cs",
+              "ToolTip": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\Presentation\\ShowMovies.cs",
+              "RelativeToolTip": "Presentation\\ShowMovies.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAAB4AAACFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-10T11:21:39.245Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "MovieSessionModel.cs",
+              "DocumentMoniker": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\DataModels\\MovieSessionModel.cs",
+              "RelativeDocumentMoniker": "DataModels\\MovieSessionModel.cs",
+              "ToolTip": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\DataModels\\MovieSessionModel.cs",
+              "RelativeToolTip": "DataModels\\MovieSessionModel.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAACkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-10T10:17:10.506Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAAAAIAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-10T09:54:54.43Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "AccountsAccess.cs",
-              "DocumentMoniker": "C:\\Users\\Dell\\Downloads\\Team3_ProjectB\\DataAccess\\AccountsAccess.cs",
+              "DocumentMoniker": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\DataAccess\\AccountsAccess.cs",
               "RelativeDocumentMoniker": "DataAccess\\AccountsAccess.cs",
-              "ToolTip": "C:\\Users\\Dell\\Downloads\\Team3_ProjectB\\DataAccess\\AccountsAccess.cs",
+              "ToolTip": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\DataAccess\\AccountsAccess.cs",
               "RelativeToolTip": "DataAccess\\AccountsAccess.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-09T13:58:57.414Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 7,
               "Title": "AccountModel.cs",
-              "DocumentMoniker": "C:\\Users\\Dell\\Downloads\\Team3_ProjectB\\DataModels\\AccountModel.cs",
+              "DocumentMoniker": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\DataModels\\AccountModel.cs",
               "RelativeDocumentMoniker": "DataModels\\AccountModel.cs",
-              "ToolTip": "C:\\Users\\Dell\\Downloads\\Team3_ProjectB\\DataModels\\AccountModel.cs",
+              "ToolTip": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\DataModels\\AccountModel.cs",
               "RelativeToolTip": "DataModels\\AccountModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAkAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-09T13:58:47.688Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Menu.cs",
+              "DocumentMoniker": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\Presentation\\Menu.cs",
+              "RelativeDocumentMoniker": "Presentation\\Menu.cs",
+              "ToolTip": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\Presentation\\Menu.cs",
+              "RelativeToolTip": "Presentation\\Menu.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-08T11:42:49.824Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Auditorium.cs",
+              "DocumentMoniker": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\DataModels\\Auditorium.cs",
+              "RelativeDocumentMoniker": "DataModels\\Auditorium.cs",
+              "ToolTip": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\DataModels\\Auditorium.cs",
+              "RelativeToolTip": "DataModels\\Auditorium.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAcwAUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-10T11:51:34.699Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
               "Title": "UserLogin.cs",
-              "DocumentMoniker": "C:\\Users\\Dell\\Downloads\\Team3_ProjectB\\Presentation\\UserLogin.cs",
+              "DocumentMoniker": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\Presentation\\UserLogin.cs",
               "RelativeDocumentMoniker": "Presentation\\UserLogin.cs",
-              "ToolTip": "C:\\Users\\Dell\\Downloads\\Team3_ProjectB\\Presentation\\UserLogin.cs",
+              "ToolTip": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\Presentation\\UserLogin.cs",
               "RelativeToolTip": "Presentation\\UserLogin.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-08T11:45:23.232Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Menu.cs",
-              "DocumentMoniker": "C:\\Users\\Dell\\Downloads\\Team3_ProjectB\\Presentation\\Menu.cs",
-              "RelativeDocumentMoniker": "Presentation\\Menu.cs",
-              "ToolTip": "C:\\Users\\Dell\\Downloads\\Team3_ProjectB\\Presentation\\Menu.cs",
-              "RelativeToolTip": "Presentation\\Menu.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAA1AAAAAAAAAA==",
+              "DocumentIndex": 9,
+              "Title": "MoviesAcces.cs",
+              "DocumentMoniker": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\DataAccess\\MoviesAcces.cs",
+              "RelativeDocumentMoniker": "DataAccess\\MoviesAcces.cs",
+              "ToolTip": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\DataAccess\\MoviesAcces.cs",
+              "RelativeToolTip": "DataAccess\\MoviesAcces.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-08T11:42:49.824Z",
+              "WhenOpened": "2025-04-10T10:11:27.823Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "AccountsLogic.cs",
+              "DocumentMoniker": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\Logic\\AccountsLogic.cs",
+              "RelativeDocumentMoniker": "Logic\\AccountsLogic.cs",
+              "ToolTip": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\Logic\\AccountsLogic.cs",
+              "RelativeToolTip": "Logic\\AccountsLogic.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-09T14:00:51.854Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "MovieModel.cs",
+              "DocumentMoniker": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\DataModels\\MovieModel.cs",
+              "RelativeDocumentMoniker": "DataModels\\MovieModel.cs",
+              "ToolTip": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\DataModels\\MovieModel.cs",
+              "RelativeToolTip": "DataModels\\MovieModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAcwAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-10T11:51:05.865Z"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{269a02dc-6af8-11d3-bdc4-00c04f688e50}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "ShowMoviesLogic.cs",
+              "DocumentMoniker": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\Logic\\ShowMoviesLogic.cs",
+              "RelativeDocumentMoniker": "Logic\\ShowMoviesLogic.cs",
+              "ToolTip": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\Logic\\ShowMoviesLogic.cs",
+              "RelativeToolTip": "Logic\\ShowMoviesLogic.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-10T10:10:39.885Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Microsoft.PackageDependencyResolution.targets",
+              "DocumentMoniker": "C:\\Program Files\\dotnet\\sdk\\9.0.102\\Sdks\\Microsoft.NET.Sdk\\targets\\Microsoft.PackageDependencyResolution.targets",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\Program Files\\dotnet\\sdk\\9.0.102\\Sdks\\Microsoft.NET.Sdk\\targets\\Microsoft.PackageDependencyResolution.targets",
+              "ToolTip": "C:\\Program Files\\dotnet\\sdk\\9.0.102\\Sdks\\Microsoft.NET.Sdk\\targets\\Microsoft.PackageDependencyResolution.targets",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\Program Files\\dotnet\\sdk\\9.0.102\\Sdks\\Microsoft.NET.Sdk\\targets\\Microsoft.PackageDependencyResolution.targets",
+              "ViewState": "AgIAAPkAAAAAAAAAAAAAwAkBAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
+              "WhenOpened": "2025-04-10T09:55:09.888Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": ".gitignore",
+              "DocumentMoniker": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\.gitignore",
+              "RelativeDocumentMoniker": ".gitignore",
+              "ToolTip": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\.gitignore",
+              "RelativeToolTip": ".gitignore",
+              "ViewState": "AgIAAP8BAAAAAAAAAAAlwAYCAAAFAAAAAAAAAA==",
+              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAF8SURBVDhPjVNLTgJBEG1lwpoFB3GNK9fieA48hD8iwT/ihwgSDAIHgAGXXsEV18CNzL/LquqZdsYM6kteXqcy3fWqpmpNRBgOhyABBEgpAFVKPIMUcYzUyOU\u002BXM/b2qtU3vkSfRjjZTCAMAw1A2LwzdFoBPP5HNqdzuL27n4juibWI\u002BUshBA1DIkhEx9iEorFotgslQqGYbxxAGFEqt1MxmPWJLbLZdZ\u002Bv89q5PMFPiTR6z2zdaxR0fXA0XTBcVywkb4fwHXjRteecIDNQ7UmExVYAdPcxYaqclN46na5WenMKjtlVnTYwcXlVYaDqImW9beD5N/TeGy32QHXm6hZ03ZgiSQHp2fnWQ4oBmJqWSqwAqZpZjt4aLXAD4J0VqyZsmoubfB8H2r1eoaD6NXZ9HcHO\u002BSA3f4AjifXl8rItOETM8ckB9WTWpYD9RdeZ1PWVWAHWXPQaDb59f/w8LiqHeh1pvGkCaP6qB8yXusoxmuNZ7XmII4O9vGuEF86osuDYRkpYQAAAABJRU5ErkJggg==",
+              "WhenOpened": "2025-04-10T09:43:04.61Z"
             }
           ]
         }

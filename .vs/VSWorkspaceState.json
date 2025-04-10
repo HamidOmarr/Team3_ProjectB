@@ -1,7 +1,12 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\DataAccess",
+    "\\DataModels",
+    "\\DataSources",
+    "\\Logic",
+    "\\Presentation"
   ],
-  "SelectedNode": "\\C:\\Users\\KCC15\\Source\\Repos\\Team3_ProjectB",
+  "SelectedNode": "\\Presentation\\ShowMovies.cs",
   "PreviewInSolutionExplorer": false
 }
