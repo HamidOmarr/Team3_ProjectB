@@ -10,11 +10,22 @@
         Console.WriteLine("Please enter your password:");
         string password = Console.ReadLine();
 
-        AccountModel newAccount = new AccountModel(0, name, email, password, "normal");
+        // Create an instance of AccountsAccess
+        AccountsAccess accountsAccess = new AccountsAccess();
+
+        // Generate a unique random ID
+        long id;
+        Random random = new Random();
+        do
+        {
+            id = random.Next(1, int.MaxValue); // Generate a random ID
+        } while (accountsAccess.DoesIdExist(id)); // Ensure the ID does not exist
+
+        AccountModel newAccount = new AccountModel(id, name, email, password, "normal");
 
         try
         {
-            AccountsAccess.Write(newAccount);
+            accountsAccess.Write(newAccount); // Call the instance method
             Console.WriteLine("Account successfully registered!");
         }
         catch (Exception ex)
