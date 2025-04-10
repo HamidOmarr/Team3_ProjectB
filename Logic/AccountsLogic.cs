@@ -14,7 +14,9 @@ public class AccountsLogic
 
     public AccountModel? CheckLogin(string email, string password)
     {
-        AccountModel acc = AccountsAccess.GetByEmail(email);
+        // Create an instance of AccountsAccess
+        AccountsAccess accountsAccess = new AccountsAccess();
+        AccountModel acc = accountsAccess.GetByEmail(email);
 
         if (acc != null && acc.PasswordHash == password)
         {

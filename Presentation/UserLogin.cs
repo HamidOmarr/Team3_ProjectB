@@ -4,28 +4,30 @@ static class UserLogin
 
     public static void Start()
     {
-        Console.WriteLine("Welcome to the login page");
-        Console.WriteLine("Please enter your email address:");
-        string email = Console.ReadLine();
-        Console.WriteLine("Please enter your password:");
-        string password = Console.ReadLine();
-
-        AccountModel acc = accountsLogic.CheckLogin(email, password);
-
-        if (acc != null)
+        while (true)
         {
-            Console.WriteLine($"Welcome back, {acc.Name}!");
-            Console.WriteLine($"Your email address is: {acc.Email}");
-            Console.WriteLine($"Your account type is: {acc.AccountType}");
+            Console.WriteLine("Welcome to the login page");
+            Console.WriteLine("Please enter your email address:");
+            string email = Console.ReadLine();
+            Console.WriteLine("Please enter your password:");
+            string password = Console.ReadLine();
 
-            Menu.Start();
-            ShowMoviesManager.DisplaySessions();
+            AccountModel acc = accountsLogic.CheckLogin(email, password);
 
+            if (acc != null)
+            {
+                Console.WriteLine($"Welcome back, {acc.Name}!");
+                Console.WriteLine($"Your email address is: {acc.Email}");
+                Console.WriteLine($"Your account type is: {acc.AccountType}");
 
-        }
-        else
-        {
-            Console.WriteLine("No account found with that email and password.");
+                Menu.Start();
+                return;
+            }
+            else
+            {
+                Console.WriteLine("No account found with that email and password. Please try again.");
+            }
         }
     }
 }
+
