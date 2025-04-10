@@ -7,7 +7,9 @@ static class Menu
     static public void Start()
     {
         Console.WriteLine("Enter 1 to login");
-        Console.WriteLine("Enter 2 to do something else in the future");
+        Console.WriteLine("Enter 2 to Register");
+        Console.WriteLine("Enter 3 to Continue as guest");
+        Console.WriteLine("Enter 4 to quit");
 
         string input = Console.ReadLine();
         if (input == "1")
@@ -16,7 +18,16 @@ static class Menu
         }
         else if (input == "2")
         {
-            Console.WriteLine("This feature is not yet implemented");
+            UserLogin.Register();
+        }
+        else if (input == "3")
+        {
+            UserLogin.Register();
+        }
+        else if (input == "4")
+        {
+            Console.WriteLine("Goodbye!");
+            Environment.Exit(0);
         }
         else
         {
