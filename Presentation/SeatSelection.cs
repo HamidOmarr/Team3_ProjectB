@@ -60,7 +60,7 @@
             Console.WriteLine("\n");
             foreach (var row in rowList)
             {
-                Console.Write($"   Row {row}   ");
+                Console.Write($"   Rij {row}   ");
                 for (int seatNum = 1; seatNum <= maxSeatNumber; seatNum++)
                 {
                     var pos = (row, seatNum);
@@ -162,7 +162,7 @@
         foreach (var (row, seatNum) in selectedSeats)
         {
             var seat = seatLookup[(row, seatNum)];
-            Console.WriteLine($"Rij {row}, Stoel {seatNum} — €{seat.Price:F2}");
+            Console.WriteLine($"Rij {row}, Stoel {seatNum} — {seat.Price:F2} Euro");
         }
 
         Console.ResetColor();
