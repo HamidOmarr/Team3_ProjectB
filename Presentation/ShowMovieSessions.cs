@@ -31,13 +31,12 @@
             {
                 var session = sessions[i];
                 bool isSelected = i == selectedIndex;
-
                 if (isSelected)
                 {
                     Console.BackgroundColor = ConsoleColor.DarkCyan;
                     Console.ForegroundColor = ConsoleColor.Black;
                 }
-
+               
                 Console.WriteLine($"[{(isSelected ? ">" : " ")}] {session.StartTime:HH:mm} - {session.EndTime:HH:mm} | {session.Title} ({session.Genre}) - {session.AuditoriumName}");
 
                 if (isSelected)
@@ -52,7 +51,8 @@
                 selectedIndex++;
 
         } while (key != ConsoleKey.Enter);
-        SeatSelection.AmountSeatsInput();
+        var selectedSession = sessions[selectedIndex];
+        SeatSelection.AmountSeatsInput(selectedSession.AuditoriumId);
         return sessions[selectedIndex].Id;
     }
 

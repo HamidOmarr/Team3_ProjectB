@@ -3,12 +3,55 @@
   "WorkspaceRootPath": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\Presentation\\SeatSelection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Presentation\\SeatSelection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\DataAccess\\MoviesAcces.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:DataAccess\\MoviesAcces.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\Presentation\\ShowMovieSessions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Presentation\\ShowMovieSessions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\Presentation\\ShowMovies.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Presentation\\ShowMovies.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\DataAccess\\SeatAcces.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:DataAccess\\SeatAcces.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\DataModels\\SeatsModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:DataModels\\SeatsModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\DataAccess\\AccountsAccess.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:DataAccess\\AccountsAccess.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\DataModels\\MovieSessionModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:DataModels\\MovieSessionModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\DataModels\\MovieModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:DataModels\\MovieModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\DataModels\\Auditorium.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:DataModels\\Auditorium.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\DataModels\\FullMovieSessionModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:DataModels\\FullMovieSessionModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\DataModels\\AccountModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:DataModels\\AccountModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\dotnet\\sdk\\9.0.102\\Sdks\\Microsoft.NET.Sdk\\targets\\Microsoft.PackageDependencyResolution.targets||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\Project.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
@@ -23,44 +66,8 @@
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Presentation\\Menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\DataModels\\AccountModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:DataModels\\AccountModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\Logic\\AccountsLogic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Logic\\AccountsLogic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\Presentation\\ShowMovies.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Presentation\\ShowMovies.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\Presentation\\SeatSelection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Presentation\\SeatSelection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\Presentation\\ShowMovieSessions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Presentation\\ShowMovieSessions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\DataModels\\Auditorium.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:DataModels\\Auditorium.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\DataModels\\FullMovieSessionModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:DataModels\\FullMovieSessionModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\Logic\\ReservationSystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Logic\\ReservationSystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\DataModels\\MovieModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:DataModels\\MovieModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\DataModels\\MovieSessionModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:DataModels\\MovieSessionModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -73,9 +80,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\dotnet\\sdk\\9.0.102\\Sdks\\Microsoft.NET.Sdk\\targets\\Microsoft.PackageDependencyResolution.targets||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     }
   ],
   "DocumentGroupContainers": [
@@ -85,67 +89,175 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{269a02dc-6af8-11d3-bdc4-00c04f688e50}"
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "SeatsModel.cs",
+              "DocumentMoniker": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\DataModels\\SeatsModel.cs",
+              "RelativeDocumentMoniker": "DataModels\\SeatsModel.cs",
+              "ToolTip": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\DataModels\\SeatsModel.cs",
+              "RelativeToolTip": "DataModels\\SeatsModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-15T21:31:39.633Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "SeatSelection.cs",
+              "DocumentMoniker": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\Presentation\\SeatSelection.cs",
+              "RelativeDocumentMoniker": "Presentation\\SeatSelection.cs",
+              "ToolTip": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\Presentation\\SeatSelection.cs",
+              "RelativeToolTip": "Presentation\\SeatSelection.cs",
+              "ViewState": "AgIAAGIAAAAAAAAAAAAIwHkAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-15T20:29:53.862Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "MovieSessionModel.cs",
+              "DocumentMoniker": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\DataModels\\MovieSessionModel.cs",
+              "RelativeDocumentMoniker": "DataModels\\MovieSessionModel.cs",
+              "ToolTip": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\DataModels\\MovieSessionModel.cs",
+              "RelativeToolTip": "DataModels\\MovieSessionModel.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAABIAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-15T20:51:04.086Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "MovieModel.cs",
+              "DocumentMoniker": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\DataModels\\MovieModel.cs",
+              "RelativeDocumentMoniker": "DataModels\\MovieModel.cs",
+              "ToolTip": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\DataModels\\MovieModel.cs",
+              "RelativeToolTip": "DataModels\\MovieModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-15T20:51:00.025Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Auditorium.cs",
+              "DocumentMoniker": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\DataModels\\Auditorium.cs",
+              "RelativeDocumentMoniker": "DataModels\\Auditorium.cs",
+              "ToolTip": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\DataModels\\Auditorium.cs",
+              "RelativeToolTip": "DataModels\\Auditorium.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-15T20:50:54.222Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "FullMovieSessionModel.cs",
+              "DocumentMoniker": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\DataModels\\FullMovieSessionModel.cs",
+              "RelativeDocumentMoniker": "DataModels\\FullMovieSessionModel.cs",
+              "ToolTip": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\DataModels\\FullMovieSessionModel.cs",
+              "RelativeToolTip": "DataModels\\FullMovieSessionModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-15T20:50:53.464Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MoviesAcces.cs",
+              "DocumentMoniker": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\DataAccess\\MoviesAcces.cs",
+              "RelativeDocumentMoniker": "DataAccess\\MoviesAcces.cs",
+              "ToolTip": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\DataAccess\\MoviesAcces.cs",
+              "RelativeToolTip": "DataAccess\\MoviesAcces.cs",
+              "ViewState": "AgIAAEkAAAAAAAAAAAAkwDkAAABFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-15T19:59:16.311Z",
+              "EditorCaption": ""
+            },
+            {
               "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "ShowMovieSessions.cs",
+              "DocumentMoniker": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\Presentation\\ShowMovieSessions.cs",
+              "RelativeDocumentMoniker": "Presentation\\ShowMovieSessions.cs",
+              "ToolTip": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\Presentation\\ShowMovieSessions.cs",
+              "RelativeToolTip": "Presentation\\ShowMovieSessions.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAA0AAABCAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-15T19:59:00.973Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
               "Title": "Project.csproj",
               "DocumentMoniker": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\Project.csproj",
               "RelativeDocumentMoniker": "Project.csproj",
               "ToolTip": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\Project.csproj",
               "RelativeToolTip": "Project.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
               "WhenOpened": "2025-04-15T17:11:47.258Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "ShowMovieSessions.cs",
-              "DocumentMoniker": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\Presentation\\ShowMovieSessions.cs",
-              "RelativeDocumentMoniker": "Presentation\\ShowMovieSessions.cs",
-              "ToolTip": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\Presentation\\ShowMovieSessions.cs",
-              "RelativeToolTip": "Presentation\\ShowMovieSessions.cs",
-              "ViewState": "AgIAACIAAAAAAAAAAAAowDYAAAAWAAAAAAAAAA==",
+              "DocumentIndex": 6,
+              "Title": "AccountsAccess.cs",
+              "DocumentMoniker": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\DataAccess\\AccountsAccess.cs",
+              "RelativeDocumentMoniker": "DataAccess\\AccountsAccess.cs",
+              "ToolTip": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\DataAccess\\AccountsAccess.cs",
+              "RelativeToolTip": "DataAccess\\AccountsAccess.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-15T12:34:23.044Z",
+              "WhenOpened": "2025-04-09T13:58:57.414Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "MovieModel.cs",
-              "DocumentMoniker": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\DataModels\\MovieModel.cs",
-              "RelativeDocumentMoniker": "DataModels\\MovieModel.cs",
-              "ToolTip": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\DataModels\\MovieModel.cs",
-              "RelativeToolTip": "DataModels\\MovieModel.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAkAAAApAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "ShowMovies.cs",
+              "DocumentMoniker": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\Presentation\\ShowMovies.cs",
+              "RelativeDocumentMoniker": "Presentation\\ShowMovies.cs",
+              "ToolTip": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\Presentation\\ShowMovies.cs",
+              "RelativeToolTip": "Presentation\\ShowMovies.cs",
+              "ViewState": "AgIAAEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-15T12:32:56.361Z",
+              "WhenOpened": "2025-04-15T20:56:01.535Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "MoviesAcces.cs",
-              "DocumentMoniker": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\DataAccess\\MoviesAcces.cs",
-              "RelativeDocumentMoniker": "DataAccess\\MoviesAcces.cs",
-              "ToolTip": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\DataAccess\\MoviesAcces.cs",
-              "RelativeToolTip": "DataAccess\\MoviesAcces.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 4,
+              "Title": "SeatAcces.cs",
+              "DocumentMoniker": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\DataAccess\\SeatAcces.cs",
+              "RelativeDocumentMoniker": "DataAccess\\SeatAcces.cs",
+              "ToolTip": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\DataAccess\\SeatAcces.cs",
+              "RelativeToolTip": "DataAccess\\SeatAcces.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAAAIAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-15T12:28:28.21Z",
+              "WhenOpened": "2025-04-15T21:35:04.431Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 17,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
@@ -158,20 +270,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 14,
               "Title": "UserLogin.cs",
               "DocumentMoniker": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\Presentation\\UserLogin.cs",
               "RelativeDocumentMoniker": "Presentation\\UserLogin.cs",
               "ToolTip": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\Presentation\\UserLogin.cs",
               "RelativeToolTip": "Presentation\\UserLogin.cs",
-              "ViewState": "AgIAACQAAAAAAAAAAAAAADcAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAADgAAAAAAAAAAAAAADgAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-08T11:45:23.232Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 16,
               "Title": "AccountsLogic.cs",
               "DocumentMoniker": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\Logic\\AccountsLogic.cs",
               "RelativeDocumentMoniker": "Logic\\AccountsLogic.cs",
@@ -184,59 +296,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "ReservationSystem.cs",
-              "DocumentMoniker": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\Logic\\ReservationSystem.cs",
-              "RelativeDocumentMoniker": "Logic\\ReservationSystem.cs",
-              "ToolTip": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\Logic\\ReservationSystem.cs",
-              "RelativeToolTip": "Logic\\ReservationSystem.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-15T15:18:30.129Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 11,
-              "Title": "FullMovieSessionModel.cs",
-              "DocumentMoniker": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\DataModels\\FullMovieSessionModel.cs",
-              "RelativeDocumentMoniker": "DataModels\\FullMovieSessionModel.cs",
-              "ToolTip": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\DataModels\\FullMovieSessionModel.cs",
-              "RelativeToolTip": "DataModels\\FullMovieSessionModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAiAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-15T12:50:06.651Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "AccountsAccess.cs",
-              "DocumentMoniker": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\DataAccess\\AccountsAccess.cs",
-              "RelativeDocumentMoniker": "DataAccess\\AccountsAccess.cs",
-              "ToolTip": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\DataAccess\\AccountsAccess.cs",
-              "RelativeToolTip": "DataAccess\\AccountsAccess.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAABlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-09T13:58:57.414Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Menu.cs",
-              "DocumentMoniker": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\Presentation\\Menu.cs",
-              "RelativeDocumentMoniker": "Presentation\\Menu.cs",
-              "ToolTip": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\Presentation\\Menu.cs",
-              "RelativeToolTip": "Presentation\\Menu.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-08T11:42:49.824Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
               "Title": "AccountModel.cs",
               "DocumentMoniker": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\DataModels\\AccountModel.cs",
               "RelativeDocumentMoniker": "DataModels\\AccountModel.cs",
@@ -249,59 +309,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "ShowMovies.cs",
-              "DocumentMoniker": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\Presentation\\ShowMovies.cs",
-              "RelativeDocumentMoniker": "Presentation\\ShowMovies.cs",
-              "ToolTip": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\Presentation\\ShowMovies.cs",
-              "RelativeToolTip": "Presentation\\ShowMovies.cs",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAAAC0AAAANAAAAAAAAAA==",
+              "DocumentIndex": 15,
+              "Title": "Menu.cs",
+              "DocumentMoniker": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\Presentation\\Menu.cs",
+              "RelativeDocumentMoniker": "Presentation\\Menu.cs",
+              "ToolTip": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\Presentation\\Menu.cs",
+              "RelativeToolTip": "Presentation\\Menu.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-15T12:35:42.165Z",
+              "WhenOpened": "2025-04-08T11:42:49.824Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "SeatSelection.cs",
-              "DocumentMoniker": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\Presentation\\SeatSelection.cs",
-              "RelativeDocumentMoniker": "Presentation\\SeatSelection.cs",
-              "ToolTip": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\Presentation\\SeatSelection.cs",
-              "RelativeToolTip": "Presentation\\SeatSelection.cs",
-              "ViewState": "AgIAAD4AAAAAAAAAAAAtwIkAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-15T16:12:13.946Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "Auditorium.cs",
-              "DocumentMoniker": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\DataModels\\Auditorium.cs",
-              "RelativeDocumentMoniker": "DataModels\\Auditorium.cs",
-              "ToolTip": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\DataModels\\Auditorium.cs",
-              "RelativeToolTip": "DataModels\\Auditorium.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-15T16:16:09.127Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "MovieSessionModel.cs",
-              "DocumentMoniker": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\DataModels\\MovieSessionModel.cs",
-              "RelativeDocumentMoniker": "DataModels\\MovieSessionModel.cs",
-              "ToolTip": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\DataModels\\MovieSessionModel.cs",
-              "RelativeToolTip": "DataModels\\MovieSessionModel.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAYwBoAAAAoAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-15T12:34:04.419Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 18,
               "Title": "ShowMoviesLogic.cs",
               "DocumentMoniker": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\Logic\\ShowMoviesLogic.cs",
               "RelativeDocumentMoniker": "Logic\\ShowMoviesLogic.cs",
@@ -312,20 +333,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 12,
               "Title": "Microsoft.PackageDependencyResolution.targets",
               "DocumentMoniker": "C:\\Program Files\\dotnet\\sdk\\9.0.102\\Sdks\\Microsoft.NET.Sdk\\targets\\Microsoft.PackageDependencyResolution.targets",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\Program Files\\dotnet\\sdk\\9.0.102\\Sdks\\Microsoft.NET.Sdk\\targets\\Microsoft.PackageDependencyResolution.targets",
               "ToolTip": "C:\\Program Files\\dotnet\\sdk\\9.0.102\\Sdks\\Microsoft.NET.Sdk\\targets\\Microsoft.PackageDependencyResolution.targets",
               "RelativeToolTip": "..\\..\\..\\..\\..\\Program Files\\dotnet\\sdk\\9.0.102\\Sdks\\Microsoft.NET.Sdk\\targets\\Microsoft.PackageDependencyResolution.targets",
-              "ViewState": "AgIAAPkAAAAAAAAAAAAAwAkBAAAEAAAAAAAAAA==",
+              "ViewState": "AgIAAGUBAAAAAAAAAAAYwGoBAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
               "WhenOpened": "2025-04-10T09:55:09.888Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 19,
               "Title": ".gitignore",
               "DocumentMoniker": "C:\\Users\\KCC15\\source\\repos\\Team3_ProjectB\\.gitignore",
               "RelativeDocumentMoniker": ".gitignore",

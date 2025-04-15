@@ -65,7 +65,8 @@ public class MoviesAcces
         m.description AS Description,
         ms.start_time AS StartTime,
         ms.end_time AS EndTime,
-        a.name AS AuditoriumName
+        a.name AS AuditoriumName,
+        ms.auditorium_id AS AuditoriumId
     FROM movie_session ms
     JOIN movie m ON ms.movie_id = m.id
     JOIN auditorium a ON ms.auditorium_id = a.id

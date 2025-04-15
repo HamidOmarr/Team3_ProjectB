@@ -2,141 +2,169 @@
 {
     public static int AmountSeats { get; set; }
 
-
-    public static int AmountSeatsInput()
+    public static int AmountSeatsInput(int auditoriumId)
     {
         Console.Clear();
-      Console.WriteLine("Enter the amount of seats you want to reserve: ");
-      string input = Console.ReadLine();
-      AmountSeats = Convert.ToInt32(input);
-        SeatSelectionMap();
-
+        Console.WriteLine("Enter the amount of seats you want to reserve: ");
+        string input = Console.ReadLine();
+        AmountSeats = Convert.ToInt32(input);
+        SeatSelectionMap(auditoriumId);
         return AmountSeats;
     }
 
-
-
-
-    public static void SeatSelectionMap()
+    public static void SeatSelectionMap(int auditoriumId)
     {
-        int rows = 5;
-        int seatsPerRow = 10;
-        int aisle = seatsPerRow / 2;
+        var seatAccess = new SeatAccess();
+        var seats = seatAccess.GetSeatsByAuditorium(auditoriumId);
 
-        int selectedRow = 0;
-        int selectedSeat = 0;
+        var seatLookup = new Dictionary<(string, int), SeatsModel>();
+        foreach (var seat in seats)
+        {
+            var seatKey = (seat.RowNumber.Trim().ToUpper(), seat.SeatNumber);
+            seatLookup.TryAdd(seatKey, seat);
+        }
 
-        var selectedSeats = new HashSet<(int row, int seat)>();
 
+        var rowList = seats
+            .Select(s => s.RowNumber.Trim().ToUpper())
+            .Distinct()
+            .OrderBy(r => r)
+            .ToList();
+
+        int maxSeatNumber = seats.Max(s => s.SeatNumber);
+        int selectedRowIndex = 0;
+        int selectedSeatNumber = 1;
+
+        var selectedSeats = new HashSet<(string row, int seat)>();
+        int amountSeats = AmountSeats;
         ConsoleKey key;
 
         do
         {
             Console.Clear();
-
-            Console.ForegroundColor = ConsoleColor.DarkCyan;
-            Console.WriteLine("┌────────────────────────────── SCREEN ──────────────────────────────┐");
-            Console.WriteLine("└────────────────────────────────────────────────────────────────────┘\n");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine(@"
+  _________              __      _________      .__                 __  .__               
+ /   _____/ ____ _____ _/  |_   /   _____/ ____ |  |   ____   _____/  |_|__| ____   ____  
+ \_____  \_/ __ \\__  \\   __\  \_____  \_/ __ \|  | _/ __ \_/ ___\   __\  |/  _ \ /    \ 
+ /        \  ___/ / __ \|  |    /        \  ___/|  |_\  ___/\  \___|  | |  (  <_> )   |  \
+/_______  /\___  >____  /__|   /_______  /\___  >____/\___  >\___  >__| |__|\____/|___|  /
+        \/     \/     \/               \/     \/          \/     \/                    \/
+");
             Console.ResetColor();
-
-            Console.Write("         ");
-            for (int seat = 0; seat < seatsPerRow; seat++)
+            Console.Write("\n         "); // Indent to align with "Row A"
+            for (int seatNum = 1; seatNum <= maxSeatNumber; seatNum++)
             {
-                if (seat == aisle)
-                    Console.Write("    ");
-                Console.Write($"{seat + 1,5}");
+                Console.Write($"{seatNum,5}");
             }
             Console.WriteLine("\n");
-
-            for (int row = 0; row < rows; row++)
+            foreach (var row in rowList)
             {
-                char rowLetter = (char)('A' + row);
-                Console.Write($"   Row {rowLetter}   ");
-
-                for (int seat = 0; seat < seatsPerRow; seat++)
+                Console.Write($"   Row {row}   ");
+                for (int seatNum = 1; seatNum <= maxSeatNumber; seatNum++)
                 {
-                    if (seat == aisle)
-                        Console.Write("    "); // gangpad
+                    var pos = (row, seatNum);
+                    bool exists = seatLookup.ContainsKey(pos);
+                    bool isCursor = row == rowList[selectedRowIndex] && seatNum == selectedSeatNumber;
+                    bool isSelected = selectedSeats.Contains(pos);
 
-                    bool isCursor = row == selectedRow && seat == selectedSeat;
-                    bool isChosen = selectedSeats.Contains((row, seat));
-
-                    if (isCursor)
+                    if (exists)
                     {
-                        Console.BackgroundColor = ConsoleColor.DarkGray;
-                        Console.ForegroundColor = ConsoleColor.Black;
+                        var seat = seatLookup[pos];
+                        bool isVip = seat.SeatTypeId == 2;
 
-                        if (isChosen)
+                        if (isCursor)
+                        {
+                            Console.BackgroundColor = ConsoleColor.DarkGray;
+                            Console.ForegroundColor = ConsoleColor.Black;
+                            Console.Write(isSelected ? " [X] " : " [^] ");
+                            Console.ResetColor();
+                        }
+                        else if (isSelected)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Green;
                             Console.Write(" [X] ");
+                            Console.ResetColor();
+                        }
                         else
-                            Console.Write(" [^] ");
-
-                        Console.ResetColor();
-                    }
-                    else if (isChosen)
-                    {
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        Console.Write(" [X] ");
-                        Console.ResetColor();
+                        {
+                            if (isVip)
+                                Console.ForegroundColor = ConsoleColor.Red;
+                            Console.Write(" [ ] ");
+                            Console.ResetColor();
+                        }
                     }
                     else
                     {
-                        Console.Write(" [ ] ");
+                        Console.Write("     ");
                     }
                 }
 
                 Console.WriteLine();
             }
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
+            Console.WriteLine("┌────────────────────────────────────────────────────────────────────┐");
+            Console.WriteLine("└───────────────────────────────SCREEN───────────────────────────────┘\n");
+            Console.ResetColor();
+            var currentRow = rowList[selectedRowIndex];
+            var hoveredSeat = seatLookup.GetValueOrDefault((currentRow, selectedSeatNumber));
+            string priceInfo = hoveredSeat != null ? $"Prijs: {hoveredSeat.Price:F2} Euro" : "Onbekende stoel";
+            Console.Write("Legenda: VIP Seat ");
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.Write("[ ]  ");
+            Console.ResetColor();
 
-            Console.WriteLine($"\nGeselecteerd: {selectedSeats.Count}/{AmountSeats}");
+            Console.Write("Standard Seat ");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write("[ ]");
+            Console.ResetColor();
+
+            Console.WriteLine();
+            Console.WriteLine($"\nGeselecteerd: {selectedSeats.Count}/{amountSeats} — {priceInfo}");
             Console.WriteLine("Gebruik ↑ ↓ ← → om te navigeren, [Spatie] om te selecteren, Enter om te bevestigen");
+
+
+
 
             key = Console.ReadKey(true).Key;
 
             switch (key)
             {
                 case ConsoleKey.UpArrow:
-                    if (selectedRow > 0) selectedRow--;
+                    if (selectedRowIndex > 0) selectedRowIndex--;
                     break;
                 case ConsoleKey.DownArrow:
-                    if (selectedRow < rows - 1) selectedRow++;
+                    if (selectedRowIndex < rowList.Count - 1) selectedRowIndex++;
                     break;
                 case ConsoleKey.LeftArrow:
-                    if (selectedSeat > 0) selectedSeat--;
+                    if (selectedSeatNumber > 1) selectedSeatNumber--;
                     break;
                 case ConsoleKey.RightArrow:
-                    if (selectedSeat < seatsPerRow - 1) selectedSeat++;
+                    if (selectedSeatNumber < maxSeatNumber) selectedSeatNumber++;
                     break;
                 case ConsoleKey.Spacebar:
-                    var seatPos = (selectedRow, selectedSeat);
-                    if (selectedSeats.Contains(seatPos))
+                    var pos = (rowList[selectedRowIndex], selectedSeatNumber);
+                    if (seatLookup.ContainsKey(pos))
                     {
-                        selectedSeats.Remove(seatPos);
-                    }
-                    else if (selectedSeats.Count < AmountSeats)
-                    {
-                        selectedSeats.Add(seatPos);
+                        if (selectedSeats.Contains(pos))
+                            selectedSeats.Remove(pos);
+                        else if (selectedSeats.Count < amountSeats)
+                            selectedSeats.Add(pos);
                     }
                     break;
             }
 
-        } while (key != ConsoleKey.Enter || selectedSeats.Count != AmountSeats);
+        } while (key != ConsoleKey.Enter || selectedSeats.Count != amountSeats);
 
         Console.Clear();
         Console.WriteLine("Je hebt de volgende stoelen geselecteerd:\n");
 
-        foreach (var (row, seat) in selectedSeats)
+        foreach (var (row, seatNum) in selectedSeats)
         {
-            char rowLetter = (char)('A' + row);
-            Console.WriteLine($"Rij {rowLetter}, Stoel {seat + 1}");
+            var seat = seatLookup[(row, seatNum)];
+            Console.WriteLine($"Rij {row}, Stoel {seatNum} — €{seat.Price:F2}");
         }
 
         Console.ResetColor();
     }
-
-
-
-
-
-
 }
