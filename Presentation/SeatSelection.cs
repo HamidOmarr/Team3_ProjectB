@@ -123,7 +123,6 @@
         } while (key != ConsoleKey.Enter || selectedSeats.Count != AmountSeats);
 
         Console.Clear();
-        Console.ForegroundColor = ConsoleColor.Cyan;
         Console.WriteLine("Je hebt de volgende stoelen geselecteerd:\n");
 
         foreach (var (row, seat) in selectedSeats)

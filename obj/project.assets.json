@@ -15,10 +15,10 @@
           }
         }
       },
-      "Microsoft.Data.Sqlite/9.0.2": {
+      "Microsoft.Data.Sqlite/9.0.4": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Data.Sqlite.Core": "9.0.2",
+          "Microsoft.Data.Sqlite.Core": "9.0.4",
           "SQLitePCLRaw.bundle_e_sqlite3": "2.1.10",
           "SQLitePCLRaw.core": "2.1.10"
         },
@@ -29,7 +29,7 @@
           "lib/netstandard2.0/_._": {}
         }
       },
-      "Microsoft.Data.Sqlite.Core/9.0.2": {
+      "Microsoft.Data.Sqlite.Core/9.0.4": {
         "type": "package",
         "dependencies": {
           "SQLitePCLRaw.core": "2.1.10"
@@ -211,24 +211,24 @@
         "readme.md"
       ]
     },
-    "Microsoft.Data.Sqlite/9.0.2": {
-      "sha512": "61su148W1dVLxlTnDAQb870RhYrzHJ1OE4ggtOpM/V+xRlzWL9nbJ9Gj6lROhpZnYxoVXXBxOm9rnk12mn2vtA==",
+    "Microsoft.Data.Sqlite/9.0.4": {
+      "sha512": "jD3xtvMnMRn2uQl/rMCh01Q4b4P0l6Y5cUJfjTL/MOhkCy/4iDa4tL6y/gHaSKJilO9SdkOEJ/v4Z2Z59/jgLQ==",
       "type": "package",
-      "path": "microsoft.data.sqlite/9.0.2",
+      "path": "microsoft.data.sqlite/9.0.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "PACKAGE.md",
         "lib/netstandard2.0/_._",
-        "microsoft.data.sqlite.9.0.2.nupkg.sha512",
+        "microsoft.data.sqlite.9.0.4.nupkg.sha512",
         "microsoft.data.sqlite.nuspec"
       ]
     },
-    "Microsoft.Data.Sqlite.Core/9.0.2": {
-      "sha512": "lJbaLhjWnnPfLhZrQXPri5F0pmlJXg68yCSf5aRM3qFF8WD7dT1jnQUuBd3YvT5s1VDOH9t/6filPcTIOwZR7Q==",
+    "Microsoft.Data.Sqlite.Core/9.0.4": {
+      "sha512": "rnVGier1R0w9YEAzxOlUl8koFwq4QLwuYKiJN6NFqbCNCPrRLGW3f7x0OtL/Sp1KBMVhgffUIP6jWPppzhpa2Q==",
       "type": "package",
-      "path": "microsoft.data.sqlite.core/9.0.2",
+      "path": "microsoft.data.sqlite.core/9.0.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -240,7 +240,7 @@
         "lib/net8.0/Microsoft.Data.Sqlite.xml",
         "lib/netstandard2.0/Microsoft.Data.Sqlite.dll",
         "lib/netstandard2.0/Microsoft.Data.Sqlite.xml",
-        "microsoft.data.sqlite.core.9.0.2.nupkg.sha512",
+        "microsoft.data.sqlite.core.9.0.4.nupkg.sha512",
         "microsoft.data.sqlite.core.nuspec"
       ]
     },
@@ -361,7 +361,7 @@
   "projectFileDependencyGroups": {
     "net8.0": [
       "Dapper >= 2.1.66",
-      "Microsoft.Data.Sqlite >= 9.0.2"
+      "Microsoft.Data.Sqlite >= 9.0.4"
     ]
   },
   "packageFolders": {
@@ -421,7 +421,7 @@
           },
           "Microsoft.Data.Sqlite": {
             "target": "Package",
-            "version": "[9.0.2, )"
+            "version": "[9.0.4, )"
           }
         },
         "imports": [

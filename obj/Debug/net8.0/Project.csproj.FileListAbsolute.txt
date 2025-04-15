@@ -137,8 +137,6 @@ C:\Users\KCC15\source\repos\Team3_ProjectB\obj\Debug\net8.0\Project.dll
 C:\Users\KCC15\source\repos\Team3_ProjectB\obj\Debug\net8.0\refint\Project.dll
 C:\Users\KCC15\source\repos\Team3_ProjectB\obj\Debug\net8.0\Project.pdb
 C:\Users\KCC15\source\repos\Team3_ProjectB\bin\Debug\net8.0\Project.exe
-C:\Users\KCC15\source\repos\Team3_ProjectB\bin\Debug\net8.0\DataSources\project.db
-C:\Users\KCC15\source\repos\Team3_ProjectB\bin\Debug\net8.0\DataSources\ReservationSysteem.db
 C:\Users\KCC15\Source\Repos\Team3_ProjectB\bin\Debug\net8.0\Project.deps.json
 C:\Users\KCC15\Source\Repos\Team3_ProjectB\bin\Debug\net8.0\Project.runtimeconfig.json
 C:\Users\KCC15\source\repos\Team3_ProjectB\bin\Debug\net8.0\Project.dll

@@ -3,7 +3,8 @@ static class Menu
 {
     static public void Start()
     {
-        string[] options = { "Login", "View Movies" };
+
+        string[] options = { "View Movies", "Login", "Register", "Quit" };
         int selectedIndex = 0;
 
         ConsoleKey key;
@@ -12,13 +13,24 @@ static class Menu
             Console.Clear();
             Console.WriteLine("Use ↑ ↓ to choose, then press Enter:\n");
 
+
             for (int i = 0; i < options.Length; i++)
             {
+
                 if (i == selectedIndex)
-                    Console.WriteLine($"> {options[i]}");
+                {
+                    Console.BackgroundColor = ConsoleColor.DarkCyan;
+                    Console.ForegroundColor = ConsoleColor.Black;
+                    Console.WriteLine($"[>]  {options[i]}");
+                    Console.ResetColor();
+                }
                 else
-                    Console.WriteLine($"  {options[i]}");
+                {
+                    Console.WriteLine($"[ ]  {options[i]}");
+
+                }
             }
+
 
             key = Console.ReadKey(true).Key;
 
@@ -30,10 +42,12 @@ static class Menu
         } while (key != ConsoleKey.Enter);
 
         if (selectedIndex == 0)
-            UserLogin.Start();
-        else if (selectedIndex == 1)
-            //ShowMoviesManager.DisplaySessions();
             ShowMovies.DisplaySessions();
+
+        else if (selectedIndex == 1)
+            UserLogin.Start();
+        else if (selectedIndex == 2)
+            UserLogin.Register();
 
     }
 

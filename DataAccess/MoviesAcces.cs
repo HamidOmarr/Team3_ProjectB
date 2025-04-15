@@ -5,7 +5,7 @@ using Dapper;
 public class MoviesAcces
 {
 
-    private static SqliteConnection _connection = new SqliteConnection($"Data Source=DataSources/Reservationsysteem.db");
+    private static SqliteConnection _connection = new SqliteConnection("Data Source=../../../DataSources/ReservationSysteem.db");
 
     private static string Table = "movie_session";
 
