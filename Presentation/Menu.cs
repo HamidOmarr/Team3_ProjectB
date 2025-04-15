@@ -1,24 +1,40 @@
-
+﻿
 static class Menu
 {
     static public void Start()
     {
-        Console.WriteLine("Enter 1 to login");
-        Console.WriteLine("Enter 2 to view movie sessions");
+        string[] options = { "Login", "View Movies" };
+        int selectedIndex = 0;
 
-        string input = Console.ReadLine();
-        if (input == "1")
+        ConsoleKey key;
+        do
         {
+            Console.Clear();
+            Console.WriteLine("Use ↑ ↓ to choose, then press Enter:\n");
+
+            for (int i = 0; i < options.Length; i++)
+            {
+                if (i == selectedIndex)
+                    Console.WriteLine($"> {options[i]}");
+                else
+                    Console.WriteLine($"  {options[i]}");
+            }
+
+            key = Console.ReadKey(true).Key;
+
+            if (key == ConsoleKey.UpArrow && selectedIndex > 0)
+                selectedIndex--;
+            else if (key == ConsoleKey.DownArrow && selectedIndex < options.Length - 1)
+                selectedIndex++;
+
+        } while (key != ConsoleKey.Enter);
+
+        if (selectedIndex == 0)
             UserLogin.Start();
-        }
-        else if (input == "2")
-        {
-            ShowMoviesManager.DisplaySessions();
-        }
-        else
-        {
-            Console.WriteLine("Invalid input");
-            Start();
-        }
+        else if (selectedIndex == 1)
+            //ShowMoviesManager.DisplaySessions();
+            ShowMovies.DisplaySessions();
+
     }
+
 }

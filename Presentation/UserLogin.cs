@@ -19,7 +19,6 @@ static class UserLogin
             Console.WriteLine($"Your account type is: {acc.AccountType}");
 
             Menu.Start();
-            ShowMoviesManager.DisplaySessions();
 
 
         }
