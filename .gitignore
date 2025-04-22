@@ -461,6 +461,13 @@ ServiceFabricBackup/
 # Tabs Studio
 *.tss
 
+*.suo
+*.user
+_ReSharper.*
+bin
+obj
+packages
+
 # Telerik's JustMock configuration file
 *.jmconfig
 
