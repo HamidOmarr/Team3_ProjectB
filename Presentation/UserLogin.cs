@@ -9,7 +9,7 @@ static class UserLogin
         Console.WriteLine("Please enter your email address:");
         string email = Console.ReadLine();
         Console.WriteLine("Please enter your password:");
-        string password = Console.ReadLine();
+        string password = AccountsLogic.ReadPassword();
 
         AccountModel acc = accountsLogic.CheckLogin(email, password);
 
@@ -39,7 +39,7 @@ static class UserLogin
         Console.WriteLine("Please enter your email address:");
         string email = Console.ReadLine();
         Console.WriteLine("Please enter your password:");
-        string password = Console.ReadLine();
+        string password = AccountsLogic.ReadPassword();
 
         AccountModel newAccount = new AccountModel(0, name, email, password, "normal");
 
@@ -56,6 +56,5 @@ static class UserLogin
         }
 
         Menu.Start();
-        // Return to the menu
     }
 }
