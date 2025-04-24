@@ -45,7 +45,16 @@ static class Menu
             ShowMovies.DisplaySessions();
 
         else if (selectedIndex == 1)
-            UserLogin.Start();
+        {
+            var user = UserLogin.Start();
+            if (user != null)
+            {
+                AccountsLogic.SetCurrentAccount(user);
+                Console.WriteLine("You are now logged in. Press any key to continue...");
+                Console.ReadKey();
+                Start(); // Return to the menu after login
+            }
+        }
         else if (selectedIndex == 2)
             UserLogin.Register();
 

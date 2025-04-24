@@ -4,13 +4,13 @@
 
     public ShowMoviesManager()
     {
-        MoviesAcces moviesAccess = new MoviesAcces(); 
+        MoviesAccess moviesAccess = new MoviesAccess(); 
         MovieSessions = moviesAccess.GetAllMovieSessions();
     }
 
     public static int? DisplaySessions(int movieId)
     {
-        var moviesAccess = new MoviesAcces();
+        var moviesAccess = new MoviesAccess();
         var sessions = moviesAccess.GetDetailedMovieSessionsFromId(movieId);
 
         if (sessions.Count == 0)
@@ -52,7 +52,11 @@
 
         } while (key != ConsoleKey.Enter);
         var selectedSession = sessions[selectedIndex];
-        SeatSelection.AmountSeatsInput(selectedSession.AuditoriumId);
+        SeatSelection.AmountSeatsInput(
+            selectedSession.AuditoriumId,
+            selectedSession.Title,
+            selectedSession.StartTime
+        );
         return sessions[selectedIndex].Id;
     }
 

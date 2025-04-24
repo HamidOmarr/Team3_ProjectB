@@ -2,17 +2,17 @@
 {
     public static int AmountSeats { get; set; }
 
-    public static int AmountSeatsInput(int auditoriumId)
+    public static int AmountSeatsInput(int auditoriumId, string movieName, string sessionTime)
     {
         Console.Clear();
         Console.WriteLine("Enter the amount of seats you want to reserve: ");
         string input = Console.ReadLine();
         AmountSeats = Convert.ToInt32(input);
-        SeatSelectionMap(auditoriumId);
+        SeatSelectionMap(auditoriumId, movieName, sessionTime);
         return AmountSeats;
     }
 
-    public static void SeatSelectionMap(int auditoriumId)
+    public static void SeatSelectionMap(int auditoriumId, string movieName, string sessionTime)
     {
         var seatAccess = new SeatAccess();
         var seats = seatAccess.GetSeatsByAuditorium(auditoriumId);
@@ -23,7 +23,6 @@
             var seatKey = (seat.RowNumber.Trim().ToUpper(), seat.SeatNumber);
             seatLookup.TryAdd(seatKey, seat);
         }
-
 
         var rowList = seats
             .Select(s => s.RowNumber.Trim().ToUpper())
@@ -123,9 +122,6 @@
             Console.WriteLine($"\nGeselecteerd: {selectedSeats.Count}/{amountSeats} — {priceInfo}");
             Console.WriteLine("Gebruik ↑ ↓ ← → om te navigeren, [Spatie] om te selecteren, Enter om te bevestigen");
 
-
-
-
             key = Console.ReadKey(true).Key;
 
             switch (key)
@@ -157,14 +153,15 @@
         } while (key != ConsoleKey.Enter || selectedSeats.Count != amountSeats);
 
         Console.Clear();
-        Console.WriteLine("Je hebt de volgende stoelen geselecteerd:\n");
+        Console.WriteLine("You have selected the following seats:\n");
 
         foreach (var (row, seatNum) in selectedSeats)
         {
             var seat = seatLookup[(row, seatNum)];
-            Console.WriteLine($"Rij {row}, Stoel {seatNum} — {seat.Price:F2} Euro");
+            Console.WriteLine($"Row {row}, Seat {seatNum} — {seat.Price:F2} Euro");
         }
 
-        Console.ResetColor();
+        // Call the Checkout process
+        Checkout.StartCheckout(movieName, sessionTime, selectedSeats.ToList());
     }
 }

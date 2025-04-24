@@ -8,13 +8,12 @@ public static class AccountsAccess
 
     private const string Table = "user";
 
-    public static void Write(AccountModel account)
+    public static long Write(AccountModel account)
     {
-
         using var connection = new SqliteConnection(ConnectionString);
         connection.Open();
-        string sql = $"INSERT INTO {Table} (name, email, password_hash, account_type) VALUES (@Name, @Email, @PasswordHash, @AccountType)";
-        connection.Execute(sql, account);
+        string sql = $"INSERT INTO {Table} (name, email, password_hash, account_type) VALUES (@Name, @Email, @PasswordHash, @AccountType); SELECT last_insert_rowid();";
+        return connection.ExecuteScalar<long>(sql, account); // Return the generated Id
     }
 
     public static AccountModel GetByEmail(string email)

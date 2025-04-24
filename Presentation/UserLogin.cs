@@ -2,7 +2,7 @@ static class UserLogin
 {
     static private AccountsLogic accountsLogic = new AccountsLogic();
 
-    public static void Start()
+    public static AccountModel? Start()
     {
         Console.Clear();
         Console.WriteLine("Welcome to the login page");
@@ -18,14 +18,17 @@ static class UserLogin
             Console.WriteLine($"Welcome back, {acc.Name}!");
             Console.WriteLine($"Your email address is: {acc.Email}");
             Console.WriteLine($"Your account type is: {acc.AccountType}");
-
-            Menu.Start();
+            return acc; // Return the logged-in user
         }
         else
         {
             Console.WriteLine("No account found with that email and password.");
+            return null;
         }
     }
+
+
+
     public static void Register()
     {
         Console.Clear();
@@ -52,6 +55,7 @@ static class UserLogin
             Console.WriteLine($"An error occurred while registering the account: {ex.Message}");
         }
 
+        Menu.Start();
         // Return to the menu
     }
 }

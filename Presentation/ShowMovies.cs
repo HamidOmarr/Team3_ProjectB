@@ -4,7 +4,7 @@
 
     public ShowMovies()
     {
-        MoviesAcces moviesAccess = new MoviesAcces();
+        MoviesAccess moviesAccess = new MoviesAccess();
         Movies = moviesAccess.GetAllMovies();
     }
 

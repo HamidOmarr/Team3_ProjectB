@@ -12,6 +12,11 @@ public class AccountsLogic
         // Could do something here
     }
 
+    public static void SetCurrentAccount(AccountModel account)
+    {
+        CurrentAccount = account;
+    }
+
     public AccountModel? CheckLogin(string email, string password)
     {
         AccountModel acc = AccountsAccess.GetByEmail(email);
