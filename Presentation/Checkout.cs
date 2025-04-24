@@ -12,12 +12,21 @@ public class Checkout
         Console.WriteLine("+----------------------------+");
         Console.WriteLine("| Seats:                     |");
 
+        decimal totalPrice = 0;
         foreach (var (row, seatNum) in selectedSeats)
         {
+            var seat = SeatAccess.GetSeatByRowAndNumber(row, seatNum);
+            decimal actualPrice = PriceAccess.GetPrice(seat.SeatTypeId, null); // Retrieve the price
+
+            // Print row and seat information
             Console.WriteLine($"|  - Row {row}, Seat {seatNum.ToString().PadRight(14)}|");
+            totalPrice += actualPrice;
         }
 
         Console.WriteLine("+----------------------------+");
+        Console.WriteLine($"| Total Price: {totalPrice:F2} EUR".PadRight(28) + "|");
+        Console.WriteLine("+----------------------------+");
+
 
         AccountModel user = AccountsLogic.CurrentAccount;
         if (user == null)
@@ -60,16 +69,19 @@ public class Checkout
         foreach (var (row, seatNum) in selectedSeats)
         {
             var seat = SeatAccess.GetSeatByRowAndNumber(row, seatNum);
+
+            // Retrieve the price based on seat type and promotion type
+            decimal actualPrice = PriceAccess.GetPrice(seat.SeatTypeId, null); // Pass null for promotion_type_id if no promotion is applied
+
             var ticket = new TicketModel
             {
-                ReservationId = reservation.Id, // No change needed
-                MovieSessionId = GetMovieSessionId(movieName, sessionTime), // No change needed
-                SeatId = seat.Id, // No cast needed since SeatId is long
-                ActualPrice = (decimal)seat.Price // Cast Price to decimal
+                ReservationId = reservation.Id,
+                MovieSessionId = GetMovieSessionId(movieName, sessionTime),
+                SeatId = seat.Id,
+                ActualPrice = actualPrice // Set the actual price
             };
             TicketsAccess.Create(ticket);
         }
-
 
 
 
