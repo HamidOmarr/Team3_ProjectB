@@ -7,4 +7,6 @@
     public string StartTime { get; set; }
     public string EndTime { get; set; }
     public string AuditoriumName { get; set; }
+    public int AuditoriumId { get; set; }
+
 }

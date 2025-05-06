@@ -24,7 +24,7 @@ public class MovieSessionModel
     [Required]
     public string EndTime { get; set; }
 
-    public virtual Movie Movie { get; set; }
+    public virtual MovieModel MovieModel { get; set; }
     public virtual Auditorium Auditorium { get; set; }
 
     public MovieSessionModel() { }

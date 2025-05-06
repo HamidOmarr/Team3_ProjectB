@@ -9,13 +9,14 @@
 
   <ItemGroup>
    <Content Include="DataSources/*">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	   <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+
    </Content>
 </ItemGroup>
 
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Data.Sqlite" Version="9.0.2" />
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="9.0.4" />
     <PackageReference Include="Dapper" Version="2.1.66" />
   </ItemGroup>
 

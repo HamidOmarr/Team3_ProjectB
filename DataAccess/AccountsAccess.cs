@@ -1,63 +1,42 @@
-using Microsoft.Data.Sqlite;
 using Dapper;
+using Microsoft.Data.Sqlite;
 
-public class AccountsAccess
+public static class AccountsAccess
 {
-    private static SqliteConnection _connection = new SqliteConnection(@"Data Source=C:\Users\Dell\Downloads\ProjectB\Team3_ProjectB\DataSources\ReservationSysteem.db");
-    private static string Table = "user";
+    private const string ConnectionString = "Data Source=../../../DataSources/ReservationSysteem.db";
 
-    public AccountsAccess()
+
+    private const string Table = "user";
+
+    public static long Write(AccountModel account)
     {
-        _connection.Open();
+        using var connection = new SqliteConnection(ConnectionString);
+        connection.Open();
+        string sql = $"INSERT INTO {Table} (name, email, password_hash, account_type) VALUES (@Name, @Email, @PasswordHash, @AccountType); SELECT last_insert_rowid();";
+        return connection.ExecuteScalar<long>(sql, account); // Return the generated Id
     }
 
-    public void Write(AccountModel account)
+    public static AccountModel GetByEmail(string email)
     {
-        using (var connection = new SqliteConnection(@"Data Source=C:\Users\Dell\Downloads\ProjectB\Team3_ProjectB\DataSources\ReservationSysteem.db"))
-        {
-            connection.Open();
-            string sql = $"INSERT INTO {Table} (id, name, email, password_hash, account_type) VALUES (@Id, @Name, @Email, @PasswordHash, @AccountType)";
-            connection.Execute(sql, new
-            {
-                Id = account.Id,
-                Name = account.Name,
-                Email = account.Email,
-                PasswordHash = account.PasswordHash,
-                AccountType = account.AccountType
-            });
-        }
-    }
-
-
-    public AccountModel GetByEmail(string email)
-    {
+        using var connection = new SqliteConnection(ConnectionString);
+        connection.Open();
         string sql = $"SELECT id AS Id, name AS Name, email AS Email, password_hash AS PasswordHash, account_type AS AccountType FROM {Table} WHERE email = @Email";
-        return _connection.QueryFirstOrDefault<AccountModel>(sql, new { Email = email });
+        return connection.QueryFirstOrDefault<AccountModel>(sql, new { Email = email });
     }
 
-    public void Update(AccountModel account)
+    public static void Update(AccountModel account)
     {
+        using var connection = new SqliteConnection(ConnectionString);
+        connection.Open();
         string sql = $"UPDATE {Table} SET name = @Name, email = @Email, password_hash = @PasswordHash, account_type = @AccountType WHERE id = @Id";
-        _connection.Execute(sql, new
-        {
-            Id = account.Id,
-            Name = account.Name,
-            Email = account.Email,
-            PasswordHash = account.PasswordHash,
-            AccountType = account.AccountType
-        });
+        connection.Execute(sql, account);
     }
 
-    public void Delete(AccountModel account)
+    public static void Delete(AccountModel account)
     {
+        using var connection = new SqliteConnection(ConnectionString);
+        connection.Open();
         string sql = $"DELETE FROM {Table} WHERE id = @Id";
-        _connection.Execute(sql, new { Id = account.Id });
+        connection.Execute(sql, new { account.Id });
     }
-
-    public bool DoesIdExist(long id)
-    {
-        string sql = $"SELECT COUNT(1) FROM {Table} WHERE id = @Id";
-        return _connection.ExecuteScalar<int>(sql, new { Id = id }) > 0;
-    }
-
 }
