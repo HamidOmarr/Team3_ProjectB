@@ -6,13 +6,14 @@ public static class ReservationsAccess
     private const string ConnectionString = "Data Source=../../../DataSources/ReservationSysteem.db";
     private const string Table = "reservation";
 
-    public static void Create(ReservationModel reservation)
+    public static long Create(ReservationModel reservation)
     {
         using var connection = new SqliteConnection(ConnectionString);
         connection.Open();
         string sql = $"INSERT INTO {Table} (user_id, total_price, status) VALUES (@UserId, @TotalPrice, @Status); SELECT last_insert_rowid();";
-        reservation.Id = connection.ExecuteScalar<Int64>(sql, reservation);
+        return connection.ExecuteScalar<long>(sql, reservation);
     }
+
 
     public static ReservationModel GetById(Int64 id)
     {

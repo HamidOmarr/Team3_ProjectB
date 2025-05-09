@@ -14,8 +14,8 @@
 
     public static void SeatSelectionMap(int auditoriumId, string movieName, string sessionTime)
     {
-        var seatAccess = new SeatAccess();
-        var seats = seatAccess.GetSeatsByAuditorium(auditoriumId);
+        SeatsLogic seatsLogic = new SeatsLogic();
+        var seats = seatsLogic.GetSeatsByAuditorium(auditoriumId);
 
         // Create a dictionary for seat lookup
         var seatLookup = new Dictionary<(string, int), SeatsModel>();

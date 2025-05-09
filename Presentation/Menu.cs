@@ -52,7 +52,7 @@ static class Menu
                 AccountsLogic.SetCurrentAccount(user);
                 Console.WriteLine("You are now logged in. Press any key to continue...");
                 Console.ReadKey();
-                Start(); // Return to the menu after login
+                Start();
             }
         }
         else if (selectedIndex == 2)

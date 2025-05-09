@@ -12,6 +12,16 @@ public class AccountsLogic
         // Could do something here
     }
 
+    public long WriteAccount(AccountModel account)
+    {
+        return AccountsAccess.Write(account);
+    }
+
+    public AccountModel GetAccountByEmail(string email)
+    {
+        return AccountsAccess.GetByEmail(email);
+    }
+
     public static string ReadPassword()
     {
         string password = "";
@@ -56,4 +66,16 @@ public class AccountsLogic
 
         return null;
     }
+    public void RegisterAccount(AccountModel account)
+    {
+        try
+        {
+            AccountsAccess.Write(account);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception("An error occurred while registering the account.", ex);
+        }
+    }
+
 }
