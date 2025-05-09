@@ -17,20 +17,41 @@
         SeatsLogic seatsLogic = new SeatsLogic();
         var seats = seatsLogic.GetSeatsByAuditorium(auditoriumId);
 
+        // Create a dictionary for seat lookup
         var seatLookup = new Dictionary<(string, int), SeatsModel>();
         foreach (var seat in seats)
         {
             var seatKey = (seat.RowNumber.Trim().ToUpper(), seat.SeatNumber);
-            seatLookup.TryAdd(seatKey, seat);
+            if (!seatLookup.ContainsKey(seatKey))
+            {
+                seatLookup.Add(seatKey, seat);
+            }
         }
 
-        var rowList = seats
-            .Select(s => s.RowNumber.Trim().ToUpper())
-            .Distinct()
-            .OrderBy(r => r)
-            .ToList();
+        // Get distinct row list
+        var rowList = new List<string>();
+        foreach (var seat in seats)
+        {
+            string row = seat.RowNumber.Trim().ToUpper();
+            if (!rowList.Contains(row))
+            {
+                rowList.Add(row);
+            }
+        }
 
-        int maxSeatNumber = seats.Max(s => s.SeatNumber);
+        // Sort rows alphabetically
+        rowList.Sort();
+
+        // Find the maximum seat number
+        int maxSeatNumber = 0;
+        foreach (var seat in seats)
+        {
+            if (seat.SeatNumber > maxSeatNumber)
+            {
+                maxSeatNumber = seat.SeatNumber;
+            }
+        }
+
         int selectedRowIndex = 0;
         int selectedSeatNumber = 1;
 
@@ -57,6 +78,7 @@
                 Console.Write($"{seatNum,5}");
             }
             Console.WriteLine("\n");
+
             foreach (var row in rowList)
             {
                 Console.Write($"   Rij {row}   ");
@@ -106,7 +128,7 @@
             Console.WriteLine("└───────────────────────────────SCREEN───────────────────────────────┘\n");
             Console.ResetColor();
             var currentRow = rowList[selectedRowIndex];
-            var hoveredSeat = seatLookup.GetValueOrDefault((currentRow, selectedSeatNumber));
+            var hoveredSeat = seatLookup.ContainsKey((currentRow, selectedSeatNumber)) ? seatLookup[(currentRow, selectedSeatNumber)] : null;
             string priceInfo = hoveredSeat != null ? $"Prijs: {hoveredSeat.Price:F2} Euro" : "Onbekende stoel";
             Console.Write("Legenda: VIP Seat ");
             Console.ForegroundColor = ConsoleColor.Red;
@@ -155,13 +177,13 @@
         Console.Clear();
         Console.WriteLine("You have selected the following seats:\n");
 
-        foreach (var (row, seatNum) in selectedSeats)
+        foreach (var selectedSeat in selectedSeats)
         {
-            var seat = seatLookup[(row, seatNum)];
-            Console.WriteLine($"Row {row}, Seat {seatNum} — {seat.Price:F2} Euro");
+            var seat = seatLookup[selectedSeat];
+            Console.WriteLine($"Row {selectedSeat.row}, Seat {selectedSeat.seat} — {seat.Price:F2} Euro");
         }
 
         // Call the Checkout process
-        Checkout.StartCheckout(movieName, sessionTime, selectedSeats.ToList());
+        Checkout.StartCheckout(movieName, sessionTime, new List<(string, int)>(selectedSeats));
     }
 }
