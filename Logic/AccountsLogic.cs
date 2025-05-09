@@ -12,6 +12,16 @@ public class AccountsLogic
         // Could do something here
     }
 
+    public long WriteAccount(AccountModel account)
+    {
+        return AccountsAccess.Write(account);
+    }
+
+    public AccountModel GetAccountByEmail(string email)
+    {
+        return AccountsAccess.GetByEmail(email);
+    }
+
     public static string ReadPassword()
     {
         string password = "";

@@ -30,6 +30,7 @@ public class Checkout
         Console.WriteLine($"| Total Price: {totalPrice:F2} EUR".PadRight(28) + "|");
         Console.WriteLine("+----------------------------+");
 
+        AccountsLogic accountsLogic = new AccountsLogic();
         AccountModel user = AccountsLogic.CurrentAccount;
         if (user == null)
         {
@@ -53,7 +54,7 @@ public class Checkout
                 string email = Console.ReadLine();
 
                 user = new AccountModel(0, name, email, "wow", "guest");
-                user.Id = AccountsAccess.Write(user); // Assign the generated Id
+                user.Id = accountsLogic.WriteAccount(user); // Assign the generated Id
                 Console.WriteLine("Guest user details saved successfully.");
             }
         }
@@ -68,6 +69,7 @@ public class Checkout
         reservation.Id = reservationsLogic.CreateReservation(reservation);
 
         MovieSessionsLogic movieSessionsLogic = new MovieSessionsLogic();
+        TicketsLogic ticketsLogic = new TicketsLogic();
         foreach (var (row, seatNum) in selectedSeats)
         {
             var seat = seatsLogic.GetSeatByRowAndNumber(row, seatNum);
@@ -82,7 +84,7 @@ public class Checkout
                 SeatId = seat.Id,
                 ActualPrice = actualPrice // Set the actual price
             };
-            TicketsAccess.Create(ticket);
+            ticketsLogic.CreateTicket(ticket);
         }
 
         Console.WriteLine("\nThank you for your reservation!");
