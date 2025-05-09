@@ -14,8 +14,8 @@
 
     public static void SeatSelectionMap(int auditoriumId, string movieName, string sessionTime)
     {
-        var seatAccess = new SeatAccess();
-        var seats = seatAccess.GetSeatsByAuditorium(auditoriumId);
+        SeatsLogic seatsLogic = new SeatsLogic();
+        var seats = seatsLogic.GetSeatsByAuditorium(auditoriumId);
 
         var seatLookup = new Dictionary<(string, int), SeatsModel>();
         foreach (var seat in seats)
@@ -48,7 +48,7 @@
  \_____  \_/ __ \\__  \\   __\  \_____  \_/ __ \|  | _/ __ \_/ ___\   __\  |/  _ \ /    \ 
  /        \  ___/ / __ \|  |    /        \  ___/|  |_\  ___/\  \___|  | |  (  <_> )   |  \
 /_______  /\___  >____  /__|   /_______  /\___  >____/\___  >\___  >__| |__|\____/|___|  /
-        \/     \/     \/               \/     \/          \/     \/                    \/
+        \/     \/     \/               \/     \/          \/     \/                    
 ");
             Console.ResetColor();
             Console.Write("\n         "); // Indent to align with "Row A"

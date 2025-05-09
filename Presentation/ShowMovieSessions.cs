@@ -4,14 +4,14 @@
 
     public ShowMoviesManager()
     {
-        MoviesAccess moviesAccess = new MoviesAccess(); 
-        MovieSessions = moviesAccess.GetAllMovieSessions();
+        MovieSessionsLogic movieSessionsLogic = new MovieSessionsLogic();
+        MovieSessions = movieSessionsLogic.GetAllMovieSessions();
     }
 
     public static int? DisplaySessions(int movieId)
     {
-        var moviesAccess = new MoviesAccess();
-        var sessions = moviesAccess.GetDetailedMovieSessionsFromId(movieId);
+        MovieSessionsLogic movieSessionsLogic = new MovieSessionsLogic();
+        var sessions = movieSessionsLogic.GetDetailedMovieSessionsFromId(movieId);
 
         if (sessions.Count == 0)
         {
@@ -36,7 +36,7 @@
                     Console.BackgroundColor = ConsoleColor.DarkCyan;
                     Console.ForegroundColor = ConsoleColor.Black;
                 }
-               
+
                 Console.WriteLine($"[{(isSelected ? ">" : " ")}] {session.StartTime:HH:mm} - {session.EndTime:HH:mm} | {session.Title} ({session.Genre}) - {session.AuditoriumName}");
 
                 if (isSelected)
@@ -51,6 +51,7 @@
                 selectedIndex++;
 
         } while (key != ConsoleKey.Enter);
+
         var selectedSession = sessions[selectedIndex];
         SeatSelection.AmountSeatsInput(
             selectedSession.AuditoriumId,
@@ -59,5 +60,4 @@
         );
         return sessions[selectedIndex].Id;
     }
-
 }
