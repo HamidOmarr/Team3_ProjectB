@@ -1,22 +1,28 @@
 using Dapper;
 using Microsoft.Data.Sqlite;
 
-public static class MovieSessionsAccess
+public class MovieSessionsAccess
 {
-    private const string ConnectionString = "Data Source=../../../DataSources/ReservationSysteem.db";
+    private readonly SqliteConnection _connection;
+
+    public MovieSessionsAccess()
+    {
+        _connection = new SqliteConnection("Data Source=../../../DataSources/ReservationSysteem.db");
+        _connection.Open();
+    }
+
     private const string Table = "movie_session";
 
-    public static MovieSessionModel GetSessionByMovieAndTime(string movieName, string sessionTime)
+    public MovieSessionModel GetSessionByMovieAndTime(string movieName, string sessionTime)
     {
-        using var connection = new SqliteConnection(ConnectionString);
-        connection.Open();
         string sql = $@"
             SELECT ms.id AS Id, ms.movie_id AS MovieId, ms.auditorium_id AS AuditoriumId, ms.start_time AS StartTime, ms.end_time AS EndTime
             FROM {Table} ms
             JOIN movie m ON ms.movie_id = m.id
             WHERE m.title = @MovieName AND ms.start_time = @SessionTime";
-        return connection.QueryFirstOrDefault<MovieSessionModel>(sql, new { MovieName = movieName, SessionTime = sessionTime });
+        return _connection.QueryFirstOrDefault<MovieSessionModel>(sql, new { MovieName = movieName, SessionTime = sessionTime });
     }
+
     public List<FullMovieSessionModel> GetAllDetailedMovieSessions()
     {
         string sql = @"
@@ -59,7 +65,6 @@ public static class MovieSessionsAccess
         return sessions;
     }
 
-
     public List<MovieSessionModel> GetAllMovieSessions()
     {
         string sql = @"
@@ -80,6 +85,4 @@ public static class MovieSessionsAccess
         var movieSessions = _connection.Query<MovieSessionModel>(sql).ToList();
         return movieSessions;
     }
-
-
 }
