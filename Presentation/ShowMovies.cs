@@ -4,8 +4,8 @@
 
     public ShowMovies()
     {
-        MoviesAccess moviesAccess = new MoviesAccess();
-        Movies = moviesAccess.GetAllMovies();
+        MoviesLogic moviesLogic = new MoviesLogic();
+        Movies = moviesLogic.GetAllMovies();
     }
 
     public static void DisplaySessions()
@@ -69,8 +69,5 @@
         Console.Clear();
 
         ShowMoviesManager.DisplaySessions(selectedMovie.Id);
-
-
-
     }
 }

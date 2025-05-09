@@ -56,4 +56,16 @@ public class AccountsLogic
 
         return null;
     }
+    public void RegisterAccount(AccountModel account)
+    {
+        try
+        {
+            AccountsAccess.Write(account);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception("An error occurred while registering the account.", ex);
+        }
+    }
+
 }
