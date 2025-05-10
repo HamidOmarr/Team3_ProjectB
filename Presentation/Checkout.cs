@@ -13,10 +13,13 @@ public class Checkout
         Console.WriteLine("| Seats:                     |");
 
         decimal totalPrice = 0;
+        SeatsLogic seatsLogic = new SeatsLogic();
+        PricesLogic pricesLogic = new PricesLogic();
+
         foreach (var (row, seatNum) in selectedSeats)
         {
-            var seat = SeatAccess.GetSeatByRowAndNumber(row, seatNum);
-            decimal actualPrice = PriceAccess.GetPrice(seat.SeatTypeId, null); // Retrieve the price
+            var seat = seatsLogic.GetSeatByRowAndNumber(row, seatNum);
+            decimal actualPrice = pricesLogic.GetPrice(seat.SeatTypeId, null); // Retrieve the price
 
             // Print row and seat information
             Console.WriteLine($"|  - Row {row}, Seat {seatNum.ToString().PadRight(14)}|");
@@ -27,7 +30,7 @@ public class Checkout
         Console.WriteLine($"| Total Price: {totalPrice:F2} EUR".PadRight(28) + "|");
         Console.WriteLine("+----------------------------+");
 
-
+        AccountsLogic accountsLogic = new AccountsLogic();
         AccountModel user = AccountsLogic.CurrentAccount;
         if (user == null)
         {
@@ -51,39 +54,38 @@ public class Checkout
                 string email = Console.ReadLine();
 
                 user = new AccountModel(0, name, email, "wow", "guest");
-                user.Id = AccountsAccess.Write(user); // Assign the generated Id
+                user.Id = accountsLogic.WriteAccount(user); // Assign the generated Id
                 Console.WriteLine("Guest user details saved successfully.");
             }
         }
 
-
-
+        ReservationsLogic reservationsLogic = new ReservationsLogic();
         var reservation = new ReservationModel
         {
             UserId = user.Id,
             TotalPrice = CalculateTotalPrice(selectedSeats),
             Status = "pending"
         };
-        ReservationsAccess.Create(reservation);
+        reservation.Id = reservationsLogic.CreateReservation(reservation);
 
+        MovieSessionsLogic movieSessionsLogic = new MovieSessionsLogic();
+        TicketsLogic ticketsLogic = new TicketsLogic();
         foreach (var (row, seatNum) in selectedSeats)
         {
-            var seat = SeatAccess.GetSeatByRowAndNumber(row, seatNum);
+            var seat = seatsLogic.GetSeatByRowAndNumber(row, seatNum);
 
             // Retrieve the price based on seat type and promotion type
-            decimal actualPrice = PriceAccess.GetPrice(seat.SeatTypeId, null); // Pass null for promotion_type_id if no promotion is applied
+            decimal actualPrice = pricesLogic.GetPrice(seat.SeatTypeId, null); // Pass null for promotion_type_id if no promotion is applied
 
             var ticket = new TicketModel
             {
                 ReservationId = reservation.Id,
-                MovieSessionId = GetMovieSessionId(movieName, sessionTime),
+                MovieSessionId = movieSessionsLogic.GetSessionByMovieAndTime(movieName, sessionTime).Id,
                 SeatId = seat.Id,
                 ActualPrice = actualPrice // Set the actual price
             };
-            TicketsAccess.Create(ticket);
+            ticketsLogic.CreateTicket(ticket);
         }
-
-
 
         Console.WriteLine("\nThank you for your reservation!");
         Console.WriteLine("Press any key to return to the main menu...");
@@ -94,18 +96,12 @@ public class Checkout
     private static decimal CalculateTotalPrice(List<(string row, int seat)> selectedSeats)
     {
         decimal totalPrice = 0;
+        SeatsLogic seatsLogic = new SeatsLogic();
         foreach (var (row, seatNum) in selectedSeats)
         {
-            var seat = SeatAccess.GetSeatByRowAndNumber(row, seatNum);
+            var seat = seatsLogic.GetSeatByRowAndNumber(row, seatNum);
             totalPrice += (decimal)seat.Price; // Cast Price to decimal
         }
         return totalPrice;
-    }
-
-
-    private static long GetMovieSessionId(string movieName, string sessionTime)
-    {
-        var session = MovieSessionsAccess.GetSessionByMovieAndTime(movieName, sessionTime);
-        return session.Id;
     }
 }

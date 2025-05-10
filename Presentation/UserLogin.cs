@@ -45,9 +45,7 @@ static class UserLogin
 
         try
         {
-            Console.WriteLine("USING DB PATH: " + Path.GetFullPath("DataSources/ReservationSysteem.db"));
-
-            AccountsAccess.Write(newAccount);
+            accountsLogic.RegisterAccount(newAccount);
             Console.WriteLine("Account successfully registered!");
         }
         catch (Exception ex)
@@ -57,4 +55,5 @@ static class UserLogin
 
         Menu.Start();
     }
+
 }
