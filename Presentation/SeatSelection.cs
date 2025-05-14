@@ -80,6 +80,8 @@
                     {
                         var seat = seatLookup[pos];
                         bool isVip = seat.SeatTypeId == 2;
+                        bool isComfort = seat.SeatTypeId == 3;
+
 
                         if (isCursor)
                         {
@@ -98,6 +100,12 @@
                         {
                             Console.ForegroundColor = ConsoleColor.Green;
                             Console.Write(" [X] ");
+                            Console.ResetColor();
+                        }
+                        else if (isComfort)
+                        {
+                            Console.ForegroundColor = ConsoleColor.DarkYellow;
+                            Console.Write(" [ ] ");
                             Console.ResetColor();
                         }
                         else
@@ -127,6 +135,11 @@
 
             Console.Write("Legenda: VIP Seat ");
             Console.ForegroundColor = ConsoleColor.Red;
+            Console.Write("[ ]  ");
+            Console.ResetColor();
+
+            Console.Write("Legenda: Comfort Seat ");
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.Write("[ ]  ");
             Console.ResetColor();
 
@@ -190,7 +203,7 @@
             Console.WriteLine($"Row {selectedSeat.row}, Seat {selectedSeat.seat} — {seat.Price:F2} Euro");
         }
 
-        Checkout.StartCheckout(movieName, sessionTime, new List<(string, int)>(selectedSeats));
+        Checkout.StartCheckout(movieName, sessionTime, new List<(string, int)>(selectedSeats), auditoriumId);
     }
 
 }

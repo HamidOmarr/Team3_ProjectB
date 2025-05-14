@@ -1,6 +1,6 @@
 public class Checkout
 {
-    public static void StartCheckout(string movieName, string sessionTime, List<(string row, int seat)> selectedSeats)
+    public static void StartCheckout(string movieName, string sessionTime, List<(string row, int seat)> selectedSeats, int auditoriumId)
     {
         Console.Clear();
 
@@ -71,7 +71,7 @@ public class Checkout
 
         foreach (var (row, seatNum) in selectedSeats)
         {
-            var seat = seatsLogic.GetSeatByRowAndNumber(row, seatNum);
+            var seat = seatsLogic.GetSeatByRowAndNumber(row, seatNum, auditoriumId);
             decimal actualPrice = pricesLogic.GetPrice(seat.SeatTypeId, null);
 
             // Print row and seat information

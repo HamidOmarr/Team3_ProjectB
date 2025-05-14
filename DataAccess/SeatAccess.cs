@@ -7,13 +7,26 @@ public class SeatAccess
     private const string ConnectionString = "Data Source=../../../DataSources/ReservationSysteem.db";
     private const string Table = "seat";
 
-    public static SeatsModel GetSeatByRowAndNumber(string row, int seatNumber)
+    public static SeatsModel GetSeatByRowAndNumber(string row, int seatNumber, int auditoriumId)
     {
         using var connection = new SqliteConnection(ConnectionString);
         connection.Open();
-        string sql = $"SELECT id AS Id, auditorium_id AS AuditoriumId, row_number AS RowNumber, seat_number AS SeatNumber, seat_type_id AS SeatTypeId FROM {Table} WHERE row_number = @Row AND seat_number = @SeatNumber";
-        return connection.QueryFirstOrDefault<SeatsModel>(sql, new { Row = row, SeatNumber = seatNumber });
+        string sql = $@"
+        SELECT 
+            id AS Id, 
+            auditorium_id AS AuditoriumId, 
+            row_number AS RowNumber, 
+            seat_number AS SeatNumber, 
+            seat_type_id AS SeatTypeId 
+        FROM {Table} 
+        WHERE 
+            row_number = @Row 
+            AND seat_number = @SeatNumber 
+            AND auditorium_id = @AuditoriumId";
+
+        return connection.QueryFirstOrDefault<SeatsModel>(sql, new { Row = row, SeatNumber = seatNumber, AuditoriumId = auditoriumId });
     }
+
 
     public List<SeatsModel> GetSeatsByAuditorium(int auditoriumId)
     {
