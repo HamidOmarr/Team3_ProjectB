@@ -2,17 +2,17 @@
 {
     public static int AmountSeats { get; set; }
 
-    public static int AmountSeatsInput(int auditoriumId, string movieName, string sessionTime)
+    public static int AmountSeatsInput(int auditoriumId, string movieName, string sessionTime, long reservationId)
     {
         Console.Clear();
         Console.WriteLine("Enter the amount of seats you want to reserve: ");
         string input = Console.ReadLine();
         AmountSeats = Convert.ToInt32(input);
-        SeatSelectionMap(auditoriumId, movieName, sessionTime);
+        SeatSelectionMap(auditoriumId, movieName, sessionTime, reservationId);
         return AmountSeats;
     }
 
-    public static void SeatSelectionMap(int auditoriumId, string movieName, string sessionTime)
+    public static void SeatSelectionMap(int auditoriumId, string movieName, string sessionTime, long reservationId)
     {
         SeatsLogic seatsLogic = new SeatsLogic();
         var seats = seatsLogic.GetSeatsByAuditorium(auditoriumId);
@@ -184,7 +184,7 @@
         }
 
         // Call the Foodmenu process
-        Foodmenu.StartFoodMenu();
+        Foodmenu.StartFoodMenu(reservationId);
 
         // Call the Checkout process
         Checkout.StartCheckout(movieName, sessionTime, new List<(string, int)>(selectedSeats));

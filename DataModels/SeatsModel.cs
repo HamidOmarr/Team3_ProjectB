@@ -4,9 +4,9 @@ public class SeatsModel
     public string RowNumber { get; set; }
     public int SeatNumber { get; set; }
     public int SeatTypeId { get; set; }
-    public double Price { get; set; }
+    public decimal Price { get; set; }
 
-    public SeatsModel(long id, string rowNumber, int seatNumber, int seatTypeId, double price)
+    public SeatsModel(long id, string rowNumber, int seatNumber, int seatTypeId, decimal price)
     {
         Id = id;
         RowNumber = rowNumber;

@@ -11,4 +11,9 @@ public class ReservationConsumablesLogic
     {
         _reservationConsumablesAccess.SaveReservationConsumable(reservationConsumable);
     }
+
+    public List<(string Name, int Quantity, decimal ActualPrice)> GetConsumablesForCheckout(long reservationId)
+    {
+        return _reservationConsumablesAccess.GetConsumablesForCheckout(reservationId);
+    }
 }

@@ -1,3 +1,6 @@
+using Dapper;
+using Microsoft.Data.Sqlite;
+
 public class ConsumablesAccess
 {
     private const string ConnectionString = "Data Source=../../../DataSources/ReservationSysteem.db";

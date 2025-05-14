@@ -53,11 +53,36 @@
         } while (key != ConsoleKey.Enter);
 
         var selectedSession = sessions[selectedIndex];
+
+        // Ensure the user is logged in or create a guest user
+        long userId = AccountsLogic.CurrentAccount?.Id ?? 0;
+        if (userId == 0)
+        {
+            AccountsLogic accountsLogic = new AccountsLogic();
+            var uniqueGuestEmail = $"guest_{Guid.NewGuid()}@example.com"; // Generate a unique email
+            var guestUser = new AccountModel(0, "Guest", uniqueGuestEmail, "guest_password", "guest");
+            userId = accountsLogic.WriteAccount(guestUser);
+        }
+
+        // Create a reservation and get the reservationId
+        ReservationsLogic reservationsLogic = new ReservationsLogic();
+        var reservation = new ReservationModel
+        {
+            UserId = userId, // Use the valid userId
+            TotalPrice = 0, // Initial total price, will be updated later
+            Status = "pending"
+        };
+        long reservationId = reservationsLogic.CreateReservation(reservation);
+
+        // Pass the reservationId to SeatSelection
         SeatSelection.AmountSeatsInput(
             selectedSession.AuditoriumId,
             selectedSession.Title,
-            selectedSession.StartTime
+            selectedSession.StartTime,
+            reservationId
         );
+
         return sessions[selectedIndex].Id;
     }
+
 }
