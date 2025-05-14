@@ -183,9 +183,6 @@
             Console.WriteLine($"Row {selectedSeat.row}, Seat {selectedSeat.seat} — {seat.Price:F2} Euro");
         }
 
-        // Call the Foodmenu process
-        Foodmenu.StartFoodMenu(reservationId);
-
         // Call the Checkout process
         Checkout.StartCheckout(movieName, sessionTime, new List<(string, int)>(selectedSeats));
     }

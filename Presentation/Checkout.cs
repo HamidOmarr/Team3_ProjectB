@@ -24,20 +24,19 @@ public class Checkout
             }
             else
             {
-                // Check if a guest user already exists
+                Console.WriteLine("Continuing with guest account...");
                 var existingGuestUser = accountsLogic.GetAccountByEmail("guest@example.com");
                 if (existingGuestUser != null)
                 {
-                    user = existingGuestUser; // Use the existing guest user
+                    user = existingGuestUser;
                 }
                 else
                 {
-                    // Create a new guest user with a unique email
                     var uniqueGuestEmail = $"guest_{Guid.NewGuid()}@example.com";
                     Console.WriteLine("Please provide your name:");
                     string name = Console.ReadLine();
                     user = new AccountModel(0, name, uniqueGuestEmail, "guest_password", "guest");
-                    user.Id = accountsLogic.WriteAccount(user); // Save the guest user
+                    user.Id = accountsLogic.WriteAccount(user);
                     Console.WriteLine("Guest user details saved successfully.");
                 }
             }
@@ -52,6 +51,9 @@ public class Checkout
             Status = "pending"
         };
         reservation.Id = reservationsLogic.CreateReservation(reservation);
+
+        // Show food menu and save selected items BEFORE generating the receipt
+        Foodmenu.StartFoodMenu(reservation.Id);
 
         // Calculate total price and prepare receipt
         decimal totalPrice = 0;
@@ -70,7 +72,7 @@ public class Checkout
         foreach (var (row, seatNum) in selectedSeats)
         {
             var seat = seatsLogic.GetSeatByRowAndNumber(row, seatNum);
-            decimal actualPrice = pricesLogic.GetPrice(seat.SeatTypeId, null); // Retrieve the price
+            decimal actualPrice = pricesLogic.GetPrice(seat.SeatTypeId, null);
 
             // Print row and seat information
             Console.WriteLine($"|  - Row {row}, Seat {seatNum.ToString().PadRight(14)}|");
@@ -114,4 +116,3 @@ public class Checkout
         Menu.Start();
     }
 }
-
