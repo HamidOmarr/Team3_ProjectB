@@ -36,4 +36,15 @@ public class SeatAccess
         return connection.Query<SeatsModel>(query, new { AuditoriumId = auditoriumId }).ToList();
     }
 
+
+    public List<int> GetReservedSeatIds(int movieSessionId)
+    {
+        using var connection = new SqliteConnection(ConnectionString);
+        connection.Open();
+
+        string query = @"SELECT seat_id FROM ticket WHERE movie_session_id = @MovieSessionId;";
+        return connection.Query<int>(query, new { MovieSessionId = movieSessionId }).ToList();
+    }
+
+
 }

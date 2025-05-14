@@ -79,7 +79,8 @@
             selectedSession.AuditoriumId,
             selectedSession.Title,
             selectedSession.StartTime,
-            reservationId
+            reservationId, 
+            selectedSession.Id
         );
 
         return sessions[selectedIndex].Id;

@@ -2,55 +2,38 @@
 {
     public static int AmountSeats { get; set; }
 
-    public static int AmountSeatsInput(int auditoriumId, string movieName, string sessionTime, long reservationId)
+    public static int AmountSeatsInput(int auditoriumId, string movieName, string sessionTime, long reservationId, int sessionId)
     {
         Console.Clear();
         Console.WriteLine("Enter the amount of seats you want to reserve: ");
         string input = Console.ReadLine();
         AmountSeats = Convert.ToInt32(input);
-        SeatSelectionMap(auditoriumId, movieName, sessionTime, reservationId);
+        SeatSelectionMap(auditoriumId, movieName, sessionTime, reservationId, sessionId);
         return AmountSeats;
     }
 
-    public static void SeatSelectionMap(int auditoriumId, string movieName, string sessionTime, long reservationId)
+    public static void SeatSelectionMap(int auditoriumId, string movieName, string sessionTime, long reservationId, int sessionId)
     {
         SeatsLogic seatsLogic = new SeatsLogic();
+        var unavailableSeatIds = SeatsLogic.GetReservedSeatIds((int)sessionId);
+
         var seats = seatsLogic.GetSeatsByAuditorium(auditoriumId);
 
-        // Create a dictionary for seat lookup
         var seatLookup = new Dictionary<(string, int), SeatsModel>();
+        var reservedPositions = new HashSet<(string, int)>();
+
         foreach (var seat in seats)
         {
-            var seatKey = (seat.RowNumber.Trim().ToUpper(), seat.SeatNumber);
-            if (!seatLookup.ContainsKey(seatKey))
+            var pos = (seat.RowNumber.Trim().ToUpper(), seat.SeatNumber);
+            seatLookup[pos] = seat;
+            if (unavailableSeatIds.Contains((int)seat.Id))
             {
-                seatLookup.Add(seatKey, seat);
+                reservedPositions.Add(pos);
             }
         }
 
-        // Get distinct row list
-        var rowList = new List<string>();
-        foreach (var seat in seats)
-        {
-            string row = seat.RowNumber.Trim().ToUpper();
-            if (!rowList.Contains(row))
-            {
-                rowList.Add(row);
-            }
-        }
-
-        // Sort rows alphabetically
-        rowList.Sort();
-
-        // Find the maximum seat number
-        int maxSeatNumber = 0;
-        foreach (var seat in seats)
-        {
-            if (seat.SeatNumber > maxSeatNumber)
-            {
-                maxSeatNumber = seat.SeatNumber;
-            }
-        }
+        var rowList = seats.Select(s => s.RowNumber.Trim().ToUpper()).Distinct().OrderBy(r => r).ToList();
+        int maxSeatNumber = seats.Max(s => s.SeatNumber);
 
         int selectedRowIndex = 0;
         int selectedSeatNumber = 1;
@@ -58,6 +41,9 @@
         var selectedSeats = new HashSet<(string row, int seat)>();
         int amountSeats = AmountSeats;
         ConsoleKey key;
+
+        bool IsNavigable(string row, int seatNum) =>
+            seatLookup.ContainsKey((row, seatNum)) && !reservedPositions.Contains((row, seatNum));
 
         do
         {
@@ -72,7 +58,7 @@
         \/     \/     \/               \/     \/          \/     \/                    
 ");
             Console.ResetColor();
-            Console.Write("\n         "); // Indent to align with "Row A"
+            Console.Write("\n         ");
             for (int seatNum = 1; seatNum <= maxSeatNumber; seatNum++)
             {
                 Console.Write($"{seatNum,5}");
@@ -88,6 +74,7 @@
                     bool exists = seatLookup.ContainsKey(pos);
                     bool isCursor = row == rowList[selectedRowIndex] && seatNum == selectedSeatNumber;
                     bool isSelected = selectedSeats.Contains(pos);
+                    bool isUnavailable = reservedPositions.Contains(pos);
 
                     if (exists)
                     {
@@ -99,6 +86,12 @@
                             Console.BackgroundColor = ConsoleColor.DarkGray;
                             Console.ForegroundColor = ConsoleColor.Black;
                             Console.Write(isSelected ? " [X] " : " [^] ");
+                            Console.ResetColor();
+                        }
+                        else if (isUnavailable)
+                        {
+                            Console.ForegroundColor = ConsoleColor.DarkGray;
+                            Console.Write(" [X] ");
                             Console.ResetColor();
                         }
                         else if (isSelected)
@@ -120,16 +113,18 @@
                         Console.Write("     ");
                     }
                 }
-
                 Console.WriteLine();
             }
+
             Console.ForegroundColor = ConsoleColor.DarkCyan;
             Console.WriteLine("┌────────────────────────────────────────────────────────────────────┐");
             Console.WriteLine("└───────────────────────────────SCREEN───────────────────────────────┘\n");
             Console.ResetColor();
+
             var currentRow = rowList[selectedRowIndex];
             var hoveredSeat = seatLookup.ContainsKey((currentRow, selectedSeatNumber)) ? seatLookup[(currentRow, selectedSeatNumber)] : null;
             string priceInfo = hoveredSeat != null ? $"Prijs: {hoveredSeat.Price:F2} Euro" : "Onbekende stoel";
+
             Console.Write("Legenda: VIP Seat ");
             Console.ForegroundColor = ConsoleColor.Red;
             Console.Write("[ ]  ");
@@ -149,20 +144,32 @@
             switch (key)
             {
                 case ConsoleKey.UpArrow:
-                    if (selectedRowIndex > 0) selectedRowIndex--;
+                    int originalUp = selectedRowIndex;
+                    do selectedRowIndex--; while (selectedRowIndex >= 0 && !IsNavigable(rowList[selectedRowIndex], selectedSeatNumber));
+                    if (selectedRowIndex < 0) selectedRowIndex = originalUp;
                     break;
+
                 case ConsoleKey.DownArrow:
-                    if (selectedRowIndex < rowList.Count - 1) selectedRowIndex++;
+                    int originalDown = selectedRowIndex;
+                    do selectedRowIndex++; while (selectedRowIndex < rowList.Count && !IsNavigable(rowList[selectedRowIndex], selectedSeatNumber));
+                    if (selectedRowIndex >= rowList.Count) selectedRowIndex = originalDown;
                     break;
+
                 case ConsoleKey.LeftArrow:
-                    if (selectedSeatNumber > 1) selectedSeatNumber--;
+                    int originalLeft = selectedSeatNumber;
+                    do selectedSeatNumber--; while (selectedSeatNumber > 0 && !IsNavigable(rowList[selectedRowIndex], selectedSeatNumber));
+                    if (selectedSeatNumber <= 0) selectedSeatNumber = originalLeft;
                     break;
+
                 case ConsoleKey.RightArrow:
-                    if (selectedSeatNumber < maxSeatNumber) selectedSeatNumber++;
+                    int originalRight = selectedSeatNumber;
+                    do selectedSeatNumber++; while (selectedSeatNumber <= maxSeatNumber && !IsNavigable(rowList[selectedRowIndex], selectedSeatNumber));
+                    if (selectedSeatNumber > maxSeatNumber) selectedSeatNumber = originalRight;
                     break;
+
                 case ConsoleKey.Spacebar:
                     var pos = (rowList[selectedRowIndex], selectedSeatNumber);
-                    if (seatLookup.ContainsKey(pos))
+                    if (seatLookup.ContainsKey(pos) && !reservedPositions.Contains(pos))
                     {
                         if (selectedSeats.Contains(pos))
                             selectedSeats.Remove(pos);
@@ -183,7 +190,7 @@
             Console.WriteLine($"Row {selectedSeat.row}, Seat {selectedSeat.seat} — {seat.Price:F2} Euro");
         }
 
-        // Call the Checkout process
         Checkout.StartCheckout(movieName, sessionTime, new List<(string, int)>(selectedSeats));
     }
+
 }

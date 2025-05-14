@@ -10,5 +10,15 @@
     {
         return SeatAccess.GetSeatByRowAndNumber(row, seatNumber); // Call statically
     }
+
+
+    public static HashSet<int> GetReservedSeatIds(int movieSessionId)
+    {
+        var access = new SeatAccess();
+        return new HashSet<int>(access.GetReservedSeatIds(movieSessionId));
+    }
+
+
+
 }
 
