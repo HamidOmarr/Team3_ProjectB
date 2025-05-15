@@ -4,12 +4,14 @@
     {
         public static void StartFoodMenu(long reservationId)
         {
+
             ConsumablesLogic consumablesLogic = new ConsumablesLogic();
             var consumables = consumablesLogic.GetAllConsumables();
 
             var selectedItems = new Dictionary<long, int>();
             int selectedIndex = 0;
             ConsoleKey key;
+
 
             do
             {
@@ -34,6 +36,7 @@
                         Console.WriteLine($"[ ] {c.Name} - {c.Price} EUR (Selected: {quantity}x)");
                     }
                 }
+
 
                 Console.WriteLine("───────────────────────────────────────");
                 Console.WriteLine("↑ ↓ = Navigate  |  Space = Add/Remove  |  Enter = Confirm  |  Esc = Cancel");
