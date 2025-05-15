@@ -1,17 +1,18 @@
 using Microsoft.Data.Sqlite;
 
 using Dapper;
-
-public class SeatAccess
+namespace Team3_ProjectB
 {
-    private const string ConnectionString = "Data Source=../../../DataSources/ReservationSysteem.db";
-    private const string Table = "seat";
-
-    public static SeatsModel GetSeatByRowAndNumber(string row, int seatNumber, int auditoriumId)
+    public class SeatAccess
     {
-        using var connection = new SqliteConnection(ConnectionString);
-        connection.Open();
-        string sql = $@"
+        private const string ConnectionString = "Data Source=../../../DataSources/ReservationSysteem.db";
+        private const string Table = "seat";
+
+        public static SeatsModel GetSeatByRowAndNumber(string row, int seatNumber, int auditoriumId)
+        {
+            using var connection = new SqliteConnection(ConnectionString);
+            connection.Open();
+            string sql = $@"
         SELECT 
             id AS Id, 
             auditorium_id AS AuditoriumId, 
@@ -24,16 +25,16 @@ public class SeatAccess
             AND seat_number = @SeatNumber 
             AND auditorium_id = @AuditoriumId";
 
-        return connection.QueryFirstOrDefault<SeatsModel>(sql, new { Row = row, SeatNumber = seatNumber, AuditoriumId = auditoriumId });
-    }
+            return connection.QueryFirstOrDefault<SeatsModel>(sql, new { Row = row, SeatNumber = seatNumber, AuditoriumId = auditoriumId });
+        }
 
 
-    public List<SeatsModel> GetSeatsByAuditorium(int auditoriumId)
-    {
-        using var connection = new SqliteConnection(ConnectionString);
-        connection.Open();
+        public List<SeatsModel> GetSeatsByAuditorium(int auditoriumId)
+        {
+            using var connection = new SqliteConnection(ConnectionString);
+            connection.Open();
 
-        string query = @"
+            string query = @"
         SELECT 
             s.id,
             s.row_number AS RowNumber,
@@ -46,18 +47,19 @@ public class SeatAccess
         ORDER BY s.row_number, s.seat_number;
     ";
 
-        return connection.Query<SeatsModel>(query, new { AuditoriumId = auditoriumId }).ToList();
+            return connection.Query<SeatsModel>(query, new { AuditoriumId = auditoriumId }).ToList();
+        }
+
+
+        public List<int> GetReservedSeatIds(int movieSessionId)
+        {
+            using var connection = new SqliteConnection(ConnectionString);
+            connection.Open();
+
+            string query = @"SELECT seat_id FROM ticket WHERE movie_session_id = @MovieSessionId;";
+            return connection.Query<int>(query, new { MovieSessionId = movieSessionId }).ToList();
+        }
+
+
     }
-
-
-    public List<int> GetReservedSeatIds(int movieSessionId)
-    {
-        using var connection = new SqliteConnection(ConnectionString);
-        connection.Open();
-
-        string query = @"SELECT seat_id FROM ticket WHERE movie_session_id = @MovieSessionId;";
-        return connection.Query<int>(query, new { MovieSessionId = movieSessionId }).ToList();
-    }
-
-
 }

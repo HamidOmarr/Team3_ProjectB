@@ -1,63 +1,65 @@
-﻿
-static class Menu
+﻿namespace Team3_ProjectB
 {
-    static public void Start()
+    static class Menu
     {
-
-        string[] options = { "View Movies", "Login", "Register", "Quit" };
-        int selectedIndex = 0;
-
-        ConsoleKey key;
-        do
+        static public void Start()
         {
-            Console.Clear();
-            Console.WriteLine("Use ↑ ↓ to choose, then press Enter:\n");
 
+            string[] options = { "View Movies", "Login", "Register", "Quit" };
+            int selectedIndex = 0;
 
-            for (int i = 0; i < options.Length; i++)
+            ConsoleKey key;
+            do
             {
+                Console.Clear();
+                Console.WriteLine("Use ↑ ↓ to choose, then press Enter:\n");
 
-                if (i == selectedIndex)
+
+                for (int i = 0; i < options.Length; i++)
                 {
-                    Console.BackgroundColor = ConsoleColor.DarkCyan;
-                    Console.ForegroundColor = ConsoleColor.Black;
-                    Console.WriteLine($"[>]  {options[i]}");
-                    Console.ResetColor();
+
+                    if (i == selectedIndex)
+                    {
+                        Console.BackgroundColor = ConsoleColor.DarkCyan;
+                        Console.ForegroundColor = ConsoleColor.Black;
+                        Console.WriteLine($"[>]  {options[i]}");
+                        Console.ResetColor();
+                    }
+                    else
+                    {
+                        Console.WriteLine($"[ ]  {options[i]}");
+
+                    }
                 }
-                else
-                {
-                    Console.WriteLine($"[ ]  {options[i]}");
 
+
+                key = Console.ReadKey(true).Key;
+
+                if (key == ConsoleKey.UpArrow && selectedIndex > 0)
+                    selectedIndex--;
+                else if (key == ConsoleKey.DownArrow && selectedIndex < options.Length - 1)
+                    selectedIndex++;
+
+            } while (key != ConsoleKey.Enter);
+
+            if (selectedIndex == 0)
+                ShowMovies.DisplaySessions();
+
+            else if (selectedIndex == 1)
+            {
+                var user = UserLogin.Start();
+                if (user != null)
+                {
+                    AccountsLogic.SetCurrentAccount(user);
+                    Console.WriteLine("You are now logged in. Press any key to continue...");
+                    Console.ReadKey();
+                    Start();
                 }
             }
+            else if (selectedIndex == 2)
+                UserLogin.Register();
 
-
-            key = Console.ReadKey(true).Key;
-
-            if (key == ConsoleKey.UpArrow && selectedIndex > 0)
-                selectedIndex--;
-            else if (key == ConsoleKey.DownArrow && selectedIndex < options.Length - 1)
-                selectedIndex++;
-
-        } while (key != ConsoleKey.Enter);
-
-        if (selectedIndex == 0)
-            ShowMovies.DisplaySessions();
-
-        else if (selectedIndex == 1)
-        {
-            var user = UserLogin.Start();
-            if (user != null)
-            {
-                AccountsLogic.SetCurrentAccount(user);
-                Console.WriteLine("You are now logged in. Press any key to continue...");
-                Console.ReadKey();
-                Start();
-            }
         }
-        else if (selectedIndex == 2)
-            UserLogin.Register();
 
     }
-
 }

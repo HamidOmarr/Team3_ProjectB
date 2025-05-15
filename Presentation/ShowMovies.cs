@@ -1,4 +1,6 @@
-﻿public class ShowMovies
+﻿namespace Team3_ProjectB
+{
+    public class ShowMovies
 {
     public List<MovieModel> Movies { get; private set; }
 
@@ -70,4 +72,5 @@
 
         ShowMoviesManager.DisplaySessions(selectedMovie.Id);
     }
+}
 }

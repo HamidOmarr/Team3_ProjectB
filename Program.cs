@@ -1,3 +1,9 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Welcome to this amazing program");
-Menu.Start();
+﻿using Team3_ProjectB;
+
+public class Program
+{
+    public static void Main()
+    {
+        Menu.Start(); 
+    }
+}

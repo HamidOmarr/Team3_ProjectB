@@ -1,14 +1,17 @@
-﻿public class ConsumablesLogic
+﻿namespace Team3_ProjectB
 {
-    private readonly ConsumablesAccess _consumablesAccess;
-
-    public ConsumablesLogic()
+    public class ConsumablesLogic
     {
-        _consumablesAccess = new ConsumablesAccess();
-    }
+        private readonly ConsumablesAccess _consumablesAccess;
 
-    public List<ConsumableModel> GetAllConsumables()
-    {
-        return _consumablesAccess.GetAllConsumables();
+        public ConsumablesLogic()
+        {
+            _consumablesAccess = new ConsumablesAccess();
+        }
+
+        public List<ConsumableModel> GetAllConsumables()
+        {
+            return _consumablesAccess.GetAllConsumables();
+        }
     }
 }

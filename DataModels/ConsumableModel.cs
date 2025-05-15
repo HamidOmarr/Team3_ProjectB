@@ -1,4 +1,6 @@
-﻿public class ConsumableModel
+﻿namespace Team3_ProjectB
+{
+    public class ConsumableModel
 {
     public long Id { get; set; }
     public string Name { get; set; }
@@ -12,4 +14,5 @@
         Price = price;
         Category = category;
     }
+}
 }

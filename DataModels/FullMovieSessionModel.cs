@@ -1,4 +1,6 @@
-﻿public class FullMovieSessionModel
+﻿namespace Team3_ProjectB
+{
+    public class FullMovieSessionModel
 {
     public int Id { get; set; }
     public string Title { get; set; }
@@ -9,4 +11,5 @@
     public string AuditoriumName { get; set; }
     public int AuditoriumId { get; set; }
 
+}
 }
