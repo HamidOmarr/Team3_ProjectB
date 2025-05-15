@@ -1,4 +1,6 @@
-﻿public class ShowMoviesManager
+﻿namespace Team3_ProjectB
+{
+    public class ShowMoviesManager
 {
     public List<MovieSessionModel> MovieSessions { get; private set; }
 
@@ -86,4 +88,5 @@
         return sessions[selectedIndex].Id;
     }
 
+}
 }

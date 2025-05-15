@@ -1,7 +1,10 @@
-﻿public class PricesLogic
+﻿namespace Team3_ProjectB
 {
-    public decimal GetPrice(int seatTypeId, int? promotionTypeId)
+    public class PricesLogic
     {
-        return PriceAccess.GetPrice(seatTypeId, promotionTypeId);
+        public decimal GetPrice(int seatTypeId, int? promotionTypeId)
+        {
+            return PriceAccess.GetPrice(seatTypeId, promotionTypeId);
+        }
     }
 }

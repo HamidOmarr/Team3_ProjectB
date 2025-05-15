@@ -1,22 +1,23 @@
 ﻿using Microsoft.Data.Sqlite;
 
 using Dapper;
-
-public class MoviesAccess
+namespace Team3_ProjectB
 {
-
-    private static SqliteConnection _connection = new SqliteConnection("Data Source=../../../DataSources/ReservationSysteem.db");
-
-    private static string Table = "movie";
-
-    public MoviesAccess()
+    public class MoviesAccess
     {
-        _connection.Open();
-    }
 
-    public List<MovieModel> GetAllMovies()
-    {
-        string sql = @"
+        private static SqliteConnection _connection = new SqliteConnection("Data Source=../../../DataSources/ReservationSysteem.db");
+
+        private static string Table = "movie";
+
+        public MoviesAccess()
+        {
+            _connection.Open();
+        }
+
+        public List<MovieModel> GetAllMovies()
+        {
+            string sql = @"
     SELECT 
         id AS Id,
         title AS Title,
@@ -30,9 +31,10 @@ public class MoviesAccess
     FROM movie
 ";
 
-        var Movies = _connection.Query<MovieModel>(sql).ToList();
-        return Movies;
+            var Movies = _connection.Query<MovieModel>(sql).ToList();
+            return Movies;
+        }
+
+
     }
-
-
 }

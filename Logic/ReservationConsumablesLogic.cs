@@ -1,4 +1,6 @@
-public class ReservationConsumablesLogic
+namespace Team3_ProjectB
+{
+    public class ReservationConsumablesLogic
 {
     private readonly ReservationConsumablesAccess _reservationConsumablesAccess;
 
@@ -16,4 +18,5 @@ public class ReservationConsumablesLogic
     {
         return _reservationConsumablesAccess.GetConsumablesForCheckout(reservationId);
     }
+}
 }

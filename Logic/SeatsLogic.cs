@@ -1,4 +1,6 @@
-﻿public class SeatsLogic
+﻿namespace Team3_ProjectB
+{
+    public class SeatsLogic
 {
     public List<SeatsModel> GetSeatsByAuditorium(int auditoriumId)
     {
@@ -21,4 +23,4 @@
 
 
 }
-
+}

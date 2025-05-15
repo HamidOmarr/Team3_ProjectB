@@ -1,25 +1,26 @@
 using Dapper;
 using Microsoft.Data.Sqlite;
-
-public class ReservationConsumablesAccess
+namespace Team3_ProjectB
 {
-    private const string ConnectionString = "Data Source=../../../DataSources/ReservationSysteem.db";
-
-    public void SaveReservationConsumable(ReservationConsumableModel reservationConsumable)
+    public class ReservationConsumablesAccess
     {
-        using var connection = new SqliteConnection(ConnectionString);
-        connection.Open();
-        string sql = @"
+        private const string ConnectionString = "Data Source=../../../DataSources/ReservationSysteem.db";
+
+        public void SaveReservationConsumable(ReservationConsumableModel reservationConsumable)
+        {
+            using var connection = new SqliteConnection(ConnectionString);
+            connection.Open();
+            string sql = @"
             INSERT INTO reservation_consumable (reservation_id, consumable_id, quantity, actual_price)
             VALUES (@ReservationId, @ConsumableId, @Quantity, @ActualPrice)";
-        connection.Execute(sql, reservationConsumable);
-    }
+            connection.Execute(sql, reservationConsumable);
+        }
 
-    public List<(string Name, int Quantity, decimal ActualPrice)> GetConsumablesForCheckout(long reservationId)
-    {
-        using var connection = new SqliteConnection(ConnectionString);
-        connection.Open();
-        string sql = @"
+        public List<(string Name, int Quantity, decimal ActualPrice)> GetConsumablesForCheckout(long reservationId)
+        {
+            using var connection = new SqliteConnection(ConnectionString);
+            connection.Open();
+            string sql = @"
             SELECT 
                 c.name AS Name,
                 rc.quantity AS Quantity,
@@ -27,6 +28,7 @@ public class ReservationConsumablesAccess
             FROM reservation_consumable rc
             JOIN consumable c ON rc.consumable_id = c.id
             WHERE rc.reservation_id = @ReservationId";
-        return connection.Query<(string Name, int Quantity, decimal ActualPrice)>(sql, new { ReservationId = reservationId }).ToList();
+            return connection.Query<(string Name, int Quantity, decimal ActualPrice)>(sql, new { ReservationId = reservationId }).ToList();
+        }
     }
 }

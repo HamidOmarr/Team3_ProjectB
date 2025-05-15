@@ -1,4 +1,6 @@
-﻿public class MovieSessionsLogic
+﻿namespace Team3_ProjectB
+{
+    public class MovieSessionsLogic
 {
     private readonly MovieSessionsAccess _movieSessionsAccess;
 
@@ -21,4 +23,5 @@
     {
         return _movieSessionsAccess.GetSessionByMovieAndTime(movieName, sessionTime);
     }
+}
 }

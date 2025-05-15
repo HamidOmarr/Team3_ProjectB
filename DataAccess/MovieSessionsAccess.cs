@@ -1,31 +1,33 @@
 using Dapper;
 using Microsoft.Data.Sqlite;
 
-public class MovieSessionsAccess
+namespace Team3_ProjectB
 {
-    private readonly SqliteConnection _connection;
-
-    public MovieSessionsAccess()
+    public class MovieSessionsAccess
     {
-        _connection = new SqliteConnection("Data Source=../../../DataSources/ReservationSysteem.db");
-        _connection.Open();
-    }
+        private readonly SqliteConnection _connection;
 
-    private const string Table = "movie_session";
+        public MovieSessionsAccess()
+        {
+            _connection = new SqliteConnection("Data Source=../../../DataSources/ReservationSysteem.db");
+            _connection.Open();
+        }
 
-    public MovieSessionModel GetSessionByMovieAndTime(string movieName, string sessionTime)
-    {
-        string sql = $@"
+        private const string Table = "movie_session";
+
+        public MovieSessionModel GetSessionByMovieAndTime(string movieName, string sessionTime)
+        {
+            string sql = $@"
             SELECT ms.id AS Id, ms.movie_id AS MovieId, ms.auditorium_id AS AuditoriumId, ms.start_time AS StartTime, ms.end_time AS EndTime
             FROM {Table} ms
             JOIN movie m ON ms.movie_id = m.id
             WHERE m.title = @MovieName AND ms.start_time = @SessionTime";
-        return _connection.QueryFirstOrDefault<MovieSessionModel>(sql, new { MovieName = movieName, SessionTime = sessionTime });
-    }
+            return _connection.QueryFirstOrDefault<MovieSessionModel>(sql, new { MovieName = movieName, SessionTime = sessionTime });
+        }
 
-    public List<FullMovieSessionModel> GetAllDetailedMovieSessions()
-    {
-        string sql = @"
+        public List<FullMovieSessionModel> GetAllDetailedMovieSessions()
+        {
+            string sql = @"
     SELECT 
         ms.id AS Id,
         m.title AS Title,
@@ -39,13 +41,13 @@ public class MovieSessionsAccess
     JOIN auditorium a ON ms.auditorium_id = a.id
 ";
 
-        var sessions = _connection.Query<FullMovieSessionModel>(sql).ToList();
-        return sessions;
-    }
+            var sessions = _connection.Query<FullMovieSessionModel>(sql).ToList();
+            return sessions;
+        }
 
-    public List<FullMovieSessionModel> GetDetailedMovieSessionsFromId(long movieId)
-    {
-        string sql = @"
+        public List<FullMovieSessionModel> GetDetailedMovieSessionsFromId(long movieId)
+        {
+            string sql = @"
     SELECT 
         ms.id AS Id,
         m.title AS Title,
@@ -61,13 +63,13 @@ public class MovieSessionsAccess
     WHERE ms.movie_id = @movieId
     ";
 
-        var sessions = _connection.Query<FullMovieSessionModel>(sql, new { movieId }).ToList();
-        return sessions;
-    }
+            var sessions = _connection.Query<FullMovieSessionModel>(sql, new { movieId }).ToList();
+            return sessions;
+        }
 
-    public List<MovieSessionModel> GetAllMovieSessions()
-    {
-        string sql = @"
+        public List<MovieSessionModel> GetAllMovieSessions()
+        {
+            string sql = @"
     SELECT 
         ms.id AS Id,
         ms.movie_id AS MovieId,
@@ -82,7 +84,8 @@ public class MovieSessionsAccess
     JOIN movie m ON ms.movie_id = m.id
     JOIN auditorium a ON ms.auditorium_id = a.id
     ";
-        var movieSessions = _connection.Query<MovieSessionModel>(sql).ToList();
-        return movieSessions;
+            var movieSessions = _connection.Query<MovieSessionModel>(sql).ToList();
+            return movieSessions;
+        }
     }
 }

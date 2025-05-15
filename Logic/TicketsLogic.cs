@@ -1,4 +1,6 @@
-﻿public class TicketsLogic
+﻿namespace Team3_ProjectB
+{
+    public class TicketsLogic
 {
     public void CreateTicket(TicketModel ticket)
     {
@@ -9,4 +11,5 @@
     {
         return TicketsAccess.GetById(id);
     }
+}
 }

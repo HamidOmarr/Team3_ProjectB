@@ -1,17 +1,20 @@
-﻿public class ReservationModel
+﻿namespace Team3_ProjectB
 {
-    public Int64 Id { get; set; }
-    public long UserId { get; set; }
-    public decimal TotalPrice { get; set; }
-    public string Status { get; set; }
-
-    public ReservationModel() { }
-
-    public ReservationModel(Int64 id, long userId, decimal totalPrice, string status)
+    public class ReservationModel
     {
-        Id = id;
-        UserId = userId;
-        TotalPrice = totalPrice;
-        Status = status;
+        public Int64 Id { get; set; }
+        public long UserId { get; set; }
+        public decimal TotalPrice { get; set; }
+        public string Status { get; set; }
+
+        public ReservationModel() { }
+
+        public ReservationModel(Int64 id, long userId, decimal totalPrice, string status)
+        {
+            Id = id;
+            UserId = userId;
+            TotalPrice = totalPrice;
+            Status = status;
+        }
     }
 }

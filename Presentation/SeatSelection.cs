@@ -1,4 +1,6 @@
-﻿public class SeatSelection
+﻿namespace Team3_ProjectB
+{
+    public class SeatSelection
 {
     public static int AmountSeats { get; set; }
 
@@ -209,4 +211,5 @@
         Checkout.StartCheckout(movieName, sessionTime, new List<(string, int)>(selectedSeats), auditoriumId);
     }
 
+}
 }
