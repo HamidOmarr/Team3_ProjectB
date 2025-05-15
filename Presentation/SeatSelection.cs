@@ -70,6 +70,12 @@
                 }
                 Console.WriteLine("\n");
 
+                // Use compact display for auditorium 2 and 3
+                bool compactAuditorium = auditoriumId == 2 || auditoriumId == 3;
+                string seatDisplay = compactAuditorium ? "[ ]" : " [ ] ";
+                string seatDisplaySelected = compactAuditorium ? "[X]" : " [X] ";
+                string seatDisplayCursor = compactAuditorium ? "[^]" : " [^] ";
+
                 foreach (var row in rowList)
                 {
                     Console.Write($"   Rij {row}   ");
@@ -80,11 +86,6 @@
                         bool isCursor = row == rowList[selectedRowIndex] && seatNum == selectedSeatNumber;
                         bool isSelected = selectedSeats.Contains(pos);
                         bool isUnavailable = reservedPositions.Contains(pos);
-
-                        // Choose seat display style based on auditorium
-                        string seatDisplay = auditoriumId == 2 ? "[ ]" : " [ ] ";
-                        string seatDisplaySelected = auditoriumId == 2 ? "[X]" : " [X] ";
-                        string seatDisplayCursor = auditoriumId == 2 ? "[^]" : " [^] ";
 
                         if (exists)
                         {
@@ -127,7 +128,7 @@
                         }
                         else
                         {
-                            Console.Write(auditoriumId == 2 ? "   " : "     ");
+                            Console.Write(compactAuditorium ? "   " : "     ");
                         }
                     }
                     Console.WriteLine();
@@ -156,7 +157,6 @@
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.Write("[ ]  ");
                 Console.ResetColor();
-
 
                 Console.Write("Taken Seat ");
                 Console.ForegroundColor = ConsoleColor.DarkGray;
