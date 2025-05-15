@@ -1,3 +1,6 @@
+using System.Globalization;
+
+
 public class Checkout
 {
     public static void StartCheckout(string movieName, string sessionTime, List<(string row, int seat)> selectedSeats, int auditoriumId)
@@ -10,20 +13,55 @@ public class Checkout
         // Check if the user is logged in or create a guest user
         if (user == null)
         {
-            Console.WriteLine("You are not logged in. Would you like to log in? (y/n)");
-            string choice = Console.ReadLine()?.ToLower();
+            string[] loginOptions = { "Yes, log in", "No, continue as guest" };
+            int selectedIndex = 0;
+            ConsoleKey key;
 
-            if (choice == "y")
+            do
             {
+                Console.Clear();
+                Console.WriteLine("You are not logged in.\nWould you like to log in?\n");
+
+                for (int i = 0; i < loginOptions.Length; i++)
+                {
+                    if (i == selectedIndex)
+                    {
+                        Console.BackgroundColor = ConsoleColor.DarkCyan;
+                        Console.ForegroundColor = ConsoleColor.Black;
+                        Console.WriteLine($"[>] {loginOptions[i]}");
+                        Console.ResetColor();
+                    }
+                    else
+                    {
+                        Console.WriteLine($"[ ] {loginOptions[i]}");
+                    }
+                }
+
+                key = Console.ReadKey(true).Key;
+
+                if (key == ConsoleKey.UpArrow && selectedIndex > 0)
+                    selectedIndex--;
+                else if (key == ConsoleKey.DownArrow && selectedIndex < loginOptions.Length - 1)
+                    selectedIndex++;
+
+            } while (key != ConsoleKey.Enter);
+
+            if (selectedIndex == 0)
+            {
+                Console.Clear();
+
                 user = UserLogin.Start();
                 if (user == null)
                 {
                     Console.WriteLine("Login failed. Please try again.");
-                    return; // Exit the checkout process if login fails
+                    Console.ReadKey();
+                    return;
                 }
             }
             else
             {
+                Console.Clear();
+
                 Console.WriteLine("Continuing with guest account...");
                 var existingGuestUser = accountsLogic.GetAccountByEmail("guest@example.com");
                 if (existingGuestUser != null)
@@ -47,72 +85,74 @@ public class Checkout
         var reservation = new ReservationModel
         {
             UserId = user.Id,
-            TotalPrice = 0, // Initial total price, will be updated later
+            TotalPrice = 0,
             Status = "pending"
         };
         reservation.Id = reservationsLogic.CreateReservation(reservation);
 
-        // Show food menu and save selected items BEFORE generating the receipt
+        // Food menu selection
         Foodmenu.StartFoodMenu(reservation.Id);
 
-        // Calculate total price and prepare receipt
+        // Seat and food summary
         decimal totalPrice = 0;
         SeatsLogic seatsLogic = new SeatsLogic();
         PricesLogic pricesLogic = new PricesLogic();
 
+        const int receiptWidth = 30;
+
+        string BorderLine() => "+" + new string('-', receiptWidth - 2) + "+";
+        string FormatLine(string content) => $"| {content.PadRight(receiptWidth - 3)}|";
+
         Console.Clear();
-        Console.WriteLine("+----------------------------+");
-        Console.WriteLine("|         RECEIPT            |");
-        Console.WriteLine("+----------------------------+");
-        Console.WriteLine($"| Movie: {movieName.PadRight(20)}|");
-        Console.WriteLine($"| Time:  {sessionTime.PadRight(20)}|");
-        Console.WriteLine("+----------------------------+");
-        Console.WriteLine("| Seats:                     |");
+        Console.WriteLine(BorderLine());
+        Console.WriteLine(FormatLine("RECEIPT"));
+        Console.WriteLine(BorderLine());
+        Console.WriteLine(FormatLine($"Movie: {movieName}"));
+        Console.WriteLine(FormatLine($"Time:  {sessionTime}"));
+        Console.WriteLine(BorderLine());
+        Console.WriteLine(FormatLine("Seats:"));
 
         foreach (var (row, seatNum) in selectedSeats)
         {
             var seat = seatsLogic.GetSeatByRowAndNumber(row, seatNum, auditoriumId);
             decimal actualPrice = pricesLogic.GetPrice(seat.SeatTypeId, null);
 
-            // Print row and seat information
-            Console.WriteLine($"|  - Row {row}, Seat {seatNum.ToString().PadRight(14)}|");
+            Console.WriteLine(FormatLine($"- Row {row}, Seat {seatNum} - {actualPrice} EUR"));
             totalPrice += actualPrice;
 
-            // Save ticket information
-            MovieSessionsLogic movieSessionsLogic = new MovieSessionsLogic();
-            TicketsLogic ticketsLogic = new TicketsLogic();
             var ticket = new TicketModel
             {
                 ReservationId = reservation.Id,
-                MovieSessionId = movieSessionsLogic.GetSessionByMovieAndTime(movieName, sessionTime).Id,
+                MovieSessionId = new MovieSessionsLogic().GetSessionByMovieAndTime(movieName, sessionTime).Id,
                 SeatId = seat.Id,
                 ActualPrice = actualPrice
             };
-            ticketsLogic.CreateTicket(ticket);
+            new TicketsLogic().CreateTicket(ticket);
         }
 
-        // Retrieve and display food items
-        Console.WriteLine("| Food & Drinks:             |");
-        ReservationConsumablesLogic reservationConsumablesLogic = new ReservationConsumablesLogic();
-        var foodItems = reservationConsumablesLogic.GetConsumablesForCheckout(reservation.Id);
+        Console.WriteLine(FormatLine("Food & Drinks:"));
+        var foodItems = new ReservationConsumablesLogic().GetConsumablesForCheckout(reservation.Id);
 
         decimal foodTotalPrice = 0;
         foreach (var (name, quantity, actualPrice) in foodItems)
         {
-            Console.WriteLine($"|  - {name} x{quantity} - {actualPrice:C}");
+            string line = $"- {name} x{quantity} - {actualPrice} EUR";
+            if (line.Length > receiptWidth - 3)
+                line = line.Substring(0, receiptWidth - 6) + "...";
+
+            Console.WriteLine(FormatLine(line));
             foodTotalPrice += actualPrice;
         }
 
-        Console.WriteLine("+----------------------------+");
-
-        // Calculate the final total price
+        Console.WriteLine(BorderLine());
         totalPrice += foodTotalPrice;
-        Console.WriteLine($"| Total Price: {totalPrice:F2} EUR".PadRight(28) + "|");
-        Console.WriteLine("+----------------------------+");
+        Console.WriteLine(FormatLine($"Total Price: {totalPrice:F2} EUR"));
+        Console.WriteLine(BorderLine());
 
         Console.WriteLine("\nThank you for your reservation!");
         Console.WriteLine("Press any key to return to the main menu...");
         Console.ReadKey();
+
         Menu.Start();
     }
 }

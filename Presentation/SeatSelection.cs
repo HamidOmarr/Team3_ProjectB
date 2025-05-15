@@ -5,7 +5,10 @@
     public static int AmountSeatsInput(int auditoriumId, string movieName, string sessionTime, long reservationId, int sessionId)
     {
         Console.Clear();
+        Console.ForegroundColor = ConsoleColor.DarkCyan;
         Console.WriteLine("Enter the amount of seats you want to reserve: ");
+
+        Console.ResetColor();
         string input = Console.ReadLine();
         AmountSeats = Convert.ToInt32(input);
         SeatSelectionMap(auditoriumId, movieName, sessionTime, reservationId, sessionId);
