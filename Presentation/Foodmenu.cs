@@ -12,7 +12,7 @@
         do
         {
             Console.Clear();
-            Console.WriteLine("Use ↑ ↓ to navigate, Space to add/remove, Enter to confirm:\n");
+            Console.WriteLine("Use ↑ ↓ to navigate, Space to select, Backspace to remove, Enter to confirm:\n");
             Console.WriteLine("───────────────────────────────────────");
 
             for (int i = 0; i < consumables.Count; i++)
@@ -34,7 +34,7 @@
             }
 
             Console.WriteLine("───────────────────────────────────────");
-            Console.WriteLine("↑ ↓ = Navigate  |  Space = Add/Remove  |  Enter = Confirm  |  Esc = Cancel");
+            Console.WriteLine("↑ ↓ = Navigate  |  Space = Add  | Backspace = Remove  |  Enter = Confirm  |  Esc = Cancel");
 
             key = Console.ReadKey(true).Key;
 
