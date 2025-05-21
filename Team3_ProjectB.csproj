@@ -18,6 +18,8 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Data.Sqlite" Version="9.0.4" />
     <PackageReference Include="Dapper" Version="2.1.66" />
+    <PackageReference Include="MSTest.TestAdapter" Version="3.9.0" />
+    <PackageReference Include="MSTest.TestFramework" Version="3.9.0" />
   </ItemGroup>
 
 </Project>
