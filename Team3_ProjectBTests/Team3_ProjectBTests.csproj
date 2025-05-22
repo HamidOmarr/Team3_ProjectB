@@ -15,7 +15,9 @@
   <ItemGroup>
     <ProjectReference Include="..\Team3_ProjectB.csproj" />
   </ItemGroup>
-
+	<PropertyGroup>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+	</PropertyGroup>
   <ItemGroup>
     <Using Include="Microsoft.VisualStudio.TestTools.UnitTesting" />
   </ItemGroup>
