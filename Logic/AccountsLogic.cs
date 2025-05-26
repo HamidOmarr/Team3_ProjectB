@@ -80,5 +80,18 @@ namespace Team3_ProjectB
             }
         }
 
+        public bool IsValidEmail(string email)
+        {
+            if (string.IsNullOrWhiteSpace(email)) return false;
+            if (!email.Contains("@")) return false;
+            foreach (char c in email)
+            {
+                if (!(char.IsLetterOrDigit(c) || c == '@' || c == '.' || c == '_' || c == '-'))
+                    return false;
+            }
+            return true;
+        }
+
+
     }
 }

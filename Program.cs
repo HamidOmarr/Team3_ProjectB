@@ -4,6 +4,7 @@ public class Program
 {
     public static void Main()
     {
-        Menu.Start(); 
+        NavigationService.Clear(); // Ensure the navigation stack is empty at start
+        NavigationService.Navigate(Menu.Start); // Start the app with the main menu
     }
 }

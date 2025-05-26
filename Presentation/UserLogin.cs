@@ -1,3 +1,4 @@
+using Team3_ProjectB.Logic;
 namespace Team3_ProjectB
 {
     static class UserLogin
@@ -8,28 +9,29 @@ namespace Team3_ProjectB
         {
             Console.Clear();
             Console.WriteLine("Welcome to the login page");
-            Console.WriteLine("Please enter your email address:");
-            string email = Console.ReadLine();
-            Console.WriteLine("Please enter your password:");
-            string password = AccountsLogic.ReadPassword();
 
-            AccountModel acc = accountsLogic.CheckLogin(email, password);
+            while (true)
+            {
+                Console.WriteLine("Please enter your email address:");
+                string email = Console.ReadLine();
+                Console.WriteLine("Please enter your password:");
+                string password = AccountsLogic.ReadPassword();
 
-            if (acc != null)
-            {
-                Console.WriteLine($"Welcome back, {acc.Name}!");
-                Console.WriteLine($"Your email address is: {acc.Email}");
-                Console.WriteLine($"Your account type is: {acc.AccountType}");
-                return acc; // Return the logged-in user
-            }
-            else
-            {
-                Console.WriteLine("No account found with that email and password.");
-                return null;
+                AccountModel acc = accountsLogic.CheckLogin(email, password);
+
+                if (acc != null)
+                {
+                    Console.WriteLine($"Welcome back, {acc.Name}!");
+                    Console.WriteLine($"Your email address is: {acc.Email}");
+                    Console.WriteLine($"Your account type is: {acc.AccountType}");
+                    return acc; // Return the logged-in user
+                }
+                else
+                {
+                    Console.WriteLine("No account found with that email and password. Please try again.");
+                }
             }
         }
-
-
 
         public static void Register()
         {
@@ -38,8 +40,17 @@ namespace Team3_ProjectB
             Console.WriteLine("Welcome to the registration page");
             Console.WriteLine("Please enter your name:");
             string name = Console.ReadLine();
-            Console.WriteLine("Please enter your email address:");
-            string email = Console.ReadLine();
+
+            string email;
+            while (true)
+            {
+                Console.WriteLine("Please enter your email address:");
+                email = Console.ReadLine();
+                if (accountsLogic.IsValidEmail(email))
+                    break;
+                Console.WriteLine("Invalid email format. Please try again.");
+            }
+
             Console.WriteLine("Please enter your password:");
             string password = AccountsLogic.ReadPassword();
 
@@ -57,6 +68,7 @@ namespace Team3_ProjectB
 
             Menu.Start();
         }
+
 
     }
 }
