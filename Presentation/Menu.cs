@@ -43,14 +43,17 @@ namespace Team3_ProjectB
                 NavigationService.Navigate(ShowMovies.DisplaySessions);
             else if (selectedIndex == 1)
             {
-                var user = UserLogin.Start();
-                if (user != null)
+                NavigationService.Navigate(() =>
                 {
-                    AccountsLogic.SetCurrentAccount(user);
-                    Console.WriteLine("You are now logged in. Press any key to continue...");
-                    Console.ReadKey();
-                    NavigationService.Navigate(Menu.Start);
-                }
+                    var user = UserLogin.Start();
+                    if (user != null)
+                    {
+                        AccountsLogic.SetCurrentAccount(user);
+                        Console.WriteLine("You are now logged in. Press any key to continue...");
+                        Console.ReadKey();
+                        NavigationService.Navigate(Menu.Start);
+                    }
+                });
             }
             else if (selectedIndex == 2)
                 NavigationService.Navigate(UserLogin.Register);

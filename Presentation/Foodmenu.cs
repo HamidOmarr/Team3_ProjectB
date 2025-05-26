@@ -4,7 +4,6 @@
     {
         public static void StartFoodMenu(long reservationId)
         {
-
             ConsumablesLogic consumablesLogic = new ConsumablesLogic();
             var consumables = consumablesLogic.GetAllConsumables();
 
@@ -12,11 +11,10 @@
             int selectedIndex = 0;
             ConsoleKey key;
 
-
             do
             {
                 Console.Clear();
-                Console.WriteLine("Use ↑ ↓ to navigate, Space to add/remove, Enter to confirm:\n");
+                Console.WriteLine("Use ↑ ↓ to navigate, Space to add/remove, Enter to confirm, Backspace to go back:\n");
                 Console.WriteLine("───────────────────────────────────────");
 
                 for (int i = 0; i < consumables.Count; i++)
@@ -37,9 +35,8 @@
                     }
                 }
 
-
                 Console.WriteLine("───────────────────────────────────────");
-                Console.WriteLine("↑ ↓ = Navigate  |  Space = Add/Remove  |  Enter = Confirm  |  Esc = Cancel");
+                Console.WriteLine("↑ ↓ = Navigate  |  Space = Add/Remove  |  Enter = Confirm  |  Backspace = Go Back");
 
                 key = Console.ReadKey(true).Key;
 
@@ -61,23 +58,11 @@
                 }
                 else if (key == ConsoleKey.Backspace)
                 {
-                    var selectedItem = consumables[selectedIndex];
-                    if (selectedItems.ContainsKey(selectedItem.Id))
-                    {
-                        selectedItems[selectedItem.Id]--;
-                        if (selectedItems[selectedItem.Id] <= 0)
-                            selectedItems.Remove(selectedItem.Id);
-                    }
+                    NavigationService.GoBack();
+                    return;
                 }
 
-            } while (key != ConsoleKey.Enter && key != ConsoleKey.Escape);
-
-            if (key == ConsoleKey.Escape)
-            {
-                Console.WriteLine("No items selected. Returning to the main menu...");
-                Console.ReadKey();
-                return;
-            }
+            } while (key != ConsoleKey.Enter);
 
             SaveSelectedItems(reservationId, selectedItems, consumables);
 
