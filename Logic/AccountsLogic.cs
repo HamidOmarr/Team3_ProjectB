@@ -60,7 +60,7 @@ namespace Team3_ProjectB
         {
             AccountModel acc = AccountsAccess.GetByEmail(email);
 
-            if (acc != null && acc.PasswordHash == password)
+            if (acc != null && BCrypt.Net.BCrypt.Verify(password, acc.PasswordHash))
             {
                 CurrentAccount = acc;
                 return acc;
@@ -72,6 +72,7 @@ namespace Team3_ProjectB
         {
             try
             {
+                account.PasswordHash = BCrypt.Net.BCrypt.HashPassword(account.PasswordHash);
                 AccountsAccess.Write(account);
             }
             catch (Exception ex)
