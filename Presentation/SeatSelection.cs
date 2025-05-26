@@ -1,4 +1,8 @@
-﻿namespace Team3_ProjectB
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace Team3_ProjectB
 {
     public class SeatSelection
     {
@@ -8,14 +12,42 @@
         {
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.DarkCyan;
-            Console.WriteLine("Enter the amount of seats you want to reserve: ");
-
+            Console.WriteLine("Enter the amount of seats you want to reserve (press Backspace to go back): ");
             Console.ResetColor();
-            string input = Console.ReadLine();
-            AmountSeats = Convert.ToInt32(input);
-            SeatSelectionMap(auditoriumId, movieName, sessionTime, reservationId, sessionId);
-            return AmountSeats;
+
+            string input = "";
+            ConsoleKeyInfo keyInfo;
+            while (true)
+            {
+                keyInfo = Console.ReadKey(true);
+
+                if (keyInfo.Key == ConsoleKey.Enter && int.TryParse(input, out int amount) && amount > 0)
+                {
+                    AmountSeats = amount;
+                    NavigationService.Navigate(() => SeatSelectionMap(auditoriumId, movieName, sessionTime, reservationId, sessionId));
+                    return AmountSeats;
+                }
+                else if (keyInfo.Key == ConsoleKey.Backspace)
+                {
+                    if (input.Length > 0)
+                    {
+                        input = input.Substring(0, input.Length - 1);
+                        Console.Write("\b \b");
+                    }
+                    else
+                    {
+                        NavigationService.GoBack();
+                        return 0;
+                    }
+                }
+                else if (char.IsDigit(keyInfo.KeyChar))
+                {
+                    input += keyInfo.KeyChar;
+                    Console.Write(keyInfo.KeyChar);
+                }
+            }
         }
+
 
         public static void SeatSelectionMap(int auditoriumId, string movieName, string sessionTime, long reservationId, int sessionId)
         {
@@ -166,6 +198,7 @@
                 Console.WriteLine();
                 Console.WriteLine($"\nGeselecteerd: {selectedSeats.Count}/{amountSeats} — {priceInfo}");
                 Console.WriteLine("Gebruik ↑ ↓ ← → om te navigeren, [Spatie] om te selecteren, Enter om te bevestigen");
+                Console.WriteLine("Press Backspace to go back.");
 
                 key = Console.ReadKey(true).Key;
 
@@ -205,6 +238,10 @@
                                 selectedSeats.Add(pos);
                         }
                         break;
+
+                    case ConsoleKey.Backspace:
+                        NavigationService.GoBack();
+                        return;
                 }
 
             } while (key != ConsoleKey.Enter || selectedSeats.Count != amountSeats);
@@ -218,7 +255,9 @@
                 Console.WriteLine($"Row {selectedSeat.row}, Seat {selectedSeat.seat} — {seat.Price:F2} Euro");
             }
 
-            Checkout.StartCheckout(movieName, sessionTime, new List<(string, int)>(selectedSeats), auditoriumId);
+            NavigationService.Navigate(() =>
+                Checkout.StartCheckout(movieName, sessionTime, new List<(string, int)>(selectedSeats), auditoriumId)
+            );
         }
     }
 }

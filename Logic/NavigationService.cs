@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Team3_ProjectB.Presentation
+namespace Team3_ProjectB
 {
     public static class NavigationService
     {
