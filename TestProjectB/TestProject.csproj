@@ -1,7 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+	  <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+	  <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
 
@@ -17,7 +18,7 @@
   </ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\Team3_ProjectB\Team3_ProjectB.csproj" />
+		<ProjectReference Include="..\Team3_ProjectB.csproj" />
 	</ItemGroup>
 
 
