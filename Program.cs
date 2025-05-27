@@ -4,6 +4,8 @@ public class Program
 {
     public static void Main()
     {
-        Menu.Start(); 
+        NavigationService.Clear(); 
+        NavigationService.Navigate(Menu.Start);
+
     }
 }

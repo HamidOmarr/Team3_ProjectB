@@ -1,4 +1,3 @@
-using System.Globalization;
 
 namespace Team3_ProjectB
 {
@@ -21,8 +20,7 @@ namespace Team3_ProjectB
                 do
                 {
                     Console.Clear();
-                    Console.WriteLine("You are not logged in.\nWould you like to log in?\n");
-
+                    Console.WriteLine("You are not logged in.\nWould you like to log in? Press Backspace to go back.\n");
                     for (int i = 0; i < loginOptions.Length; i++)
                     {
                         if (i == selectedIndex)
@@ -44,6 +42,11 @@ namespace Team3_ProjectB
                         selectedIndex--;
                     else if (key == ConsoleKey.DownArrow && selectedIndex < loginOptions.Length - 1)
                         selectedIndex++;
+                    else if (key == ConsoleKey.Backspace)
+                    {
+                        NavigationService.GoBack();
+                        return;
+                    }
 
                 } while (key != ConsoleKey.Enter);
 
@@ -54,8 +57,7 @@ namespace Team3_ProjectB
                     user = UserLogin.Start();
                     if (user == null)
                     {
-                        Console.WriteLine("Login failed. Please try again.");
-                        Console.ReadKey();
+                        // If user pressed Backspace in login, go back
                         return;
                     }
                 }
@@ -72,8 +74,12 @@ namespace Team3_ProjectB
                     else
                     {
                         var uniqueGuestEmail = $"guest_{Guid.NewGuid()}@example.com";
-                        Console.WriteLine("Please provide your name:");
-                        string name = Console.ReadLine();
+                        string? name = CustomInput("Please provide your name (Backspace to go back): ");
+                        if (name == null)
+                        {
+                            NavigationService.GoBack();
+                            return;
+                        }
                         user = new AccountModel(0, name, uniqueGuestEmail, "guest_password", "guest");
                         user.Id = accountsLogic.WriteAccount(user);
                         Console.WriteLine("Guest user details saved successfully.");
@@ -154,7 +160,46 @@ namespace Team3_ProjectB
             Console.WriteLine("Press any key to return to the main menu...");
             Console.ReadKey();
 
-            Menu.Start();
+            NavigationService.Navigate(Menu.Start);
+        }
+
+        // Helper for custom input with Backspace support
+        private static string? CustomInput(string prompt)
+        {
+            Console.WriteLine(prompt);
+            string input = "";
+            ConsoleKeyInfo keyInfo;
+            while (true)
+            {
+                keyInfo = Console.ReadKey(true);
+
+                if (keyInfo.Key == ConsoleKey.Enter)
+                {
+                    if (!string.IsNullOrEmpty(input))
+                    {
+                        Console.WriteLine();
+                        return input;
+                    }
+                }
+                else if (keyInfo.Key == ConsoleKey.Backspace)
+                {
+                    if (input.Length > 0)
+                    {
+                        input = input.Substring(0, input.Length - 1);
+                        Console.Write("\b \b");
+                    }
+                    else
+                    {
+                        Console.WriteLine();
+                        return null; // Signal to go back
+                    }
+                }
+                else if (!char.IsControl(keyInfo.KeyChar))
+                {
+                    input += keyInfo.KeyChar;
+                    Console.Write(keyInfo.KeyChar);
+                }
+            }
         }
     }
 }
