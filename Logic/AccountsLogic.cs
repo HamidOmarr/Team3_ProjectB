@@ -50,7 +50,26 @@ namespace Team3_ProjectB
             return password;
         }
 
+        public static bool CheckPasswordComplexity(string password)
+        {
+            if (password.Length < 8)
+                return false;
 
+            if (!password.Any(char.IsUpper))
+                return false;
+
+            if (!password.Any(char.IsLower))
+                return false;
+
+            if (!password.Any(char.IsDigit))
+                return false;
+
+            string specialChars = "!@#$%^&*()-_=+[]{}|;:'\",.<>?/`~";
+            if (!password.Any(c => specialChars.Contains(c)))
+                return false;
+
+            return true;
+        }
         public static void SetCurrentAccount(AccountModel account)
         {
             CurrentAccount = account;
@@ -60,7 +79,7 @@ namespace Team3_ProjectB
         {
             AccountModel acc = AccountsAccess.GetByEmail(email);
 
-            if (acc != null && acc.PasswordHash == password)
+            if (acc != null && BCrypt.Net.BCrypt.Verify(password, acc.PasswordHash))
             {
                 CurrentAccount = acc;
                 return acc;
@@ -72,6 +91,7 @@ namespace Team3_ProjectB
         {
             try
             {
+                account.PasswordHash = BCrypt.Net.BCrypt.HashPassword(account.PasswordHash);
                 AccountsAccess.Write(account);
             }
             catch (Exception ex)

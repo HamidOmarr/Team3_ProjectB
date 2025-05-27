@@ -7,14 +7,11 @@ namespace Team3_ProjectB
         public static AccountModel? Start()
         {
             Console.Clear();
-            Console.WriteLine("Welcome to the login page (Escape to cancel)");
+            Console.WriteLine("Welcome to the login page");
             Console.WriteLine("Please enter your email address:");
-            string email = ReadInputOrEscape();
-            if (email == null) return null;
-
+            string email = Console.ReadLine();
             Console.WriteLine("Please enter your password:");
-            string password = ReadPasswordOrEscape();
-            if (password == null) return null;
+            string password = AccountsLogic.ReadPassword();
 
             AccountModel acc = accountsLogic.CheckLogin(email, password);
 
@@ -23,7 +20,7 @@ namespace Team3_ProjectB
                 Console.WriteLine($"Welcome back, {acc.Name}!");
                 Console.WriteLine($"Your email address is: {acc.Email}");
                 Console.WriteLine($"Your account type is: {acc.AccountType}");
-                return acc;
+                return acc; // Return the logged-in user
             }
             else
             {
@@ -32,25 +29,35 @@ namespace Team3_ProjectB
             }
         }
 
+        
+
+
         public static void Register()
         {
             Console.Clear();
-            Console.WriteLine("Welcome to the registration page (Escape to cancel)");
 
+            Console.WriteLine("Welcome to the registration page");
             Console.WriteLine("Please enter your name:");
-            string name = ReadInputOrEscape();
-            if (name == null) return;
-
+            string name = Console.ReadLine();
             Console.WriteLine("Please enter your email address:");
-            string email = ReadInputOrEscape();
-            if (email == null) return;
+            string email = Console.ReadLine();
 
-            Console.WriteLine("Please enter your password:");
-            string password = ReadPasswordOrEscape();
-            if (password == null) return;
+            string password;
+            bool passwordComplex;
+
+            do
+            {
+                Console.WriteLine("Please enter your password: \n(Password should contain atleast one special character, \none normal and one capital letter and a number and it can't \nbe less than 8 charachters)");
+                password = AccountsLogic.ReadPassword();
+                passwordComplex = AccountsLogic.CheckPasswordComplexity(password);
+
+                if (!passwordComplex)
+                {
+                    Console.WriteLine("Password does not meet complexity requirements. Please try again.");
+                }
+            } while (!passwordComplex);
 
             AccountModel newAccount = new AccountModel(0, name, email, password, "normal");
-
             try
             {
                 accountsLogic.RegisterAccount(newAccount);
@@ -64,68 +71,6 @@ namespace Team3_ProjectB
             Menu.Start();
         }
 
-        private static string ReadInputOrEscape()
-        {
-            string input = "";
-            ConsoleKeyInfo key;
 
-            while (true)
-            {
-                key = Console.ReadKey(true);
-
-                if (key.Key == ConsoleKey.Escape)
-                {
-                    Menu.Start();
-                    return null;
-                }
-                else if (key.Key == ConsoleKey.Enter && input.Length > 0)
-                {
-                    Console.WriteLine();
-                    return input;
-                }
-                else if (key.Key == ConsoleKey.Backspace && input.Length > 0)
-                {
-                    input = input.Substring(0, input.Length - 1);
-                    Console.Write("\b \b");
-                }
-                else if (!char.IsControl(key.KeyChar))
-                {
-                    input += key.KeyChar;
-                    Console.Write(key.KeyChar);
-                }
-            }
-        }
-
-        private static string ReadPasswordOrEscape()
-        {
-            string password = "";
-            ConsoleKeyInfo key;
-
-            while (true)
-            {
-                key = Console.ReadKey(true);
-
-                if (key.Key == ConsoleKey.Escape)
-                {
-                    Menu.Start();
-                    return null;
-                }
-                else if (key.Key == ConsoleKey.Enter)
-                {
-                    Console.WriteLine();
-                    return password;
-                }
-                else if (key.Key == ConsoleKey.Backspace && password.Length > 0)
-                {
-                    password = password.Substring(0, password.Length - 1);
-                    Console.Write("\b \b");
-                }
-                else if (!char.IsControl(key.KeyChar))
-                {
-                    password += key.KeyChar;
-                    Console.Write("*");
-                }
-            }
-        }
     }
 }
