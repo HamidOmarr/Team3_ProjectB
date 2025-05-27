@@ -29,6 +29,7 @@ namespace Team3_ProjectB
             }
         }
 
+        
 
 
         public static void Register()
@@ -40,11 +41,23 @@ namespace Team3_ProjectB
             string name = Console.ReadLine();
             Console.WriteLine("Please enter your email address:");
             string email = Console.ReadLine();
-            Console.WriteLine("Please enter your password:");
-            string password = AccountsLogic.ReadPassword();
+
+            string password;
+            bool passwordComplex;
+
+            do
+            {
+                Console.WriteLine("Please enter your password: \n(Password should contain atleast one special character, \none normal and one capital letter and a number and it can't \nbe less than 8 charachters)");
+                password = AccountsLogic.ReadPassword();
+                passwordComplex = AccountsLogic.CheckPasswordComplexity(password);
+
+                if (!passwordComplex)
+                {
+                    Console.WriteLine("Password does not meet complexity requirements. Please try again.");
+                }
+            } while (!passwordComplex);
 
             AccountModel newAccount = new AccountModel(0, name, email, password, "normal");
-
             try
             {
                 accountsLogic.RegisterAccount(newAccount);
@@ -57,6 +70,7 @@ namespace Team3_ProjectB
 
             Menu.Start();
         }
+
 
     }
 }
