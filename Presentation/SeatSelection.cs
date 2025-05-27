@@ -8,11 +8,41 @@
         {
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.DarkCyan;
-            Console.WriteLine("Enter the amount of seats you want to reserve: ");
-
+            Console.WriteLine("Enter the amount of seats you want to reserve (Press Escape to return): ");
             Console.ResetColor();
-            string input = Console.ReadLine();
-            AmountSeats = Convert.ToInt32(input);
+
+            string input = "";
+            ConsoleKeyInfo keyInfo;
+
+            while (true)
+            {
+                keyInfo = Console.ReadKey(true);
+
+                if (keyInfo.Key == ConsoleKey.Escape)
+                {
+                    ShowMoviesManager.DisplaySessions(sessionId); // Terug naar sessies
+                    return -1;
+                }
+                else if (keyInfo.Key == ConsoleKey.Enter)
+                {
+                    if (int.TryParse(input, out int result) && result > 0)
+                    {
+                        AmountSeats = result;
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("\nInvalid input. Please enter a valid number of seats.");
+                        return AmountSeatsInput(auditoriumId, movieName, sessionTime, reservationId, sessionId); // Opnieuw proberen
+                    }
+                }
+                else if (char.IsDigit(keyInfo.KeyChar))
+                {
+                    input += keyInfo.KeyChar;
+                    Console.Write(keyInfo.KeyChar);
+                }
+            }
+
             SeatSelectionMap(auditoriumId, movieName, sessionTime, reservationId, sessionId);
             return AmountSeats;
         }
@@ -165,7 +195,7 @@
 
                 Console.WriteLine();
                 Console.WriteLine($"\nGeselecteerd: {selectedSeats.Count}/{amountSeats} — {priceInfo}");
-                Console.WriteLine("Gebruik ↑ ↓ ← → om te navigeren, [Spatie] om te selecteren, Enter om te bevestigen");
+                Console.WriteLine("Gebruik ↑ ↓ ← → om te navigeren, [Spatie] om te selecteren, Enter om te bevestigen, Escape om terug te gaan.");
 
                 key = Console.ReadKey(true).Key;
 
@@ -205,6 +235,10 @@
                                 selectedSeats.Add(pos);
                         }
                         break;
+
+                    case ConsoleKey.Escape:
+                        AmountSeatsInput(auditoriumId, movieName, sessionTime, reservationId, sessionId);
+                        return;
                 }
 
             } while (key != ConsoleKey.Enter || selectedSeats.Count != amountSeats);
