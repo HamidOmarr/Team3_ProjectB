@@ -16,6 +16,9 @@
             PasswordHash = passwordHash;
             AccountType = accountType;
         }
+
+        public AccountModel() { }
+
     }
 }
 
