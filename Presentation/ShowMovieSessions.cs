@@ -20,6 +20,9 @@ namespace Team3_ProjectB
 
             if (sessions.Count == 0)
             {
+                Console.Clear();
+                LoginStatusHelper.ShowLoginStatus(); // Show login status at the top
+
                 Console.WriteLine("No sessions found.");
                 Console.WriteLine("Press any key to go back...");
                 Console.ReadKey();
@@ -33,6 +36,8 @@ namespace Team3_ProjectB
             do
             {
                 Console.Clear();
+                LoginStatusHelper.ShowLoginStatus(); // Show login status at the top
+
                 Console.WriteLine("Use ↑ ↓ to select a session. Press Enter to choose. Press Backspace to go back.");
 
                 for (int i = 0; i < sessions.Count; i++)
@@ -88,6 +93,9 @@ namespace Team3_ProjectB
             long reservationId = reservationsLogic.CreateReservation(reservation);
 
             // Pass the reservationId to SeatSelection
+            Console.Clear();
+            LoginStatusHelper.ShowLoginStatus(); // Show login status at the top
+
             NavigationService.Navigate(() =>
                 SeatSelection.AmountSeatsInput(
                     selectedSession.AuditoriumId,

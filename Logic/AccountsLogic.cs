@@ -100,5 +100,59 @@ namespace Team3_ProjectB
             }
         }
 
+        public bool IsValidEmail(string email)
+        {
+            if (string.IsNullOrWhiteSpace(email)) return false;
+            if (!email.Contains("@")) return false;
+            foreach (char c in email)
+            {
+                if (!(char.IsLetterOrDigit(c) || c == '@' || c == '.' || c == '_' || c == '-'))
+                    return false;
+            }
+            return true;
+        }
+
+        public static string? CustomInput(string prompt, bool maskInput = false)
+        {
+            Console.WriteLine(prompt);
+            string input = "";
+            ConsoleKeyInfo keyInfo;
+            while (true)
+            {
+                keyInfo = Console.ReadKey(true);
+
+                if (keyInfo.Key == ConsoleKey.Enter)
+                {
+                    if (!string.IsNullOrEmpty(input))
+                    {
+                        Console.WriteLine();
+                        return input;
+                    }
+                }
+                else if (keyInfo.Key == ConsoleKey.Backspace)
+                {
+                    if (input.Length > 0)
+                    {
+                        input = input.Substring(0, input.Length - 1);
+                        Console.Write("\b \b");
+                    }
+                    else
+                    {
+                        Console.WriteLine();
+                        return null;
+                    }
+                }
+                else if (!char.IsControl(keyInfo.KeyChar))
+                {
+                    input += keyInfo.KeyChar;
+                    if (maskInput)
+                        Console.Write("*");
+                    else
+                        Console.Write(keyInfo.KeyChar);
+                }
+            }
+        }
+
+
     }
 }

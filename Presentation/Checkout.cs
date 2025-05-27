@@ -1,4 +1,3 @@
-
 namespace Team3_ProjectB
 {
     public class Checkout
@@ -6,6 +5,7 @@ namespace Team3_ProjectB
         public static void StartCheckout(string movieName, string sessionTime, List<(string row, int seat)> selectedSeats, int auditoriumId)
         {
             Console.Clear();
+            LoginStatusHelper.ShowLoginStatus(); // Show login status at the top
 
             AccountsLogic accountsLogic = new AccountsLogic();
             AccountModel user = AccountsLogic.CurrentAccount;
@@ -20,6 +20,8 @@ namespace Team3_ProjectB
                 do
                 {
                     Console.Clear();
+                    LoginStatusHelper.ShowLoginStatus(); // Show login status at the top
+
                     Console.WriteLine("You are not logged in.\nWould you like to log in? Press Backspace to go back.\n");
                     for (int i = 0; i < loginOptions.Length; i++)
                     {
@@ -53,6 +55,7 @@ namespace Team3_ProjectB
                 if (selectedIndex == 0)
                 {
                     Console.Clear();
+                    LoginStatusHelper.ShowLoginStatus(); // Show login status at the top
 
                     user = UserLogin.Start();
                     if (user == null)
@@ -64,6 +67,7 @@ namespace Team3_ProjectB
                 else
                 {
                     Console.Clear();
+                    LoginStatusHelper.ShowLoginStatus(); // Show login status at the top
 
                     Console.WriteLine("Continuing with guest account...");
                     var existingGuestUser = accountsLogic.GetAccountByEmail("guest@example.com");
@@ -111,6 +115,8 @@ namespace Team3_ProjectB
             string FormatLine(string content) => $"| {content.PadRight(receiptWidth - 3)}|";
 
             Console.Clear();
+            LoginStatusHelper.ShowLoginStatus(); // Show login status at the top
+
             Console.WriteLine(BorderLine());
             Console.WriteLine(FormatLine("RECEIPT"));
             Console.WriteLine(BorderLine());

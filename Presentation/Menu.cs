@@ -13,6 +13,7 @@ namespace Team3_ProjectB
             do
             {
                 Console.Clear();
+                LoginStatusHelper.ShowLoginStatus();
                 Console.WriteLine("Use ↑ ↓ to choose, then press Enter:\n");
 
                 for (int i = 0; i < options.Length; i++)
