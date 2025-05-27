@@ -2,64 +2,72 @@
 {
     static class Menu
     {
-        static public void Start()
+        public static void Start()
         {
-
-            string[] options = { "View Movies", "Login", "Register", "Quit" };
-            int selectedIndex = 0;
-
-            ConsoleKey key;
-            do
+            while (true)
             {
-                Console.Clear();
-                Console.WriteLine("Use ↑ ↓ to choose, then press Enter:\n");
+                string[] options = { "View Movies", "Login", "Register", "Quit" };
+                int selectedIndex = 0;
 
-
-                for (int i = 0; i < options.Length; i++)
+                ConsoleKey key;
+                do
                 {
+                    Console.Clear();
+                    Console.WriteLine("Use ↑ ↓ to choose, then press Enter:\n");
 
-                    if (i == selectedIndex)
+                    for (int i = 0; i < options.Length; i++)
                     {
-                        Console.BackgroundColor = ConsoleColor.DarkCyan;
-                        Console.ForegroundColor = ConsoleColor.Black;
-                        Console.WriteLine($"[>]  {options[i]}");
-                        Console.ResetColor();
+                        if (i == selectedIndex)
+                        {
+                            Console.BackgroundColor = ConsoleColor.DarkCyan;
+                            Console.ForegroundColor = ConsoleColor.Black;
+                            Console.WriteLine($"[>]  {options[i]}");
+                            Console.ResetColor();
+                        }
+                        else
+                        {
+                            Console.WriteLine($"[ ]  {options[i]}");
+                        }
                     }
-                    else
-                    {
-                        Console.WriteLine($"[ ]  {options[i]}");
 
+                    key = Console.ReadKey(true).Key;
+
+                    if (key == ConsoleKey.UpArrow && selectedIndex > 0)
+                        selectedIndex--;
+                    else if (key == ConsoleKey.DownArrow && selectedIndex < options.Length - 1)
+                        selectedIndex++;
+
+                } while (key != ConsoleKey.Enter);
+
+                // Verwerk selectie
+                if (selectedIndex == 0)
+                {
+                    ShowMovies.DisplaySessions(); // Terugkeren gebeurt met 'return' daar
+                }
+                else if (selectedIndex == 1)
+                {
+                    var user = UserLogin.Start();
+                    if (user != null)
+                    {
+                        AccountsLogic.SetCurrentAccount(user);
+                        Console.WriteLine("You are now logged in. Press any key to continue...");
+                        Console.ReadKey();
                     }
                 }
-
-
-                key = Console.ReadKey(true).Key;
-
-                if (key == ConsoleKey.UpArrow && selectedIndex > 0)
-                    selectedIndex--;
-                else if (key == ConsoleKey.DownArrow && selectedIndex < options.Length - 1)
-                    selectedIndex++;
-
-            } while (key != ConsoleKey.Enter);
-
-            if (selectedIndex == 0)
-                ShowMovies.DisplaySessions();
-
-            else if (selectedIndex == 1)
-            {
-                var user = UserLogin.Start();
-                if (user != null)
+                else if (selectedIndex == 2)
                 {
-                    AccountsLogic.SetCurrentAccount(user);
-                    Console.WriteLine("You are now logged in. Press any key to continue...");
+                    UserLogin.Register();
+                    Console.WriteLine("Registration complete. Press any key to return to menu...");
                     Console.ReadKey();
-                    Start();
+                }
+                else if (selectedIndex == 3)
+                {
+                    Console.Clear();
+                    Console.WriteLine("Exiting program...");
+                    Thread.Sleep(1000);
+                    Environment.Exit(0);
                 }
             }
-            else if (selectedIndex == 2)
-                UserLogin.Register();
-
         }
-
     }
 }
