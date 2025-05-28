@@ -1,17 +1,19 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Team3_ProjectB;
+
 namespace Team3_ProjectB.Tests
 {
     [TestClass]
     public class AccountsLogicTests
     {
-        private AccountModel CreateTestAccount(string email = "testuser@example.com")
+        private AccountModel CreateTestAccount(string email = "testuser@example.com", string password = "testpassword")
         {
+            string hash = BCrypt.Net.BCrypt.HashPassword(password);
             return new AccountModel(
                 id: 0,
                 name: "Test User",
                 email: email,
-                passwordHash: "testpassword",
+                passwordHash: hash,
                 accountType: "User"
             );
         }
@@ -22,6 +24,8 @@ namespace Team3_ProjectB.Tests
             // Arrange
             var logic = new AccountsLogic();
             var account = CreateTestAccount("writeaccount@example.com");
+            var existing = AccountsAccess.GetByEmail(account.Email);
+            if (existing != null) AccountsAccess.Delete(existing);
 
             // Act
             logic.WriteAccount(account);
@@ -40,6 +44,8 @@ namespace Team3_ProjectB.Tests
             // Arrange
             var logic = new AccountsLogic();
             var account = CreateTestAccount();
+            var existing = AccountsAccess.GetByEmail(account.Email);
+            if (existing != null) AccountsAccess.Delete(existing);
 
             // Act
             long newId = logic.WriteAccount(account);
@@ -58,6 +64,9 @@ namespace Team3_ProjectB.Tests
             // Arrange
             var logic = new AccountsLogic();
             var account = CreateTestAccount("getbyemail@example.com");
+            var existing = AccountsAccess.GetByEmail(account.Email);
+            if (existing != null) AccountsAccess.Delete(existing);
+
             account.Id = logic.WriteAccount(account);
 
             // Act
@@ -76,11 +85,15 @@ namespace Team3_ProjectB.Tests
         {
             // Arrange
             var logic = new AccountsLogic();
-            var account = CreateTestAccount("login@example.com");
+            var password = "testpassword";
+            var account = CreateTestAccount("login@example.com", password);
+            var existing = AccountsAccess.GetByEmail(account.Email);
+            if (existing != null) AccountsAccess.Delete(existing);
+
             account.Id = logic.WriteAccount(account);
 
             // Act
-            var result = logic.CheckLogin(account.Email, account.PasswordHash);
+            var result = logic.CheckLogin(account.Email, password);
 
             // Assert
             Assert.IsNotNull(result);
@@ -95,7 +108,11 @@ namespace Team3_ProjectB.Tests
         {
             // Arrange
             var logic = new AccountsLogic();
-            var account = CreateTestAccount("wronglogin@example.com");
+            var password = "testpassword";
+            var account = CreateTestAccount("wronglogin@example.com", password);
+            var existing = AccountsAccess.GetByEmail(account.Email);
+            if (existing != null) AccountsAccess.Delete(existing);
+
             account.Id = logic.WriteAccount(account);
 
             // Act
@@ -114,6 +131,8 @@ namespace Team3_ProjectB.Tests
             // Arrange
             var logic = new AccountsLogic();
             var account = CreateTestAccount("register@example.com");
+            var existing = AccountsAccess.GetByEmail(account.Email);
+            if (existing != null) AccountsAccess.Delete(existing);
 
             // Act
             logic.RegisterAccount(account);
@@ -140,6 +159,5 @@ namespace Team3_ProjectB.Tests
             Assert.IsNotNull(AccountsLogic.CurrentAccount);
             Assert.AreEqual(account.Email, AccountsLogic.CurrentAccount.Email);
         }
-
     }
 }
