@@ -15,6 +15,22 @@ namespace Team3_ProjectB
             _connection.Open();
         }
 
+
+        public void AddMovie(string title, string description, int duration_minutes, DateOnly release_date, string rating, string genre, string language, string subtitle_language)
+        {
+            string sql = $"INSERT INTO {Table} (title, description, duration_minutes, release_date, rating, genre, languague, subtitle_language) VALUES (@title, @description, @duration_minutes, @release_date, @rating, @genre, @language, @subtitle_language);";
+            _connection.Execute(sql, new
+            {
+                title,
+                description,
+                duration_minutes,
+                release_date = release_date.ToString("yyyy-MM-dd"), // Store as string for SQLite
+                rating,
+                genre,
+                language,
+                subtitle_language
+            });
+        }
         public List<MovieModel> GetAllMovies()
         {
             string sql = @"
