@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Team3_ProjectB;
+using Team3_ProjectB.Logic;
 
 namespace Team3_ProjectB.Presentation
 {
@@ -46,9 +47,7 @@ namespace Team3_ProjectB.Presentation
                 string Language = ReadInputWithBackNavigation("Enter the movie language:");
                 string SubtitleLanguage = ReadInputWithBackNavigation("Enter the movie subtitle language:");
 
-                // Now parse and add the movie
-                MoviesAccess moviesAccess = new MoviesAccess();
-                moviesAccess.AddMovie(
+                AddMovieLogic.AddMovieToDB(
                     Title,
                     Description,
                     int.Parse(DurationMinutes),
@@ -65,7 +64,6 @@ namespace Team3_ProjectB.Presentation
             }
             catch (OperationCanceledException)
             {
-                // User hit backspace on empty input to go back
             }
         }
 
