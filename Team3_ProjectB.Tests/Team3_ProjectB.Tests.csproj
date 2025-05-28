@@ -7,7 +7,7 @@
     <Nullable>enable</Nullable>
     <UseVSTest>true</UseVSTest>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-	<GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
+
   </PropertyGroup>
 
   <ItemGroup>
