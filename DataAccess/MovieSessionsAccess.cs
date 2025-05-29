@@ -45,6 +45,15 @@ namespace Team3_ProjectB
             return sessions;
         }
 
+
+        public void AddMovieSession(long movieId, long auditoriumId, DateTime startTime, DateTime endTime)
+        {
+            string sql = $@"
+            INSERT INTO {Table} (movie_id, auditorium_id, start_time, end_time) 
+            VALUES (@MovieId, @AuditoriumId, @StartTime, @EndTime)";
+            _connection.Execute(sql, new { MovieId = movieId, AuditoriumId = auditoriumId, StartTime = startTime, EndTime = endTime });
+        }
+
         public List<FullMovieSessionModel> GetDetailedMovieSessionsFromId(long movieId)
         {
             string sql = @"
