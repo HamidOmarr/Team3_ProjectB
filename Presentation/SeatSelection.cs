@@ -11,6 +11,8 @@ namespace Team3_ProjectB
         public static int AmountSeatsInput(int auditoriumId, string movieName, string sessionTime, long reservationId, int sessionId)
         {
             Console.Clear();
+            LoginStatusHelper.ShowLoginStatus(); // Show login status at the top
+
             Console.ForegroundColor = ConsoleColor.DarkCyan;
             Console.WriteLine("Enter the amount of seats you want to reserve (press Backspace to go back): ");
             Console.ResetColor();
@@ -48,7 +50,6 @@ namespace Team3_ProjectB
             }
         }
 
-
         public static void SeatSelectionMap(int auditoriumId, string movieName, string sessionTime, long reservationId, int sessionId)
         {
             SeatsLogic seatsLogic = new SeatsLogic();
@@ -85,6 +86,8 @@ namespace Team3_ProjectB
             do
             {
                 Console.Clear();
+                LoginStatusHelper.ShowLoginStatus(); // Show login status at the top
+
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine(@"
   _________              __      _________      .__                 __  .__               
@@ -247,6 +250,8 @@ namespace Team3_ProjectB
             } while (key != ConsoleKey.Enter || selectedSeats.Count != amountSeats);
 
             Console.Clear();
+            LoginStatusHelper.ShowLoginStatus(); // Show login status at the top
+
             Console.WriteLine("You have selected the following seats:\n");
 
             foreach (var selectedSeat in selectedSeats)

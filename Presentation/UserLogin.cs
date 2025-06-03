@@ -8,47 +8,65 @@ namespace Team3_ProjectB
         {
             Console.Clear();
             Console.WriteLine("Welcome to the login page");
-            Console.WriteLine("Please enter your email address:");
-            string email = Console.ReadLine();
-            Console.WriteLine("Please enter your password:");
-            string password = AccountsLogic.ReadPassword();
 
-            AccountModel acc = accountsLogic.CheckLogin(email, password);
+            while (true)
+            {
+                string? email = AccountsLogic.CustomInput("Please enter your email address (Backspace to go back): ");
+                if (email == null) { NavigationService.GoBack(); return null; }
 
-            if (acc != null)
-            {
-                Console.WriteLine($"Welcome back, {acc.Name}!");
-                Console.WriteLine($"Your email address is: {acc.Email}");
-                Console.WriteLine($"Your account type is: {acc.AccountType}");
-                return acc; // Return the logged-in user
-            }
-            else
-            {
-                Console.WriteLine("No account found with that email and password.");
-                return null;
+                string? password = AccountsLogic.CustomInput("Please enter your password (Backspace to go back): ", maskInput: true);
+                if (password == null) { NavigationService.GoBack(); return null; }
+
+                AccountModel acc = accountsLogic.CheckLogin(email, password);
+
+                if (acc != null)
+                {
+                    Console.WriteLine($"Welcome back, {acc.Name}!");
+                    Console.WriteLine($"Your email address is: {acc.Email}");
+                    Console.WriteLine($"Your account type is: {acc.AccountType}");
+                    return acc;
+                }
+                else
+                {
+                    Console.WriteLine("No account found with that email and password. Please try again.");
+                }
             }
         }
-
-        
-
 
         public static void Register()
         {
             Console.Clear();
 
             Console.WriteLine("Welcome to the registration page");
-            Console.WriteLine("Please enter your name:");
-            string name = Console.ReadLine();
-            Console.WriteLine("Please enter your email address:");
-            string email = Console.ReadLine();
+
+            string? name = AccountsLogic.CustomInput("Please enter your name (Backspace to go back): ");
+            if (name == null) { NavigationService.GoBack(); return; }
+
+            string email;
+            while (true)
+            {
+                string? inputEmail = AccountsLogic.CustomInput("Please enter your email address (Backspace to go back): ");
+                if (inputEmail == null) { NavigationService.GoBack(); return; }
+                if (accountsLogic.IsValidEmail(inputEmail))
+                {
+                    email = inputEmail;
+                    break;
+                }
+                Console.WriteLine("Invalid email format. Please try again.");
+            }
 
             string password;
             bool passwordComplex;
-
             do
             {
-                Console.WriteLine("Please enter your password: \n(Password should contain atleast one special character, \none normal and one capital letter and a number and it can't \nbe less than 8 charachters)");
-                password = AccountsLogic.ReadPassword();
+                string? inputPassword = AccountsLogic.CustomInput(
+                    "Please enter your password (Backspace to go back):\n" +
+                    "(Password should contain at least one special character, one lowercase, one uppercase letter, a number, and be at least 8 characters long)",
+                    maskInput: true
+                );
+                if (inputPassword == null) { NavigationService.GoBack(); return; }
+
+                password = inputPassword;
                 passwordComplex = AccountsLogic.CheckPasswordComplexity(password);
 
                 if (!passwordComplex)
@@ -58,6 +76,7 @@ namespace Team3_ProjectB
             } while (!passwordComplex);
 
             AccountModel newAccount = new AccountModel(0, name, email, password, "normal");
+
             try
             {
                 accountsLogic.RegisterAccount(newAccount);
@@ -68,9 +87,7 @@ namespace Team3_ProjectB
                 Console.WriteLine($"An error occurred while registering the account: {ex.Message}");
             }
 
-            Menu.Start();
+            NavigationService.Navigate(Menu.Start);
         }
-
-
     }
 }
