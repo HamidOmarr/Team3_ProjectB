@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
+using Team3_ProjectB.Presentation;
 
 namespace Team3_ProjectB
 {
@@ -114,6 +115,42 @@ namespace Team3_ProjectB
                 throw new Exception("An error occurred while registering the account.", ex);
             }
         }
+
+        public void LoginAndRoute()
+        {
+            Console.Clear();
+            Console.Write("Enter email: ");
+            string email = Console.ReadLine();
+
+            Console.Write("Enter password: ");
+            string password = ReadPassword();
+
+            var account = CheckLogin(email, password);
+
+            if (account != null)
+            {
+                Console.WriteLine("\n✅ Login successful!");
+
+                if (IsAdmin)
+                {
+                    Console.WriteLine("You are logged in as Admin.");
+                    Console.ReadKey();
+                    AdminMovieSessionMenu.Show();
+                }
+                else
+                {
+                    Console.WriteLine("You are logged in as a regular user.");
+                    Console.ReadKey();
+                    NavigationService.Navigate(() => ShowMovies.DisplaySessions());
+                }
+            }
+            else
+            {
+                Console.WriteLine("❌ Login failed.");
+                Console.ReadKey();
+            }
+        }
+
 
     }
 }
