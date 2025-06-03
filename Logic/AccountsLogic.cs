@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
+using Team3_ProjectB.Presentation;
 
 namespace Team3_ProjectB
 {
     public class AccountsLogic
     {
         public static AccountModel? CurrentAccount { get; private set; }
+        public static bool IsLoggedIn { get; set; } = false;
+        public static bool IsAdmin { get; set; } = false;
+
 
         public AccountsLogic()
         {
@@ -83,7 +87,19 @@ namespace Team3_ProjectB
             if (acc != null && BCrypt.Net.BCrypt.Verify(password, acc.PasswordHash))
             {
                 CurrentAccount = acc;
+                IsLoggedIn = true;
+
+                if (acc.AccountType == "admin")
+                {
+                    IsAdmin = true;
+                }
+                else if(acc.AccountType == "normal")
+                {
+                    IsAdmin = false;
+                }
                 return acc;
+
+                    
             }
 
             return null;
@@ -102,58 +118,41 @@ namespace Team3_ProjectB
             }
         }
 
-        public bool IsValidEmail(string email)
+        public void LoginAndRoute()
         {
-            if (string.IsNullOrWhiteSpace(email)) return false;
-            if (!email.Contains("@")) return false;
-            foreach (char c in email)
-            {
-                if (!(char.IsLetterOrDigit(c) || c == '@' || c == '.' || c == '_' || c == '-'))
-                    return false;
-            }
-            return true;
-        }
+            Console.Clear();
+            Console.Write("Enter email: ");
+            string email = Console.ReadLine();
 
-        public static string? CustomInput(string prompt, bool maskInput = false)
-        {
-            Console.WriteLine(prompt);
-            string input = "";
-            ConsoleKeyInfo keyInfo;
-            while (true)
-            {
-                keyInfo = Console.ReadKey(true);
+            Console.Write("Enter password: ");
+            string password = ReadPassword();
 
-                if (keyInfo.Key == ConsoleKey.Enter)
+            var account = CheckLogin(email, password);
+
+            if (account != null)
+            {
+                Console.WriteLine("\n✅ Login successful!");
+
+                if (IsAdmin)
                 {
-                    if (!string.IsNullOrEmpty(input))
-                    {
-                        Console.WriteLine();
-                        return input;
-                    }
+                    Console.WriteLine("You are logged in as Admin.");
+                    Console.ReadKey();
+                    AdminMovieSessionMenu.Show();
                 }
-                else if (keyInfo.Key == ConsoleKey.Backspace)
+                else
                 {
-                    if (input.Length > 0)
-                    {
-                        input = input.Substring(0, input.Length - 1);
-                        Console.Write("\b \b");
-                    }
-                    else
-                    {
-                        Console.WriteLine();
-                        return null;
-                    }
-                }
-                else if (!char.IsControl(keyInfo.KeyChar))
-                {
-                    input += keyInfo.KeyChar;
-                    if (maskInput)
-                        Console.Write("*");
-                    else
-                        Console.Write(keyInfo.KeyChar);
+                    Console.WriteLine("You are logged in as a regular user.");
+                    Console.ReadKey();
+                    NavigationService.Navigate(() => ShowMovies.DisplaySessions());
                 }
             }
+            else
+            {
+                Console.WriteLine("❌ Login failed.");
+                Console.ReadKey();
+            }
         }
+
 
         /// Haalt bestaande gastaccount op of maakt er één aan.
         public AccountModel GetOrCreateGuest(string name, string email)
