@@ -1,94 +1,92 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Team3_ProjectB;
 
-namespace Team3_ProjectB
+public class ShowMovies
 {
-    public class ShowMovies
-    {
-        public List<MovieModel> Movies { get; private set; }
+    public List<MovieModel> Movies { get; private set; }
 
-        public ShowMovies()
+    public ShowMovies()
+    {
+        MoviesLogic moviesLogic = new MoviesLogic();
+        Movies = moviesLogic.GetAllMovies();
+    }
+
+    protected static void DisplaySessionsCore(Action<MovieModel> onMovieSelected)
+    {
+        ShowMovies showMovies = new ShowMovies();
+        var sessions = showMovies.Movies;
+
+        if (sessions.Count == 0)
         {
-            MoviesLogic moviesLogic = new MoviesLogic();
-            Movies = moviesLogic.GetAllMovies();
+            Console.WriteLine("No movies available.");
+            Console.WriteLine("Press any key to go back...");
+            Console.ReadKey();
+            NavigationService.GoBack();
+            return;
         }
 
-        public static void DisplaySessions()
+        int selectedIndex = 0;
+        ConsoleKey key;
+
+        do
         {
-            ShowMovies showMovies = new ShowMovies();
-            var sessions = showMovies.Movies;
+            Console.Clear();
+            Console.WriteLine("Use ↑ ↓ to choose a movie, then press Enter:, Press Backspace to go back\n");
 
-            if (sessions.Count == 0)
+            for (int i = 0; i < sessions.Count; i++)
             {
-                Console.Clear();
-                LoginStatusHelper.ShowLoginStatus();
+                var s = sessions[i];
+                bool isSelected = i == selectedIndex;
 
-                Console.WriteLine("No movies available.");
-                Console.WriteLine("Press any key to go back...");
-                Console.ReadKey();
+                if (isSelected)
+                {
+                    Console.BackgroundColor = ConsoleColor.DarkCyan;
+                    Console.ForegroundColor = ConsoleColor.Black;
+                    Console.WriteLine($"[>] {s.Title}");
+                    Console.ResetColor();
+                }
+                else
+                {
+                    Console.WriteLine($"[ ] {s.Title}");
+                }
+            }
+
+            var selected = sessions[selectedIndex];
+            Console.WriteLine("\n──────────────────────────────");
+            Console.WriteLine($"Title: {selected.Title}");
+            Console.WriteLine($"Description: {selected.Description}");
+            Console.WriteLine($"Genre: {selected.Genre}");
+            Console.WriteLine($"Duration: {selected.DurationMinutes}");
+            Console.WriteLine($"Rating: {selected.Rating}");
+            Console.WriteLine($"Language: {selected.Languague}");
+            Console.WriteLine($"Subtitle Language: {selected.SubtitleLanguage}");
+            Console.WriteLine($"ReleaseDate: {selected.ReleaseDate}");
+            Console.WriteLine("\nPress Backspace to go back.");
+
+            key = Console.ReadKey(true).Key;
+
+            if (key == ConsoleKey.UpArrow && selectedIndex > 0)
+                selectedIndex--;
+            else if (key == ConsoleKey.DownArrow && selectedIndex < sessions.Count - 1)
+                selectedIndex++;
+            else if (key == ConsoleKey.Backspace)
+            {
                 NavigationService.GoBack();
                 return;
             }
 
-            int selectedIndex = 0;
-            ConsoleKey key;
+        } while (key != ConsoleKey.Enter);
 
-            do
-            {
-                Console.Clear();
-                LoginStatusHelper.ShowLoginStatus();
+        var selectedMovie = sessions[selectedIndex];
+        Console.Clear();
 
-                Console.WriteLine("Use ↑ ↓ to choose a movie, then press Enter: (Press Backspace to go back)\n");
+        onMovieSelected(selectedMovie);
+    }
 
-                for (int i = 0; i < sessions.Count; i++)
-                {
-                    var s = sessions[i];
-                    bool isSelected = i == selectedIndex;
-
-                    if (isSelected)
-                    {
-                        Console.BackgroundColor = ConsoleColor.DarkCyan;
-                        Console.ForegroundColor = ConsoleColor.Black;
-                        Console.WriteLine($"[>] {s.Title}");
-                        Console.ResetColor();
-                    }
-                    else
-                    {
-                        Console.WriteLine($"[ ] {s.Title}");
-                    }
-                }
-
-                var selected = sessions[selectedIndex];
-                Console.WriteLine("\n──────────────────────────────");
-                Console.WriteLine($"Title: {selected.Title}");
-                Console.WriteLine($"Description: {selected.Description}");
-                Console.WriteLine($"Genre: {selected.Genre}");
-                Console.WriteLine($"Duration: {selected.DurationMinutes}");
-                Console.WriteLine($"Rating: {selected.Rating}");
-                Console.WriteLine($"Language: {selected.Languague}");
-                Console.WriteLine($"Subtitle Language: {selected.SubtitleLanguage}");
-                Console.WriteLine($"ReleaseDate: {selected.ReleaseDate}");
-
-                key = Console.ReadKey(true).Key;
-
-                if (key == ConsoleKey.UpArrow && selectedIndex > 0)
-                    selectedIndex--;
-                else if (key == ConsoleKey.DownArrow && selectedIndex < sessions.Count - 1)
-                    selectedIndex++;
-                else if (key == ConsoleKey.Backspace)
-                {
-                    NavigationService.GoBack();
-                    return;
-                }
-
-            } while (key != ConsoleKey.Enter);
-
-            var selectedMovie = sessions[selectedIndex];
-            Console.Clear();
-            LoginStatusHelper.ShowLoginStatus();
-
+    public static void DisplaySessions()
+    {
+        DisplaySessionsCore(selectedMovie =>
+        {
             NavigationService.Navigate(() => ShowMoviesManager.DisplaySessions(selectedMovie.Id));
-        }
+        });
     }
 }

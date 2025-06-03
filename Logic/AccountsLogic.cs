@@ -8,7 +8,8 @@ namespace Team3_ProjectB
     public class AccountsLogic
     {
         public static AccountModel? CurrentAccount { get; private set; }
-
+        public static bool IsLoggedIn { get; set; } = false;
+        public static bool IsAdmin { get; set; } = false;
         public AccountsLogic()
         {
             // Could do something here
@@ -83,7 +84,19 @@ namespace Team3_ProjectB
             if (acc != null && BCrypt.Net.BCrypt.Verify(password, acc.PasswordHash))
             {
                 CurrentAccount = acc;
+                IsLoggedIn = true;
+
+                if (acc.AccountType == "admin")
+                {
+                    IsAdmin = true;
+                }
+                else if (acc.AccountType == "normal")
+                {
+                    IsAdmin = false;
+                }
                 return acc;
+
+
             }
 
             return null;
