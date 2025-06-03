@@ -5,12 +5,11 @@ namespace Team3_ProjectB
         public static void StartCheckout(string movieName, string sessionTime, List<(string row, int seat)> selectedSeats, int auditoriumId)
         {
             Console.Clear();
-            LoginStatusHelper.ShowLoginStatus(); // Show login status at the top
+            LoginStatusHelper.ShowLoginStatus(); // Toon login status bovenaan
 
             AccountsLogic accountsLogic = new AccountsLogic();
-            AccountModel user = AccountsLogic.CurrentAccount;
+            AccountModel? user = AccountsLogic.CurrentAccount;
 
-            // Check if the user is logged in or create a guest user
             if (user == null)
             {
                 string[] loginOptions = { "Yes, log in", "No, continue as guest" };
@@ -20,7 +19,7 @@ namespace Team3_ProjectB
                 do
                 {
                     Console.Clear();
-                    LoginStatusHelper.ShowLoginStatus(); // Show login status at the top
+                    LoginStatusHelper.ShowLoginStatus();
 
                     Console.WriteLine("You are not logged in.\nWould you like to log in? Press Backspace to go back.\n");
                     for (int i = 0; i < loginOptions.Length; i++)
@@ -52,46 +51,54 @@ namespace Team3_ProjectB
 
                 } while (key != ConsoleKey.Enter);
 
-                if (selectedIndex == 0)
+                if (selectedIndex == 0) // User wil inloggen
                 {
                     Console.Clear();
-                    LoginStatusHelper.ShowLoginStatus(); // Show login status at the top
+                    LoginStatusHelper.ShowLoginStatus();
 
                     user = UserLogin.Start();
-                    if (user == null)
-                    {
-                        // If user pressed Backspace in login, go back
-                        return;
-                    }
+                    if (user == null) return; // Terug bij backspace in login
                 }
                 else
                 {
                     Console.Clear();
-                    LoginStatusHelper.ShowLoginStatus(); // Show login status at the top
+                    LoginStatusHelper.ShowLoginStatus();
 
                     Console.WriteLine("Continuing with guest account...");
-                    var existingGuestUser = accountsLogic.GetAccountByEmail("guest@example.com");
-                    if (existingGuestUser != null)
+
+                    string? name = AccountsLogic.CustomInput("Please provide your name (Backspace to go back): ");
+                    if (name == null)
                     {
-                        user = existingGuestUser;
+                        NavigationService.GoBack();
+                        return;
                     }
-                    else
+
+                    string? email;
+                    do
                     {
-                        var uniqueGuestEmail = $"guest_{Guid.NewGuid()}@example.com";
-                        string? name = CustomInput("Please provide your name (Backspace to go back): ");
-                        if (name == null)
+                        email = AccountsLogic.CustomInput("Please provide your email address (Backspace to go back): ");
+                        if (email == null)
                         {
                             NavigationService.GoBack();
                             return;
                         }
-                        user = new AccountModel(0, name, uniqueGuestEmail, "guest_password", "guest");
-                        user.Id = accountsLogic.WriteAccount(user);
-                        Console.WriteLine("Guest user details saved successfully.");
-                    }
+
+                        if (!accountsLogic.IsValidEmail(email))
+                        {
+                            Console.WriteLine("Invalid email: it must contain '@' and valid characters. Please try again.");
+                            Thread.Sleep(1500);
+                            Console.Clear();
+                            LoginStatusHelper.ShowLoginStatus();
+                        }
+
+                    } while (!accountsLogic.IsValidEmail(email));
+
+                    user = accountsLogic.GetOrCreateGuest(name, email);
+                    Console.WriteLine("Guest user details loaded successfully.");
                 }
             }
 
-            // Create a reservation
+            // Maak een reservering aan
             ReservationsLogic reservationsLogic = new ReservationsLogic();
             var reservation = new ReservationModel
             {
@@ -101,10 +108,10 @@ namespace Team3_ProjectB
             };
             reservation.Id = reservationsLogic.CreateReservation(reservation);
 
-            // Food menu selection
+            // Start foodmenu
             Foodmenu.StartFoodMenu(reservation.Id);
 
-            // Seat and food summary
+            // Toon overzicht tickets + food + totaalprijs
             decimal totalPrice = 0;
             SeatsLogic seatsLogic = new SeatsLogic();
             PricesLogic pricesLogic = new PricesLogic();
@@ -115,15 +122,17 @@ namespace Team3_ProjectB
             string FormatLine(string content) => $"| {content.PadRight(receiptWidth - 3)}|";
 
             Console.Clear();
-            LoginStatusHelper.ShowLoginStatus(); // Show login status at the top
+            LoginStatusHelper.ShowLoginStatus();
 
             Console.WriteLine(BorderLine());
             Console.WriteLine(FormatLine("RECEIPT"));
             Console.WriteLine(BorderLine());
+            Console.WriteLine(FormatLine($"Name:  {user.Name}"));
+            Console.WriteLine(FormatLine($"Email: {user.Email}"));
+            Console.WriteLine(BorderLine());
             Console.WriteLine(FormatLine($"Movie: {movieName}"));
             Console.WriteLine(FormatLine($"Time:  {sessionTime}"));
             Console.WriteLine(BorderLine());
-            Console.WriteLine(FormatLine("Seats:"));
 
             foreach (var (row, seatNum) in selectedSeats)
             {
@@ -167,45 +176,6 @@ namespace Team3_ProjectB
             Console.ReadKey();
 
             NavigationService.Navigate(Menu.Start);
-        }
-
-        // Helper for custom input with Backspace support
-        private static string? CustomInput(string prompt)
-        {
-            Console.WriteLine(prompt);
-            string input = "";
-            ConsoleKeyInfo keyInfo;
-            while (true)
-            {
-                keyInfo = Console.ReadKey(true);
-
-                if (keyInfo.Key == ConsoleKey.Enter)
-                {
-                    if (!string.IsNullOrEmpty(input))
-                    {
-                        Console.WriteLine();
-                        return input;
-                    }
-                }
-                else if (keyInfo.Key == ConsoleKey.Backspace)
-                {
-                    if (input.Length > 0)
-                    {
-                        input = input.Substring(0, input.Length - 1);
-                        Console.Write("\b \b");
-                    }
-                    else
-                    {
-                        Console.WriteLine();
-                        return null; // Signal to go back
-                    }
-                }
-                else if (!char.IsControl(keyInfo.KeyChar))
-                {
-                    input += keyInfo.KeyChar;
-                    Console.Write(keyInfo.KeyChar);
-                }
-            }
         }
     }
 }

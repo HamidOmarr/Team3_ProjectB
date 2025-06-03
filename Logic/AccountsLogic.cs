@@ -70,6 +70,7 @@ namespace Team3_ProjectB
 
             return true;
         }
+
         public static void SetCurrentAccount(AccountModel account)
         {
             CurrentAccount = account;
@@ -87,6 +88,7 @@ namespace Team3_ProjectB
 
             return null;
         }
+
         public void RegisterAccount(AccountModel account)
         {
             try
@@ -153,6 +155,18 @@ namespace Team3_ProjectB
             }
         }
 
+        /// Haalt bestaande gastaccount op of maakt er één aan.
+        public AccountModel GetOrCreateGuest(string name, string email)
+        {
+            var existing = GetAccountByEmail(email);
+            if (existing != null)
+            {
+                return existing;
+            }
 
+            var guest = new AccountModel(0, name, email, "guest_password", "guest");
+            guest.Id = WriteAccount(guest);
+            return guest;
+        }
     }
 }
