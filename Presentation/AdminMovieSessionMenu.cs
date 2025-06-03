@@ -12,30 +12,57 @@ namespace Team3_ProjectB.Presentation
     {
         public static void Show()
         {
-            while (true)
+            string[] options = { "Add Session", "Edit Session", "Delete Session", "Back" };
+            int selectedIndex = 0;
+            ConsoleKey key;
+
+            do
             {
                 Console.Clear();
                 Console.WriteLine("=== Admin: Manage Movie Sessions ===");
-                Console.WriteLine("1. Add Session");
-                Console.WriteLine("2. Edit Session");
-                Console.WriteLine("3. Delete Session");
-                Console.WriteLine("4. Back");
+                Console.WriteLine("Use ↑ ↓ to choose, then press Enter:\n");
 
-                switch (Console.ReadKey(true).Key)
+                for (int i = 0; i < options.Length; i++)
                 {
-                    case ConsoleKey.D1:
-                        AddMoviesession.DisplaySessions();
-                        break;
-                    case ConsoleKey.D2:
-                        EditMovieSession.Display();
-                        break;
-                    case ConsoleKey.D3:
-                        DeleteMovieSession.Display();
-                        break;
-                    case ConsoleKey.D4:
-                        return;
+                    if (i == selectedIndex)
+                    {
+                        Console.BackgroundColor = ConsoleColor.DarkCyan;
+                        Console.ForegroundColor = ConsoleColor.Black;
+                        Console.WriteLine($"[>]  {options[i]}");
+                        Console.ResetColor();
+                    }
+                    else
+                    {
+                        Console.WriteLine($"[ ]  {options[i]}");
+                    }
                 }
+
+                key = Console.ReadKey(true).Key;
+
+                if (key == ConsoleKey.UpArrow && selectedIndex > 0)
+                    selectedIndex--;
+                else if (key == ConsoleKey.DownArrow && selectedIndex < options.Length - 1)
+                    selectedIndex++;
+
+            } while (key != ConsoleKey.Enter);
+
+            switch (selectedIndex)
+            {
+                case 0:
+                    AddMoviesession.DisplaySessions();
+                    break;
+                case 1:
+                    EditMovieSession.Display();
+                    break;
+                case 2:
+                    DeleteMovieSession.Display();
+                    break;
+                case 3:
+                    return;
             }
+
+            // After action completes, show the menu again
+            Show();
         }
     }
 }
