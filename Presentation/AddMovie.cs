@@ -47,7 +47,7 @@ namespace Team3_ProjectB.Presentation
                 string Language = ReadInputWithBackNavigation("Enter the movie language:");
                 string SubtitleLanguage = ReadInputWithBackNavigation("Enter the movie subtitle language:");
 
-                AddMovieLogic.AddMovieToDB(
+                MoviesLogic.AddMovie(
                     Title,
                     Description,
                     int.Parse(DurationMinutes),

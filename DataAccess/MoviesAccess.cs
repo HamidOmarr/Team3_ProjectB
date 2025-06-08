@@ -1,6 +1,7 @@
 ﻿using Microsoft.Data.Sqlite;
 
 using Dapper;
+using System.Data;
 namespace Team3_ProjectB
 {
     public class MoviesAccess
@@ -10,8 +11,20 @@ namespace Team3_ProjectB
 
         private static string Table = "movie";
 
+
+        public class DateOnlyTypeHandler : SqlMapper.TypeHandler<DateOnly>
+        {
+            public override DateOnly Parse(object value)
+                => DateOnly.Parse(value.ToString());
+
+            public override void SetValue(IDbDataParameter parameter, DateOnly value)
+                => parameter.Value = value.ToString("yyyy-MM-dd");
+        }
+
         public MoviesAccess()
         {
+            SqlMapper.AddTypeHandler(new DateOnlyTypeHandler());
+
             _connection.Open();
         }
 
@@ -50,6 +63,42 @@ namespace Team3_ProjectB
             var Movies = _connection.Query<MovieModel>(sql).ToList();
             return Movies;
         }
+
+        public void UpdateMovie(long id, string title, string description, int duration_minutes, DateOnly release_date, string rating, string genre, string language, string subtitle_language)
+        {
+            string sql = $@"
+        UPDATE {Table} SET
+            title = @title,
+            description = @description,
+            duration_minutes = @duration_minutes,
+            release_date = @release_date,
+            rating = @rating,
+            genre = @genre,
+            languague = @language,
+            subtitle_language = @subtitle_language
+        WHERE id = @id;
+    ";
+
+            _connection.Execute(sql, new
+            {
+                id,
+                title,
+                description,
+                duration_minutes,
+                release_date = release_date.ToString("yyyy-MM-dd"),
+                rating,
+                genre,
+                language,
+                subtitle_language
+            });
+        }
+
+        public void DeleteMovie(long id)
+        {
+            string sql = $"DELETE FROM {Table} WHERE id = @id;";
+            _connection.Execute(sql, new { id });
+        }
+
 
 
     }

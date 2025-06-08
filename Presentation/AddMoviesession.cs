@@ -23,23 +23,55 @@ namespace Team3_ProjectB.Presentation
 
                 try
                 {
-                    Console.Write("Enter Auditorium ID: ");
+                    Console.Write("Enter Auditorium number: ");
                     AuditoriumId = int.Parse(Console.ReadLine());
 
                     Console.Write("Enter Start Time (yyyy-MM-dd HH:mm): ");
                     StartTime = DateTime.Parse(Console.ReadLine());
 
-                    Console.Write("Enter End Time (yyyy-MM-dd HH:mm): ");
-                    EndTime = DateTime.Parse(Console.ReadLine());
+                    Console.Write("Enter Duration in minutes: ");
+                    int durationMinutes = int.Parse(Console.ReadLine());
 
-                    MovieSessionsAccess access = new MovieSessionsAccess();
-                    access.AddMovieSession(selectedMovie.Id, AuditoriumId, StartTime, EndTime);
+                    if (StartTime < DateTime.Now)
+                    {
+                        Console.WriteLine("\nCannot create a session in the past.");
+                        Console.WriteLine("Press any key to return...");
+                        Console.ReadKey();
+                        NavigationService.Navigate(Menu.Start);
+                        return;
+                    }
 
-                    Console.WriteLine("\n✅ Movie session added successfully!");
+                    EndTime = StartTime.AddMinutes(durationMinutes);
+
+                    MovieSessionsLogic logic = new MovieSessionsLogic();
+                    var allSessions = logic.GetAllMovieSessions();
+
+                    var sessionsInAuditorium = allSessions.Where(s => s.AuditoriumId == AuditoriumId);
+
+                    bool overlap = sessionsInAuditorium.Any(s =>
+                    {
+                        DateTime existingStart = s.StartTime;
+                        DateTime existingEnd = s.EndTime.AddMinutes(30);
+
+                        return StartTime < existingEnd && EndTime > existingStart;
+                    });
+
+                    if (overlap)
+                    {
+                        Console.WriteLine("\nCannot create session: There is already a session (or cleaning time) in that auditorium at the selected time.");
+                        Console.WriteLine("Press any key to return...");
+                        Console.ReadKey();
+                        NavigationService.Navigate(Menu.Start);
+                        return;
+                    }
+
+                    logic.AddMovieSession(selectedMovie.Id, AuditoriumId, StartTime, EndTime);
+
+                    Console.WriteLine("\nMovie session added successfully!");
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"\n❌ Failed to add movie session: {ex.Message}");
+                    Console.WriteLine($"\nFailed to add movie session: {ex.Message}");
                 }
 
                 Console.WriteLine("Press any key to return...");
@@ -47,5 +79,7 @@ namespace Team3_ProjectB.Presentation
                 NavigationService.Navigate(Menu.Start);
             });
         }
+
+
     }
 }

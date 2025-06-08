@@ -8,12 +8,12 @@ using Team3_ProjectB;
 
 namespace Team3_ProjectB.Presentation
 {
-    public class AdminMovieSessionMenu
+    public class AdminMovieMenu
     {
         public static void Show()
         {
 
-            string[] options = { "Add Movie Sessions", "Edit Movie Sessions", "Delete Movie Sessions"};
+            string[] options = { "Add Movie", "Edit Movie", "Delete Movie"};
             int selectedIndex = 0;
             ConsoleKey key;
 
@@ -22,7 +22,7 @@ namespace Team3_ProjectB.Presentation
                 Console.Clear();
                 LoginStatusHelper.ShowLoginStatus();
 
-                Console.WriteLine("=== Admin: Manage Movie Sessions ===");
+                Console.WriteLine("=== Admin: Manage Movie ===");
                 Console.WriteLine("Use ↑ ↓ to choose, then press Enter: (Press backspace to go back)\n");
 
                 for (int i = 0; i < options.Length; i++)
@@ -57,18 +57,18 @@ namespace Team3_ProjectB.Presentation
             switch (selectedIndex)
             {
                 case 0:
-                    AddMoviesession.DisplaySessions();
+                    AddMovie.AddMovieMethod();
                     break;
                 case 1:
-                    EditMovieSession.Display();
+                    EditMovie.Display();
                     break;
                 case 2:
-                    DeleteMovieSession.Display();
+                    DeleteMovie.Display();
                     break;
             }
 
             // After action completes, show the menu again
-            AdminMovieSessionMenu.Show();
+            Show();
         }
     }
 }

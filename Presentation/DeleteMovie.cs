@@ -4,17 +4,17 @@ using Team3_ProjectB;
 
 namespace Team3_ProjectB.Presentation
 {
-    public class DeleteMovieSession
+    public class DeleteMovie
     {
         public static void Display()
         {
             Console.Clear();
-            var logic = new MovieSessionsLogic();
-            var sessions = logic.GetAllDetailedMovieSessions();
+            var logic = new MoviesLogic();
+            var movies = logic.GetAllMovies();
 
-            if (sessions.Count == 0)
+            if (movies.Count == 0)
             {
-                Console.WriteLine("❌ No movie sessions found.");
+                Console.WriteLine("❌ No movies found.");
                 Console.WriteLine("Press any key to return...");
                 Console.ReadKey();
                 NavigationService.GoBack();
@@ -28,11 +28,11 @@ namespace Team3_ProjectB.Presentation
             {
                 Console.Clear();
                 LoginStatusHelper.ShowLoginStatus();
-                Console.WriteLine("Use ↑ ↓ to select a session. Press Enter to delete. Press Backspace to go back.\n");
+                Console.WriteLine("Use ↑ ↓ to select a movie. Press Enter to delete. Press Backspace to go back.\n");
 
-                for (int i = 0; i < sessions.Count; i++)
+                for (int i = 0; i < movies.Count; i++)
                 {
-                    var session = sessions[i];
+                    var movie = movies[i];
                     bool isSelected = (i == selectedIndex);
 
                     if (isSelected)
@@ -41,7 +41,8 @@ namespace Team3_ProjectB.Presentation
                         Console.ForegroundColor = ConsoleColor.Black;
                     }
 
-                    Console.WriteLine($"[{(isSelected ? ">" : " ")}] {session.StartTime:yyyy-MM-dd HH:mm} - {session.EndTime:HH:mm} | {session.Title} - {session.AuditoriumName}");
+                    // You can adjust this line to display the movie info you want
+                    Console.WriteLine($"[{(isSelected ? ">" : " ")}] {movie.Title} ({movie.ReleaseDate:yyyy-MM-dd}) | {movie.Genre}");
 
                     if (isSelected)
                         Console.ResetColor();
@@ -51,7 +52,7 @@ namespace Team3_ProjectB.Presentation
 
                 if (key == ConsoleKey.UpArrow && selectedIndex > 0)
                     selectedIndex--;
-                else if (key == ConsoleKey.DownArrow && selectedIndex < sessions.Count - 1)
+                else if (key == ConsoleKey.DownArrow && selectedIndex < movies.Count - 1)
                     selectedIndex++;
                 else if (key == ConsoleKey.Backspace)
                 {
@@ -61,12 +62,12 @@ namespace Team3_ProjectB.Presentation
 
             } while (key != ConsoleKey.Enter);
 
-            var selectedSession = sessions[selectedIndex];
+            var selectedMovie = movies[selectedIndex];
 
             Console.Clear();
             LoginStatusHelper.ShowLoginStatus();
-            Console.WriteLine($"Delete session: {selectedSession.Title} ({selectedSession.StartTime:yyyy-MM-dd HH:mm} - {selectedSession.EndTime:HH:mm}, {selectedSession.AuditoriumName})");
-            Console.Write("Are you sure you want to delete this session? (y/n): ");
+            Console.WriteLine($"Delete movie: {selectedMovie.Title} ({selectedMovie.ReleaseDate:yyyy-MM-dd}, {selectedMovie.Genre})");
+            Console.Write("Are you sure you want to delete this movie? (y/n): ");
             var confirm = Console.ReadLine();
 
             if (confirm?.ToLower() != "y")
@@ -78,14 +79,21 @@ namespace Team3_ProjectB.Presentation
 
             try
             {
-                logic.DeleteMovieSession(selectedSession.Id);
+                logic.DeleteMovie(selectedMovie.Id);
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("\nSession deleted successfully!");
+                Console.WriteLine("\nMovie deleted successfully!");
                 Console.ResetColor();
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"\nFailed to delete session: {ex.Message}");
+                if (ex.Message.Contains("FOREIGN KEY constraint failed"))
+                {
+                    Console.WriteLine("\n❌ This movie cannot be deleted because there are sessions or other references.");
+                }
+                else
+                {
+                    Console.WriteLine($"\nFailed to delete movie: {ex.Message}");
+                }
             }
 
             Console.WriteLine("Press any key to return...");

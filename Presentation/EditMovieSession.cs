@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Team3_ProjectB;
 
 namespace Team3_ProjectB.Presentation
@@ -12,6 +9,8 @@ namespace Team3_ProjectB.Presentation
         public static void Display()
         {
             Console.Clear();
+            LoginStatusHelper.ShowLoginStatus();
+
             var logic = new MovieSessionsLogic();
             var sessions = logic.GetAllDetailedMovieSessions();
 
@@ -24,19 +23,53 @@ namespace Team3_ProjectB.Presentation
                 return;
             }
 
-            Console.WriteLine("=== All Movie Sessions ===\n");
-            foreach (var session in sessions)
-            {
-                Console.WriteLine($"ID: {session.Id} | Movie: {session.Title} | Start: {session.StartTime} | End: {session.EndTime} | Auditorium: {session.AuditoriumName}");
-            }
+            int selectedIndex = 0;
+            ConsoleKey key;
 
-            Console.Write("\nEnter Session ID to edit: ");
-            if (!long.TryParse(Console.ReadLine(), out long sessionId))
+            do
             {
-                Console.WriteLine("Invalid session ID.");
-                Console.ReadKey();
-                return;
-            }
+                Console.Clear();
+                LoginStatusHelper.ShowLoginStatus();
+                Console.WriteLine("Use ↑ ↓ to select a session. Press Enter to edit. Press Backspace to go back.\n");
+
+                for (int i = 0; i < sessions.Count; i++)
+                {
+                    var session = sessions[i];
+                    bool isSelected = (i == selectedIndex);
+
+                    if (isSelected)
+                    {
+                        Console.BackgroundColor = ConsoleColor.DarkCyan;
+                        Console.ForegroundColor = ConsoleColor.Black;
+                    }
+
+                    // Customize the session display line
+                    Console.WriteLine($"[{(isSelected ? ">" : " ")}] {session.StartTime:yyyy-MM-dd HH:mm} - {session.EndTime:HH:mm} | {session.Title} - {session.AuditoriumName}");
+
+                    if (isSelected)
+                        Console.ResetColor();
+                }
+
+                key = Console.ReadKey(true).Key;
+
+                if (key == ConsoleKey.UpArrow && selectedIndex > 0)
+                    selectedIndex--;
+                else if (key == ConsoleKey.DownArrow && selectedIndex < sessions.Count - 1)
+                    selectedIndex++;
+                else if (key == ConsoleKey.Backspace)
+                {
+                    NavigationService.GoBack();
+                    return;
+                }
+
+            } while (key != ConsoleKey.Enter);
+
+            // After selection, proceed with editing as before
+            var selectedSession = sessions[selectedIndex];
+
+            Console.Clear();
+            LoginStatusHelper.ShowLoginStatus();
+            Console.WriteLine($"Editing session: {selectedSession.Title} ({selectedSession.StartTime:yyyy-MM-dd HH:mm} - {selectedSession.EndTime:HH:mm}, {selectedSession.AuditoriumName})");
 
             Console.Write("Enter new Start Time (yyyy-MM-dd HH:mm): ");
             if (!DateTime.TryParse(Console.ReadLine(), out DateTime newStart))
@@ -56,12 +89,15 @@ namespace Team3_ProjectB.Presentation
 
             try
             {
-                logic.UpdateMovieSession(sessionId, newStart, newEnd);
-                Console.WriteLine("\n✅ Session updated successfully!");
+                logic.UpdateMovieSession(selectedSession.Id, newStart, newEnd);
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("\nSession updated successfully!");
+                Console.ResetColor();
+
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"\n❌ Failed to update session: {ex.Message}");
+                Console.WriteLine($"\nFailed to update session: {ex.Message}");
             }
 
             Console.WriteLine("Press any key to return...");
