@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
+using System.Text.RegularExpressions;
 
 namespace Team3_ProjectB
 {
@@ -118,14 +119,14 @@ namespace Team3_ProjectB
         public bool IsValidEmail(string email)
         {
             if (string.IsNullOrWhiteSpace(email)) return false;
-            if (!email.Contains("@")) return false;
-            foreach (char c in email)
-            {
-                if (!(char.IsLetterOrDigit(c) || c == '@' || c == '.' || c == '_' || c == '-'))
-                    return false;
-            }
-            return true;
+
+           // criteria voor registratie email
+            return Regex.IsMatch(
+                email,
+                @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+            );
         }
+
 
         public static string? CustomInput(string prompt, bool maskInput = false)
         {
