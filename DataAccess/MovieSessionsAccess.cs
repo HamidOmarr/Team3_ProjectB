@@ -2,6 +2,7 @@ using Dapper;
 using Microsoft.Data.Sqlite;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using Team3_ProjectB;
 
@@ -10,9 +11,18 @@ namespace Team3_ProjectB
     public class MovieSessionsAccess
     {
         private readonly SqliteConnection _connection;
+        public class DateOnlyTypeHandler : SqlMapper.TypeHandler<DateOnly>
+        {
+            public override DateOnly Parse(object value)
+                => DateOnly.Parse(value.ToString());
 
+            public override void SetValue(IDbDataParameter parameter, DateOnly value)
+                => parameter.Value = value.ToString("yyyy-MM-dd");
+        }
         public MovieSessionsAccess()
         {
+            SqlMapper.AddTypeHandler(new DateOnlyTypeHandler());
+
             _connection = new SqliteConnection("Data Source=../../../DataSources/ReservationSysteem.db");
             _connection.Open();
         }

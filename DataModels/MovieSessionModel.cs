@@ -19,17 +19,17 @@ namespace Team3_ProjectB
         public int AuditoriumId { get; set; }
 
         [Required]
-        public string StartTime { get; set; }
+        public DateTime StartTime { get; set; }
 
         [Required]
-        public string EndTime { get; set; }
+        public DateTime EndTime { get; set; }
 
         public virtual MovieModel MovieModel { get; set; }
         public virtual Auditorium Auditorium { get; set; }
 
         public MovieSessionModel() { }
 
-        public MovieSessionModel(int id, int movieId, int auditoriumId, string startTime, string endTime)
+        public MovieSessionModel(int id, int movieId, int auditoriumId, DateTime startTime, DateTime endTime)
         {
             Id = id;
             MovieId = movieId;

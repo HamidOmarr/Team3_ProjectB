@@ -11,7 +11,7 @@ namespace Team3_ProjectB
 
             if (AccountsLogic.IsLoggedIn && AccountsLogic.IsAdmin)
             {
-                options = new[] { "Add Movies", "Manage Movies Sessions", "View Movies", "Login", "Register", "Quit" };
+                options = new[] { "Manage Movies", "Manage Movie Sessions", "View Movies", "Login", "Register", "Quit" };
             }
             else
             {
@@ -109,11 +109,11 @@ namespace Team3_ProjectB
 
                 if (selectedIndex == 0)
                 {
-                    NavigationService.Navigate(AddMovie.AddMovieMethod);
+                    NavigationService.Navigate(AdminMovieMenu.Show);
                 }
                 else if (selectedIndex == 1)
                 {
-                    AdminMovieSessionMenu.Show();
+                    NavigationService.Navigate(AdminMovieSessionMenu.Show);
 
                 }
                 else if (selectedIndex == 2)

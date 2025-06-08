@@ -30,6 +30,8 @@ public class ShowMovies
         do
         {
             Console.Clear();
+            LoginStatusHelper.ShowLoginStatus();
+
             Console.WriteLine("Use ↑ ↓ to choose a movie, then press Enter:, Press Backspace to go back\n");
 
             for (int i = 0; i < sessions.Count; i++)

@@ -21,7 +21,7 @@ namespace Team3_ProjectB
             if (sessions.Count == 0)
             {
                 Console.Clear();
-                LoginStatusHelper.ShowLoginStatus(); // Show login status at the top
+                LoginStatusHelper.ShowLoginStatus();
 
                 Console.WriteLine("No sessions found.");
                 Console.WriteLine("Press any key to go back...");

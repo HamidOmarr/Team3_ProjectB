@@ -11,7 +11,7 @@ namespace Team3_ProjectB
         public static int AmountSeatsInput(int auditoriumId, string movieName, string sessionTime, long reservationId, int sessionId)
         {
             Console.Clear();
-            LoginStatusHelper.ShowLoginStatus(); // Show login status at the top
+            LoginStatusHelper.ShowLoginStatus(); 
 
             Console.ForegroundColor = ConsoleColor.DarkCyan;
             Console.WriteLine("Enter the amount of seats you want to reserve (press Backspace to go back): ");
