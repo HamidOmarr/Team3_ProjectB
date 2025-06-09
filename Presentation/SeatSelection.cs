@@ -200,7 +200,8 @@ namespace Team3_ProjectB
 
                 Console.WriteLine();
                 Console.WriteLine($"\nGeselecteerd: {selectedSeats.Count}/{amountSeats} — {priceInfo}");
-                Console.WriteLine("Gebruik ↑ ↓ ← → om te navigeren, [Spatie] om te selecteren, Enter om te bevestigen");
+                Console.WriteLine("\n*Selecteer alle stoelen om door te gaan.*");
+                Console.WriteLine("\nGebruik ↑ ↓ ← → om te navigeren, [Spatie] om te selecteren, Enter om te bevestigen");
                 Console.WriteLine("Press Backspace to go back.");
 
                 key = Console.ReadKey(true).Key;

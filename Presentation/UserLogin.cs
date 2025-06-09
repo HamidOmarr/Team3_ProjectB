@@ -11,10 +11,10 @@ namespace Team3_ProjectB
 
             while (true)
             {
-                string? email = AccountsLogic.CustomInput("Please enter your email address (Backspace to go back): ");
+                string? email = AccountsLogic.CustomInput("Please enter your email address (Press Backspace to go back): ");
                 if (email == null) { NavigationService.GoBack(); return null; }
 
-                string? password = AccountsLogic.CustomInput("Please enter your password (Backspace to go back): ", maskInput: true);
+                string? password = AccountsLogic.CustomInput("Please enter your password (Press Backspace to go back): ", maskInput: true);
                 if (password == null) { NavigationService.GoBack(); return null; }
 
                 AccountModel acc = accountsLogic.CheckLogin(email, password);
@@ -39,13 +39,13 @@ namespace Team3_ProjectB
 
             Console.WriteLine("Welcome to the registration page");
 
-            string? name = AccountsLogic.CustomInput("Please enter your name (Backspace to go back): ");
+            string? name = AccountsLogic.CustomInput("Please enter your name (Press Backspace to go back): ");
             if (name == null) { NavigationService.GoBack(); return; }
 
             string email;
             while (true)
             {
-                string? inputEmail = AccountsLogic.CustomInput("Please enter your email address (Backspace to go back): ");
+                string? inputEmail = AccountsLogic.CustomInput("Please enter your email address (Press Backspace to go back): ");
                 if (inputEmail == null) { NavigationService.GoBack(); return; }
                 if (accountsLogic.IsValidEmail(inputEmail))
                 {
@@ -60,7 +60,7 @@ namespace Team3_ProjectB
             do
             {
                 string? inputPassword = AccountsLogic.CustomInput(
-                    "Please enter your password (Backspace to go back):\n" +
+                    "Please enter your password (Press Backspace to go back):\n" +
                     "(Password should contain at least one special character, one lowercase, one uppercase letter, a number, and be at least 8 characters long)",
                     maskInput: true
                 );
