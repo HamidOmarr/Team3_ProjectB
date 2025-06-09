@@ -85,7 +85,7 @@ namespace Team3_ProjectB
 
                         if (!accountsLogic.IsValidEmail(email))
                         {
-                            Console.WriteLine("Invalid email: it must contain '@' and valid characters. Please try again.");
+                            Console.WriteLine("Invalid email: it must contain '@' and "." and valid characters. Please try again.");
                             Thread.Sleep(1500);
                             Console.Clear();
                             LoginStatusHelper.ShowLoginStatus();
