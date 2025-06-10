@@ -11,7 +11,7 @@ namespace Team3_ProjectB
         public static int AmountSeatsInput(int auditoriumId, string movieName, string sessionTime, long reservationId, int sessionId)
         {
             Console.Clear();
-            LoginStatusHelper.ShowLoginStatus(); 
+            LoginStatusHelper.ShowLoginStatus();
 
             Console.ForegroundColor = ConsoleColor.DarkCyan;
             Console.WriteLine("Enter the amount of seats you want to reserve (press Backspace to go back): ");
@@ -83,7 +83,7 @@ namespace Team3_ProjectB
             bool IsNavigable(string row, int seatNum) =>
                 seatLookup.ContainsKey((row, seatNum)) && !reservedPositions.Contains((row, seatNum));
 
-            do
+            while (true)
             {
                 Console.Clear();
                 LoginStatusHelper.ShowLoginStatus(); // Show login status at the top
@@ -246,9 +246,29 @@ namespace Team3_ProjectB
                     case ConsoleKey.Backspace:
                         NavigationService.GoBack();
                         return;
-                }
 
-            } while (key != ConsoleKey.Enter || selectedSeats.Count != amountSeats);
+                    case ConsoleKey.Enter:
+                        if (selectedSeats.Count != amountSeats)
+                        {
+                            Console.Clear();
+                            LoginStatusHelper.ShowLoginStatus();
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("\n*Je moet alle stoelen selecteren om door te gaan.*");
+                            Console.ResetColor();
+                            Console.WriteLine("\nDruk op een toets om terug te keren...");
+                            Console.ReadKey(true);
+                           
+                            continue;
+                        }
+                        else
+                        {
+                           
+                            goto ConfirmSelection;
+                        }
+                }
+            }
+
+        ConfirmSelection:
 
             Console.Clear();
             LoginStatusHelper.ShowLoginStatus(); // Show login status at the top
