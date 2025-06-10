@@ -32,7 +32,7 @@ public class ShowMovies
             Console.Clear();
             LoginStatusHelper.ShowLoginStatus();
 
-            Console.WriteLine("Use ↑ ↓ to choose a movie, then press Enter:, Press Backspace to go back\n");
+            Console.WriteLine("Use ↑ and ↓ to select a movie. Press Enter to confirm or Backspace to go back.\n");
 
             for (int i = 0; i < sessions.Count; i++)
             {
@@ -62,7 +62,6 @@ public class ShowMovies
             Console.WriteLine($"Language: {selected.Languague}");
             Console.WriteLine($"Subtitle Language: {selected.SubtitleLanguage}");
             Console.WriteLine($"ReleaseDate: {selected.ReleaseDate}");
-            Console.WriteLine("\nPress Backspace to go back.");
 
             key = Console.ReadKey(true).Key;
 
