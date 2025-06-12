@@ -14,7 +14,7 @@
             do
             {
                 Console.Clear();
-                LoginStatusHelper.ShowLoginStatus(); // Show login status at the top
+                LoginStatusHelper.ShowLoginStatus();
 
                 Console.WriteLine("Use ↑ ↓ to navigate, Space to add/remove, Enter to confirm, Backspace to go back:\n");
                 Console.WriteLine("───────────────────────────────────────");
@@ -69,7 +69,7 @@
             SaveSelectedItems(reservationId, selectedItems, consumables);
 
             Console.Clear();
-            LoginStatusHelper.ShowLoginStatus(); // Show login status at the top
+            LoginStatusHelper.ShowLoginStatus();
 
             Console.WriteLine("Your selected items:\n");
             decimal totalPrice = 0;

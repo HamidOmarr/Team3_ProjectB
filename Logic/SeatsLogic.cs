@@ -10,7 +10,7 @@
 
     public SeatsModel GetSeatByRowAndNumber(string row, int seatNumber, int auditoriumId)
     {
-        return SeatAccess.GetSeatByRowAndNumber(row, seatNumber, auditoriumId); // Call statically
+        return SeatAccess.GetSeatByRowAndNumber(row, seatNumber, auditoriumId);
     }
 
 

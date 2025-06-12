@@ -43,7 +43,6 @@ namespace Team3_ProjectB.Presentation
                         Console.ForegroundColor = ConsoleColor.Black;
                     }
 
-                    // Customize the session display line
                     Console.WriteLine($"[{(isSelected ? ">" : " ")}] {session.StartTime:yyyy-MM-dd HH:mm} - {session.EndTime:HH:mm} | {session.Title} - {session.AuditoriumName}");
 
                     if (isSelected)
@@ -64,7 +63,6 @@ namespace Team3_ProjectB.Presentation
 
             } while (key != ConsoleKey.Enter);
 
-            // After selection, proceed with editing as before
             var selectedSession = sessions[selectedIndex];
 
             Console.Clear();

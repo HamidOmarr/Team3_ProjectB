@@ -86,7 +86,7 @@ namespace Team3_ProjectB
             while (true)
             {
                 Console.Clear();
-                LoginStatusHelper.ShowLoginStatus(); // Show login status at the top
+                LoginStatusHelper.ShowLoginStatus();
 
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine(@"
@@ -105,7 +105,6 @@ namespace Team3_ProjectB
                 }
                 Console.WriteLine("\n");
 
-                // Use compact display for auditorium 2 and 3
                 bool compactAuditorium = auditoriumId == 2 || auditoriumId == 3;
                 string seatDisplay = compactAuditorium ? "[ ]" : " [ ] ";
                 string seatDisplaySelected = compactAuditorium ? "[X]" : " [X] ";
@@ -271,7 +270,7 @@ namespace Team3_ProjectB
         ConfirmSelection:
 
             Console.Clear();
-            LoginStatusHelper.ShowLoginStatus(); // Show login status at the top
+            LoginStatusHelper.ShowLoginStatus();
 
             Console.WriteLine("You have selected the following seats:\n");
 

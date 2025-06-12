@@ -69,7 +69,6 @@ namespace Team3_ProjectB.Presentation
             LoginStatusHelper.ShowLoginStatus();
             Console.WriteLine($"Editing movie: {selectedMovie.Title} ({selectedMovie.ReleaseDate:yyyy-MM-dd}, {selectedMovie.Genre})\n");
 
-            // Prompt for new fields (keep old value as default)
             Console.Write($"Title ({selectedMovie.Title}): ");
             var title = Console.ReadLine();
             if (string.IsNullOrWhiteSpace(title)) title = selectedMovie.Title;

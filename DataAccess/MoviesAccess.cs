@@ -37,7 +37,7 @@ namespace Team3_ProjectB
                 title,
                 description,
                 duration_minutes,
-                release_date = release_date.ToString("yyyy-MM-dd"), // Store as string for SQLite
+                release_date = release_date.ToString("yyyy-MM-dd"),
                 rating,
                 genre,
                 language,

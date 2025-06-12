@@ -13,7 +13,6 @@ namespace Team3_ProjectB
         public static bool IsAdmin { get; set; } = false;
         public AccountsLogic()
         {
-            // Could do something here
         }
 
         public long WriteAccount(AccountModel account)
@@ -169,7 +168,7 @@ namespace Team3_ProjectB
             }
         }
 
-        /// Haalt bestaande gastaccount op of maakt er één aan.
+        /// Haalt bestaande gastaccount op of maakt er één aan
         public AccountModel GetOrCreateGuest(string name, string email)
         {
             var existing = GetAccountByEmail(email);

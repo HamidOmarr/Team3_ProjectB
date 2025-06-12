@@ -41,7 +41,6 @@ namespace Team3_ProjectB.Presentation
                         Console.ForegroundColor = ConsoleColor.Black;
                     }
 
-                    // You can adjust this line to display the movie info you want
                     Console.WriteLine($"[{(isSelected ? ">" : " ")}] {movie.Title} ({movie.ReleaseDate:yyyy-MM-dd}) | {movie.Genre}");
 
                     if (isSelected)

@@ -51,13 +51,13 @@ namespace Team3_ProjectB
 
                 } while (key != ConsoleKey.Enter);
 
-                if (selectedIndex == 0) // User wil inloggen
+                if (selectedIndex == 0)
                 {
                     Console.Clear();
                     LoginStatusHelper.ShowLoginStatus();
 
                     user = UserLogin.Start();
-                    if (user == null) return; // Terug bij backspace in login
+                    if (user == null) return;
                 }
                 else
                 {

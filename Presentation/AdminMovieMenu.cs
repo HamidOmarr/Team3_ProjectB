@@ -67,7 +67,6 @@ namespace Team3_ProjectB.Presentation
                     break;
             }
 
-            // After action completes, show the menu again
             Show();
         }
     }

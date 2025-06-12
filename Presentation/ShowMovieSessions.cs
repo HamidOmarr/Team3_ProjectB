@@ -36,7 +36,7 @@ namespace Team3_ProjectB
             do
             {
                 Console.Clear();
-                LoginStatusHelper.ShowLoginStatus(); // Show login status at the top
+                LoginStatusHelper.ShowLoginStatus();
 
                 Console.WriteLine("Use ↑ ↓ to select a session. Press Enter to choose. Press Backspace to go back.");
 
@@ -72,29 +72,26 @@ namespace Team3_ProjectB
 
             var selectedSession = sessions[selectedIndex];
 
-            // Ensure the user is logged in or create a guest user
             long userId = AccountsLogic.CurrentAccount?.Id ?? 0;
             if (userId == 0)
             {
                 AccountsLogic accountsLogic = new AccountsLogic();
-                var uniqueGuestEmail = $"guest_{Guid.NewGuid()}@example.com"; // Generate a unique email
+                var uniqueGuestEmail = $"guest_{Guid.NewGuid()}@example.com";
                 var guestUser = new AccountModel(0, "Guest", uniqueGuestEmail, "guest_password", "guest");
                 userId = accountsLogic.WriteAccount(guestUser);
             }
 
-            // Create a reservation and get the reservationId
             ReservationsLogic reservationsLogic = new ReservationsLogic();
             var reservation = new ReservationModel
             {
-                UserId = userId, // Use the valid userId
-                TotalPrice = 0, // Initial total price, will be updated later
+                UserId = userId,
+                TotalPrice = 0,
                 Status = "pending"
             };
             long reservationId = reservationsLogic.CreateReservation(reservation);
 
-            // Pass the reservationId to SeatSelection
             Console.Clear();
-            LoginStatusHelper.ShowLoginStatus(); // Show login status at the top
+            LoginStatusHelper.ShowLoginStatus();
 
             NavigationService.Navigate(() =>
                 SeatSelection.AmountSeatsInput(
