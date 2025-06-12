@@ -99,9 +99,9 @@ namespace Team3_ProjectB.Presentation
             var genre = Console.ReadLine();
             if (string.IsNullOrWhiteSpace(genre)) genre = selectedMovie.Genre;
 
-            Console.Write($"Language ({selectedMovie.Languague}): ");
+            Console.Write($"Language ({selectedMovie.Language}): ");
             var language = Console.ReadLine();
-            if (string.IsNullOrWhiteSpace(language)) language = selectedMovie.Languague;
+            if (string.IsNullOrWhiteSpace(language)) language = selectedMovie.Language;
 
             Console.Write($"Subtitle language ({selectedMovie.SubtitleLanguage}): ");
             var subtitleLanguage = Console.ReadLine();

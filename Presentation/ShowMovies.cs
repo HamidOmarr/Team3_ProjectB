@@ -59,7 +59,7 @@ public class ShowMovies
             Console.WriteLine($"Genre: {selected.Genre}");
             Console.WriteLine($"Duration: {selected.DurationMinutes}");
             Console.WriteLine($"Rating: {selected.Rating}");
-            Console.WriteLine($"Language: {selected.Languague}");
+            Console.WriteLine($"Language: {selected.Language}");
             Console.WriteLine($"Subtitle Language: {selected.SubtitleLanguage}");
             Console.WriteLine($"ReleaseDate: {selected.ReleaseDate}");
 

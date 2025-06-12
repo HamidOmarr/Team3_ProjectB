@@ -11,12 +11,12 @@
 
         public string Rating { get; set; }
         public string Genre { get; set; }
-        public string Languague { get; set; }
+        public string Language { get; set; }
         public string SubtitleLanguage { get; set; }
 
         public MovieModel() { }
 
-        public MovieModel(int id, string title, string description, int durationMinutes, DateOnly releaseDate, string rating, string genre, string languague, string subtitleLanguage)
+        public MovieModel(int id, string title, string description, int durationMinutes, DateOnly releaseDate, string rating, string genre, string language, string subtitleLanguage)
         {
             Id = id;
             Title = title;
@@ -25,7 +25,7 @@
             ReleaseDate = releaseDate;
             Rating = rating;
             Genre = genre;
-            Languague = languague;
+            Language = language;
             SubtitleLanguage = subtitleLanguage;
 
 

@@ -31,7 +31,7 @@ namespace Team3_ProjectB
 
         public void AddMovie(string title, string description, int duration_minutes, DateOnly release_date, string rating, string genre, string language, string subtitle_language)
         {
-            string sql = $"INSERT INTO {Table} (title, description, duration_minutes, release_date, rating, genre, languague, subtitle_language) VALUES (@title, @description, @duration_minutes, @release_date, @rating, @genre, @language, @subtitle_language);";
+            string sql = $"INSERT INTO {Table} (title, description, duration_minutes, release_date, rating, genre, language, subtitle_language) VALUES (@title, @description, @duration_minutes, @release_date, @rating, @genre, @language, @subtitle_language);";
             _connection.Execute(sql, new
             {
                 title,
@@ -55,7 +55,7 @@ namespace Team3_ProjectB
         release_date AS ReleaseDate,
         rating AS Rating,
         genre AS Genre,
-        languague AS Languague,
+        language AS Language,
         subtitle_language AS SubtitleLanguage
     FROM movie
 ";
@@ -74,7 +74,7 @@ namespace Team3_ProjectB
             release_date = @release_date,
             rating = @rating,
             genre = @genre,
-            languague = @language,
+            language = @language,
             subtitle_language = @subtitle_language
         WHERE id = @id;
     ";
