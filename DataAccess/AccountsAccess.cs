@@ -15,7 +15,7 @@ namespace Team3_ProjectB
             using var connection = new SqliteConnection(ConnectionString);
             connection.Open();
             string sql = $"INSERT INTO {Table} (name, email, password_hash, account_type) VALUES (@Name, @Email, @PasswordHash, @AccountType); SELECT last_insert_rowid();";
-            return connection.ExecuteScalar<long>(sql, account); // Return the generated Id
+            return connection.ExecuteScalar<long>(sql, account);
         }
 
         public static AccountModel GetByEmail(string email)

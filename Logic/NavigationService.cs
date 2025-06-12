@@ -17,9 +17,8 @@ namespace Team3_ProjectB
         {
             if (navigationStack.Count > 1)
             {
-                // Pop current screen
                 navigationStack.Pop();
-                // Show previous screen
+
                 navigationStack.Peek().Invoke();
             }
         }
