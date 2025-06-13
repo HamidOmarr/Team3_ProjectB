@@ -76,6 +76,13 @@ namespace Team3_ProjectB
         {
             CurrentAccount = account;
         }
+        public static void Logout()
+        {
+            CurrentAccount = null;
+            IsLoggedIn = false;
+            IsAdmin = false;
+        }
+
 
         public AccountModel? CheckLogin(string email, string password)
         {
