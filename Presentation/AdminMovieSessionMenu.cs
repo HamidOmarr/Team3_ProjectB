@@ -1,19 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Team3_ProjectB;
-
-
-namespace Team3_ProjectB.Presentation
+﻿namespace Team3_ProjectB.Presentation
 {
     public class AdminMovieSessionMenu
     {
         public static void Show()
         {
-
-            string[] options = { "Add Movie Sessions", "Edit Movie Sessions", "Delete Movie Sessions"};
+            string[] options = { "Add Movie Sessions", "Edit Movie Sessions", "Delete Movie Sessions" };
             int selectedIndex = 0;
             ConsoleKey key;
 
@@ -48,7 +39,7 @@ namespace Team3_ProjectB.Presentation
                     selectedIndex++;
                 else if (key == ConsoleKey.Backspace)
                 {
-                    NavigationService.Navigate(Menu.Start);
+                    NavigationService.GoBack();
                     return;
                 }
 
@@ -57,17 +48,15 @@ namespace Team3_ProjectB.Presentation
             switch (selectedIndex)
             {
                 case 0:
-                    AddMoviesession.DisplaySessions();
+                    NavigationService.Navigate(AddMoviesession.DisplaySessions);
                     break;
                 case 1:
-                    EditMovieSession.Display();
+                    NavigationService.Navigate(EditMovieSession.Display);
                     break;
                 case 2:
-                    DeleteMovieSession.Display();
+                    NavigationService.Navigate(DeleteMovieSession.Display);
                     break;
             }
-
-            AdminMovieSessionMenu.Show();
         }
     }
 }

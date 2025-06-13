@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Team3_ProjectB;
-
-namespace Team3_ProjectB.Presentation
+﻿namespace Team3_ProjectB.Presentation
 {
     public class EditMovieSession
     {
@@ -12,7 +8,10 @@ namespace Team3_ProjectB.Presentation
             LoginStatusHelper.ShowLoginStatus();
 
             var logic = new MovieSessionsLogic();
-            var sessions = logic.GetAllDetailedMovieSessions();
+            var moviesLogic = new MoviesLogic();
+            var sessions = logic.GetAllDetailedMovieSessions()
+                                .OrderByDescending(s => s.StartTime)
+                                .ToList();
 
             if (sessions.Count == 0)
             {
@@ -64,10 +63,21 @@ namespace Team3_ProjectB.Presentation
             } while (key != ConsoleKey.Enter);
 
             var selectedSession = sessions[selectedIndex];
+            var movie = moviesLogic.GetAllMovies().FirstOrDefault(m => m.Title == selectedSession.Title);
 
+            if (movie == null)
+            {
+                Console.WriteLine("Movie not found for this session.");
+                Console.ReadKey();
+                NavigationService.GoBack();
+                return;
+            }
+
+            int movieDuration = movie.DurationMinutes;
             Console.Clear();
             LoginStatusHelper.ShowLoginStatus();
             Console.WriteLine($"Editing session: {selectedSession.Title} ({selectedSession.StartTime:yyyy-MM-dd HH:mm} - {selectedSession.EndTime:HH:mm}, {selectedSession.AuditoriumName})");
+            Console.WriteLine($"Movie duration: {movieDuration} minutes (+30 min cleanup)\n");
 
             Console.Write("Enter new Start Time (yyyy-MM-dd HH:mm): ");
             if (!DateTime.TryParse(Console.ReadLine(), out DateTime newStart))
@@ -77,13 +87,8 @@ namespace Team3_ProjectB.Presentation
                 return;
             }
 
-            Console.Write("Enter new End Time (yyyy-MM-dd HH:mm): ");
-            if (!DateTime.TryParse(Console.ReadLine(), out DateTime newEnd))
-            {
-                Console.WriteLine("Invalid date format.");
-                Console.ReadKey();
-                return;
-            }
+            DateTime newEnd = newStart.AddMinutes(movieDuration + 30);
+            Console.WriteLine($"Calculated End Time: {newEnd:yyyy-MM-dd HH:mm}");
 
             try
             {
@@ -91,7 +96,6 @@ namespace Team3_ProjectB.Presentation
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("\nSession updated successfully!");
                 Console.ResetColor();
-
             }
             catch (Exception ex)
             {
