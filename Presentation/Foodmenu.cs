@@ -71,15 +71,23 @@
             Console.Clear();
             LoginStatusHelper.ShowLoginStatus();
 
-            Console.WriteLine("Your selected items:\n");
-            decimal totalPrice = 0;
-            foreach (var (id, quantity) in selectedItems)
+            if (selectedItems.Count == 0)
             {
-                var consumable = consumables.First(c => c.Id == id);
-                Console.WriteLine($"{consumable.Name} - {quantity}x - {consumable.Price * quantity} EUR");
-                totalPrice += (decimal)(consumable.Price * quantity);
+                Console.WriteLine("You did not select any food or drinks.\n");
+                Console.WriteLine("Total Price: 0 EUR");
             }
-            Console.WriteLine($"\nTotal Price: {totalPrice} EUR");
+            else
+            {
+                Console.WriteLine("Your selected items:\n");
+                decimal totalPrice = 0;
+                foreach (var (id, quantity) in selectedItems)
+                {
+                    var consumable = consumables.First(c => c.Id == id);
+                    Console.WriteLine($"{consumable.Name} - {quantity}x - {consumable.Price * quantity} EUR");
+                    totalPrice += (decimal)(consumable.Price * quantity);
+                }
+                Console.WriteLine($"\nTotal Price: {totalPrice} EUR");
+            }
             Console.WriteLine("Press any key to continue...");
             Console.ReadKey();
         }
