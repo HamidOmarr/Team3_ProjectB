@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Team3_ProjectB;
-
-namespace Team3_ProjectB.Presentation
+﻿namespace Team3_ProjectB.Presentation
 {
     public class DeleteMovieSession
     {
