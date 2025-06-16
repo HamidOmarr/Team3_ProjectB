@@ -1,4 +1,6 @@
-﻿namespace Team3_ProjectB.Tests
+﻿using Team3_ProjectB.Logic;
+
+namespace Team3_ProjectB.Tests
 {
     [TestClass]
     public class MoviesLogicTests
@@ -14,10 +16,11 @@
 
         private long InsertTestMovie()
         {
-            MoviesLogic.AddMovie(testTitle, testDescription, testDuration, testReleaseDate, testRating, testGenre, testLanguage, testSubtitleLanguage);
+            AddMovieLogic.AddMovieToDB(testTitle, testDescription, testDuration, testReleaseDate, testRating, testGenre, testLanguage, testSubtitleLanguage);
             var logic = new MoviesLogic();
             var allMovies = logic.GetAllMovies();
-            var movie = allMovies.LastOrDefault(m => m.Title == testTitle && m.Description == testDescription);
+            var movie = allMovies.FirstOrDefault(m => m.Title == testTitle && m.Description == testDescription);
+            Assert.IsNotNull(movie, "Movie was not found after inserting.");
             return movie?.Id ?? 0;
         }
 
