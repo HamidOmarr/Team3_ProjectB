@@ -4,6 +4,43 @@ namespace Team3_ProjectB
     {
         static private AccountsLogic accountsLogic = new AccountsLogic();
 
+        public static string? CustomInput(string prompt, bool maskInput = false)
+        {
+            Console.WriteLine(prompt);
+            string input = "";
+            ConsoleKeyInfo keyInfo;
+
+            while (true)
+            {
+                keyInfo = Console.ReadKey(true);
+
+                if (keyInfo.Key == ConsoleKey.Enter)
+                {
+                    Console.WriteLine();
+                    return string.IsNullOrEmpty(input) ? null : input;
+                }
+                else if (keyInfo.Key == ConsoleKey.Backspace)
+                {
+                    if (input.Length > 0)
+                    {
+                        input = input.Substring(0, input.Length - 1);
+                        Console.Write("\b \b");
+                    }
+                    else
+                    {
+                        Console.WriteLine();
+                        return null;
+                    }
+                }
+                else if (!char.IsControl(keyInfo.KeyChar))
+                {
+                    input += keyInfo.KeyChar;
+                    if (maskInput) Console.Write("*");
+                    else Console.Write(keyInfo.KeyChar);
+                }
+            }
+        }
+
         public static AccountModel? Start()
         {
             Console.Clear();
@@ -11,10 +48,10 @@ namespace Team3_ProjectB
 
             while (true)
             {
-                string? email = AccountsLogic.CustomInput("Please enter your email address (Press Backspace to go back): ");
+                string? email = CustomInput("Please enter your email address (Press Backspace to go back): ");
                 if (email == null) { NavigationService.GoBack(); return null; }
 
-                string? password = AccountsLogic.CustomInput("Please enter your password (Press Backspace to go back): ", maskInput: true);
+                string? password = CustomInput("Please enter your password (Press Backspace to go back): ", maskInput: true);
                 if (password == null) { NavigationService.GoBack(); return null; }
 
                 AccountModel acc = accountsLogic.CheckLogin(email, password);
@@ -36,16 +73,15 @@ namespace Team3_ProjectB
         public static void Register()
         {
             Console.Clear();
-
             Console.WriteLine("Welcome to the registration page");
 
-            string? name = AccountsLogic.CustomInput("Please enter your name (Press Backspace to go back): ");
+            string? name = CustomInput("Please enter your name (Press Backspace to go back): ");
             if (name == null) { NavigationService.GoBack(); return; }
 
             string email;
             while (true)
             {
-                string? inputEmail = AccountsLogic.CustomInput("Please enter your email address (Press Backspace to go back): ");
+                string? inputEmail = CustomInput("Please enter your email address (Press Backspace to go back): ");
                 if (inputEmail == null) { NavigationService.GoBack(); return; }
                 if (accountsLogic.IsValidEmail(inputEmail))
                 {
@@ -59,7 +95,7 @@ namespace Team3_ProjectB
             bool passwordComplex;
             do
             {
-                string? inputPassword = AccountsLogic.CustomInput(
+                string? inputPassword = CustomInput(
                     "Please enter your password (Press Backspace to go back):\n" +
                     "(Password should contain at least one special character, one lowercase, one uppercase letter, a number, and be at least 8 characters long)",
                     maskInput: true

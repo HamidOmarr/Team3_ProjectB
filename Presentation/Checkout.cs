@@ -5,7 +5,7 @@ namespace Team3_ProjectB
         public static void StartCheckout(string movieName, string sessionTime, List<(string row, int seat)> selectedSeats, int auditoriumId)
         {
             Console.Clear();
-            LoginStatusHelper.ShowLoginStatus(); // Toon login status bovenaan
+            LoginStatusHelper.ShowLoginStatus(); 
 
             AccountsLogic accountsLogic = new AccountsLogic();
             AccountModel? user = AccountsLogic.CurrentAccount;
@@ -65,8 +65,7 @@ namespace Team3_ProjectB
                     LoginStatusHelper.ShowLoginStatus();
 
                     Console.WriteLine("Continuing with guest account...");
-
-                    string? name = AccountsLogic.CustomInput("Please provide your name (Backspace to go back): ");
+                    string? name = UserLogin.CustomInput("Please provide your name (Backspace to go back): ");
                     if (name == null)
                     {
                         NavigationService.GoBack();
@@ -76,7 +75,8 @@ namespace Team3_ProjectB
                     string? email;
                     do
                     {
-                        email = AccountsLogic.CustomInput("Please provide your email address (Backspace to go back): ");
+                        email = UserLogin.CustomInput("Please enter your email address (Press Backspace to go back): ");
+
                         if (email == null)
                         {
                             NavigationService.GoBack();
@@ -98,7 +98,6 @@ namespace Team3_ProjectB
                 }
             }
 
-            // Maak een reservering aan
             ReservationsLogic reservationsLogic = new ReservationsLogic();
             var reservation = new ReservationModel
             {
@@ -108,10 +107,8 @@ namespace Team3_ProjectB
             };
             reservation.Id = reservationsLogic.CreateReservation(reservation);
 
-            // Start foodmenu
             Foodmenu.StartFoodMenu(reservation.Id);
 
-            // Toon overzicht tickets + food + totaalprijs
             decimal totalPrice = 0;
             SeatsLogic seatsLogic = new SeatsLogic();
             PricesLogic pricesLogic = new PricesLogic();

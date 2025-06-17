@@ -16,7 +16,6 @@
 
                 try
                 {
-                    // Show latest/previous sessions in the selected auditorium
                     MovieSessionsLogic logic = new MovieSessionsLogic();
                     var allSessions = logic.GetAllMovieSessions()
                         .OrderByDescending(s => s.StartTime)
@@ -36,7 +35,6 @@
                     Console.Write("Enter Auditorium number: ");
                     AuditoriumId = int.Parse(Console.ReadLine());
 
-                    // Show latest/previous sessions in the selected auditorium
                     var sessionsInAuditorium = allSessions
                         .Where(s => s.AuditoriumId == AuditoriumId)
                         .OrderByDescending(s => s.StartTime)
@@ -70,7 +68,6 @@
 
                     Console.WriteLine($"Calculated End Time (including cleanup): {EndTime:yyyy-MM-dd HH:mm}");
 
-                    // Overlap check (including 30 min cleanup)
                     bool overlap = sessionsInAuditorium.Any(s =>
                     {
                         DateTime existingStart = s.StartTime;
