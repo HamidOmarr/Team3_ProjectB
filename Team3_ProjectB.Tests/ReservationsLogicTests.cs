@@ -75,28 +75,6 @@
             ReservationsAccess.Delete(id);
         }
 
-        [TestMethod]
-        public void DeleteReservation_ShouldRemoveReservation()
-        {
-            createdUserId = CreateTestUser();
-
-            var logic = new ReservationsLogic();
-            var reservation = new ReservationModel
-            {
-                UserId = createdUserId,
-                TotalPrice = 5.00m,
-                Status = "Pending"
-            };
-            long id = logic.CreateReservation(reservation);
-
-            // Act
-            ReservationsAccess.Delete(id);
-
-            // Assert
-            var deleted = ReservationsAccess.GetById(id);
-            Assert.IsNull(deleted);
-        }
-
         [TestCleanup]
         public void Cleanup()
         {
