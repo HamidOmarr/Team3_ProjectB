@@ -50,7 +50,7 @@ namespace Team3_ProjectB
                         Console.ForegroundColor = ConsoleColor.Black;
                     }
 
-                    Console.WriteLine($"[{(isSelected ? ">" : " ")}] {session.StartTime:HH:mm} - {session.EndTime:HH:mm} | {session.Title} ({session.Genre}) - {session.AuditoriumName}");
+                    Console.WriteLine($"[{(isSelected ? ">" : " ")}] {session.StartTime:yyyy-MM-dd HH:mm} - {session.EndTime:yyyy-MM-dd HH:mm} | {session.MovieModel.Title} ({session.MovieModel.Genre}) - {session.Auditorium.Name}");
 
                     if (isSelected)
                         Console.ResetColor();
@@ -96,8 +96,8 @@ namespace Team3_ProjectB
             NavigationService.Navigate(() =>
                 SeatSelection.AmountSeatsInput(
                     selectedSession.AuditoriumId,
-                    selectedSession.Title,
-                    selectedSession.StartTime,
+                    selectedSession.MovieModel.Title,
+                    selectedSession.StartTime.ToString("yyyy-MM-dd HH:mm"),
                     reservationId,
                     selectedSession.Id
                 )

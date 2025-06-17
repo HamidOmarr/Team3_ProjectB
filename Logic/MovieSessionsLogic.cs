@@ -18,12 +18,12 @@ namespace Team3_ProjectB
             return _movieSessionsAccess.GetAllMovieSessions();
         }
 
-        public List<FullMovieSessionModel> GetDetailedMovieSessionsFromId(long movieId)
+        public List<MovieSessionModel> GetDetailedMovieSessionsFromId(long movieId)
         {
             return _movieSessionsAccess.GetDetailedMovieSessionsFromId(movieId);
         }
 
-        public List<FullMovieSessionModel> GetAllDetailedMovieSessions()
+        public List<MovieSessionModel> GetAllDetailedMovieSessions()
         {
             return _movieSessionsAccess.GetAllDetailedMovieSessions();
         }

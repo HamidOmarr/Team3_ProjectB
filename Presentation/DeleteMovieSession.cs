@@ -37,7 +37,7 @@
                         Console.ForegroundColor = ConsoleColor.Black;
                     }
 
-                    Console.WriteLine($"[{(isSelected ? ">" : " ")}] {session.StartTime:yyyy-MM-dd HH:mm} - {session.EndTime:HH:mm} | {session.Title} - {session.AuditoriumName}");
+                    Console.WriteLine($"[{(isSelected ? ">" : " ")}] {session.StartTime:yyyy-MM-dd HH:mm} - {session.EndTime:HH:mm} | {session.MovieModel.Title} - {session.Auditorium.Name}");
 
                     if (isSelected)
                         Console.ResetColor();
@@ -61,7 +61,7 @@
 
             Console.Clear();
             LoginStatusHelper.ShowLoginStatus();
-            Console.WriteLine($"Delete session: {selectedSession.Title} ({selectedSession.StartTime:yyyy-MM-dd HH:mm} - {selectedSession.EndTime:HH:mm}, {selectedSession.AuditoriumName})");
+            Console.WriteLine($"Delete session: {selectedSession.MovieModel.Title} ({selectedSession.StartTime:yyyy-MM-dd HH:mm} - {selectedSession.EndTime:HH:mm}, {selectedSession.Auditorium.Name})");
             Console.Write("Are you sure you want to delete this session? (y/n): ");
             var confirm = Console.ReadLine();
 

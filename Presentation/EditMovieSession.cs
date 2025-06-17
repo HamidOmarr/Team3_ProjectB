@@ -42,7 +42,7 @@
                         Console.ForegroundColor = ConsoleColor.Black;
                     }
 
-                    Console.WriteLine($"[{(isSelected ? ">" : " ")}] {session.StartTime:yyyy-MM-dd HH:mm} - {session.EndTime:HH:mm} | {session.Title} - {session.AuditoriumName}");
+                    Console.WriteLine($"[{(isSelected ? ">" : " ")}] {session.StartTime:yyyy-MM-dd HH:mm} - {session.EndTime:HH:mm} | {session.MovieModel.Title} - {session.Auditorium.Name}");
 
                     if (isSelected)
                         Console.ResetColor();
@@ -63,7 +63,7 @@
             } while (key != ConsoleKey.Enter);
 
             var selectedSession = sessions[selectedIndex];
-            var movie = moviesLogic.GetAllMovies().FirstOrDefault(m => m.Title == selectedSession.Title);
+            var movie = moviesLogic.GetAllMovies().FirstOrDefault(m => m.Title == selectedSession.MovieModel.Title);
 
             if (movie == null)
             {
@@ -76,7 +76,7 @@
             int movieDuration = movie.DurationMinutes;
             Console.Clear();
             LoginStatusHelper.ShowLoginStatus();
-            Console.WriteLine($"Editing session: {selectedSession.Title} ({selectedSession.StartTime:yyyy-MM-dd HH:mm} - {selectedSession.EndTime:HH:mm}, {selectedSession.AuditoriumName})");
+            Console.WriteLine($"Editing session: {selectedSession.MovieModel.Title} ({selectedSession.StartTime:yyyy-MM-dd HH:mm} - {selectedSession.EndTime:HH:mm}, {selectedSession.Auditorium.Name})");
             Console.WriteLine($"Movie duration: {movieDuration} minutes (+30 min cleanup)\n");
 
             Console.Write("Enter new Start Time (yyyy-MM-dd HH:mm): ");

@@ -36,25 +36,31 @@ namespace Team3_ProjectB
             FROM {Table} ms
             JOIN movie m ON ms.movie_id = m.id
             WHERE m.title = @MovieName AND ms.start_time = @SessionTime";
-            return _connection.QueryFirstOrDefault<MovieSessionModel>(sql, new { MovieName = movieName, SessionTime = sessionTime });
+            var session = _connection.QueryFirstOrDefault<MovieSessionModel>(sql, new { MovieName = movieName, SessionTime = sessionTime });
+            if (session != null)
+            {
+                session.MovieModel = GetMovieById(session.MovieId);
+                session.Auditorium = GetAuditoriumById(session.AuditoriumId);
+            }
+            return session;
         }
 
-        public List<FullMovieSessionModel> GetAllDetailedMovieSessions()
+        public List<MovieSessionModel> GetAllDetailedMovieSessions()
         {
             string sql = @"
             SELECT 
                 ms.id AS Id,
-                m.title AS Title,
-                m.genre AS Genre,
-                m.description AS Description,
+                ms.movie_id AS MovieId,
+                ms.auditorium_id AS AuditoriumId,
                 ms.start_time AS StartTime,
-                ms.end_time AS EndTime,
-                a.name AS AuditoriumName
-            FROM movie_session ms
-            JOIN movie m ON ms.movie_id = m.id
-            JOIN auditorium a ON ms.auditorium_id = a.id";
-
-            var sessions = _connection.Query<FullMovieSessionModel>(sql).ToList();
+                ms.end_time AS EndTime
+            FROM movie_session ms";
+            var sessions = _connection.Query<MovieSessionModel>(sql).ToList();
+            foreach (var session in sessions)
+            {
+                session.MovieModel = GetMovieById(session.MovieId);
+                session.Auditorium = GetAuditoriumById(session.AuditoriumId);
+            }
             return sessions;
         }
 
@@ -66,24 +72,23 @@ namespace Team3_ProjectB
             _connection.Execute(sql, new { MovieId = movieId, AuditoriumId = auditoriumId, StartTime = startTime, EndTime = endTime });
         }
 
-        public List<FullMovieSessionModel> GetDetailedMovieSessionsFromId(long movieId)
+        public List<MovieSessionModel> GetDetailedMovieSessionsFromId(long movieId)
         {
             string sql = @"
             SELECT 
                 ms.id AS Id,
-                m.title AS Title,
-                m.genre AS Genre,
-                m.description AS Description,
+                ms.movie_id AS MovieId,
+                ms.auditorium_id AS AuditoriumId,
                 ms.start_time AS StartTime,
-                ms.end_time AS EndTime,
-                a.name AS AuditoriumName,
-                ms.auditorium_id AS AuditoriumId
+                ms.end_time AS EndTime
             FROM movie_session ms
-            JOIN movie m ON ms.movie_id = m.id
-            JOIN auditorium a ON ms.auditorium_id = a.id
             WHERE ms.movie_id = @movieId";
-
-            var sessions = _connection.Query<FullMovieSessionModel>(sql, new { movieId }).ToList();
+            var sessions = _connection.Query<MovieSessionModel>(sql, new { movieId }).ToList();
+            foreach (var session in sessions)
+            {
+                session.MovieModel = GetMovieById(session.MovieId);
+                session.Auditorium = GetAuditoriumById(session.AuditoriumId);
+            }
             return sessions;
         }
 
@@ -95,19 +100,16 @@ namespace Team3_ProjectB
                 ms.movie_id AS MovieId,
                 ms.auditorium_id AS AuditoriumId,
                 ms.start_time AS StartTime,
-                ms.end_time AS EndTime,
-                m.title AS Title,
-                m.genre AS Genre,
-                m.description AS Description,
-                a.name AS AuditoriumName
-            FROM movie_session ms
-            JOIN movie m ON ms.movie_id = m.id
-            JOIN auditorium a ON ms.auditorium_id = a.id";
-
+                ms.end_time AS EndTime
+            FROM movie_session ms";
             var movieSessions = _connection.Query<MovieSessionModel>(sql).ToList();
+            foreach (var session in movieSessions)
+            {
+                session.MovieModel = GetMovieById(session.MovieId);
+                session.Auditorium = GetAuditoriumById(session.AuditoriumId);
+            }
             return movieSessions;
         }
-
         public void UpdateMovieSession(long sessionId, DateTime newStartTime, DateTime newEndTime)
         {
             string sql = $"UPDATE {Table} SET start_time = @StartTime, end_time = @EndTime WHERE id = @SessionId";
@@ -118,6 +120,18 @@ namespace Team3_ProjectB
         {
             string sql = $"DELETE FROM {Table} WHERE id = @SessionId";
             _connection.Execute(sql, new { SessionId = sessionId });
+        }
+
+        private MovieModel GetMovieById(int movieId)
+        {
+            string sql = @"SELECT * FROM movie WHERE id = @Id";
+            return _connection.QueryFirstOrDefault<MovieModel>(sql, new { Id = movieId });
+        }
+
+        private Auditorium GetAuditoriumById(int auditoriumId)
+        {
+            string sql = @"SELECT * FROM auditorium WHERE id = @Id";
+            return _connection.QueryFirstOrDefault<Auditorium>(sql, new { Id = auditoriumId });
         }
     }
 }
