@@ -126,7 +126,6 @@ namespace Team3_ProjectB
         {
             if (string.IsNullOrWhiteSpace(email)) return false;
 
-           // criteria voor registratie email
             return Regex.IsMatch(
                 email,
                 @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
@@ -175,7 +174,6 @@ namespace Team3_ProjectB
             }
         }
 
-        /// Haalt bestaande gastaccount op of maakt er één aan
         public AccountModel GetOrCreateGuest(string name, string email)
         {
             var existing = GetAccountByEmail(email);
