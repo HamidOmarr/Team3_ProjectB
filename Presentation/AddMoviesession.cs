@@ -17,38 +17,49 @@
                 try
                 {
                     MovieSessionsLogic logic = new MovieSessionsLogic();
-                    var allSessions = logic.GetAllMovieSessions()
-                        .OrderByDescending(s => s.StartTime)
+                    var allSessions = logic.GetAllMovieSessions();
+
+                    var upcomingSessions = allSessions
+                        .Where(s => s.StartTime >= DateTime.Now)
+                        .OrderBy(s => s.StartTime)
                         .ToList();
 
-                    if (allSessions.Count > 0)
+                    if (upcomingSessions.Count > 0)
                     {
-                        Console.WriteLine("Latest sessions in all auditoriums:");
-                        foreach (var session in allSessions.Take(5))
+                        Console.WriteLine("Next upcoming sessions in all auditoriums:");
+                        foreach (var session in upcomingSessions.Take(5))
                         {
                             Console.WriteLine(
-                                $"- {session.StartTime:yyyy-MM-dd HH:mm} to {session.EndTime.AddMinutes(30):HH:mm} | Auditorium: {session.AuditoriumId}");
+                                $"- {session.StartTime:yyyy-MM-dd HH:mm} to {session.EndTime:HH:mm} | Auditorium: {session.AuditoriumId}");
                         }
                         Console.WriteLine();
+                    }
+                    else
+                    {
+                        Console.WriteLine("No upcoming sessions found.\n");
                     }
 
                     Console.Write("Enter Auditorium number: ");
                     AuditoriumId = int.Parse(Console.ReadLine());
 
-                    var sessionsInAuditorium = allSessions
+                    var sessionsInAuditorium = upcomingSessions
                         .Where(s => s.AuditoriumId == AuditoriumId)
-                        .OrderByDescending(s => s.StartTime)
+                        .OrderBy(s => s.StartTime)
                         .ToList();
 
                     if (sessionsInAuditorium.Count > 0)
                     {
-                        Console.WriteLine($"\nLatest sessions in Auditorium {AuditoriumId}:");
+                        Console.WriteLine($"\nNext upcoming sessions in Auditorium {AuditoriumId}:");
                         foreach (var session in sessionsInAuditorium.Take(3))
                         {
                             Console.WriteLine(
-                                $"- {session.StartTime:yyyy-MM-dd HH:mm} to {session.EndTime.AddMinutes(30):HH:mm}");
+                                $"- {session.StartTime:yyyy-MM-dd HH:mm} to {session.EndTime:HH:mm}");
                         }
                         Console.WriteLine();
+                    }
+                    else
+                    {
+                        Console.WriteLine($"\nNo upcoming sessions found in Auditorium {AuditoriumId}.\n");
                     }
 
                     Console.Write("Enter Start Time (yyyy-MM-dd HH:mm): ");
