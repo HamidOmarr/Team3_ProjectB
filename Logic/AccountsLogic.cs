@@ -81,8 +81,15 @@ namespace Team3_ProjectB
         public AccountModel GetOrCreateGuest(string name, string email)
         {
             var existing = GetAccountByEmail(email);
-            if (existing != null) return existing;
-
+            if (existing != null && existing.AccountType == "guest")
+            {
+                if (existing.Name != name)
+                {
+                    existing.Name = name;
+                    AccountsAccess.Write(existing);
+                }
+                return existing;
+            }
             var guest = new AccountModel(0, name, email, "guest_password", "guest");
             guest.Id = WriteAccount(guest);
             return guest;

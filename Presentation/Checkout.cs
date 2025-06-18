@@ -5,7 +5,7 @@ namespace Team3_ProjectB
         public static void StartCheckout(string movieName, string sessionTime, List<(string row, int seat)> selectedSeats, int auditoriumId)
         {
             Console.Clear();
-            LoginStatusHelper.ShowLoginStatus(); 
+            LoginStatusHelper.ShowLoginStatus();
 
             AccountsLogic accountsLogic = new AccountsLogic();
             AccountModel? user = AccountsLogic.CurrentAccount;
@@ -167,6 +167,9 @@ namespace Team3_ProjectB
             totalPrice += foodTotalPrice;
             Console.WriteLine(FormatLine($"Total Price: {totalPrice:F2} EUR"));
             Console.WriteLine(BorderLine());
+
+            reservation.TotalPrice = totalPrice;
+            ReservationsAccess.Update(reservation);
 
             Console.WriteLine("\nThank you for your reservation!");
             Console.WriteLine("Press any key to return to the main menu...");
