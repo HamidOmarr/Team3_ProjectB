@@ -94,10 +94,7 @@ namespace Team3_ProjectB
 
                         if (accountsLogic.GetAccountByEmail(email) != null)
                         {
-                            Console.WriteLine("Email already exists, try again.");
-                            Thread.Sleep(2500);
-                            Console.Clear();
-                            LoginStatusHelper.ShowLoginStatus();
+                            Console.WriteLine("\nEmail already exists, try again.");
                             continue;
                         }
 
