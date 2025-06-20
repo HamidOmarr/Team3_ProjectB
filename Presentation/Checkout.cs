@@ -89,9 +89,21 @@ namespace Team3_ProjectB
                             Thread.Sleep(2500);
                             Console.Clear();
                             LoginStatusHelper.ShowLoginStatus();
+                            continue;
                         }
 
-                    } while (!accountsLogic.IsValidEmail(email));
+                        if (accountsLogic.GetAccountByEmail(email) != null)
+                        {
+                            Console.WriteLine("Email already exists, try again.");
+                            Thread.Sleep(2500);
+                            Console.Clear();
+                            LoginStatusHelper.ShowLoginStatus();
+                            continue;
+                        }
+
+                        break;
+
+                    } while (true);
 
                     user = accountsLogic.GetOrCreateGuest(name, email);
                     Console.WriteLine("Guest user details loaded successfully.");
