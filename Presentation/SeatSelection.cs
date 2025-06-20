@@ -12,9 +12,23 @@ namespace Team3_ProjectB
         {
             Console.Clear();
             LoginStatusHelper.ShowLoginStatus();
+            var seatsLogic = new SeatsLogic();
+            var availableSeats = seatsLogic.GetAvailableSeats(auditoriumId, sessionId);
+            int maxSeats = availableSeats.Count;
+
+            if (maxSeats == 0)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("No seats are available for this session.");
+                Console.ResetColor();
+                Console.WriteLine("Press any key to go back...");
+                Console.ReadKey(true);
+                NavigationService.GoBack();
+                return 0;
+            }
 
             Console.ForegroundColor = ConsoleColor.DarkCyan;
-            Console.WriteLine("Enter the amount of seats you want to reserve (press Backspace to go back): ");
+            Console.WriteLine($"Enter the amount of seats you want to reserve (1-{maxSeats}, press Backspace to go back): ");
             Console.ResetColor();
 
             string input = "";
@@ -23,11 +37,21 @@ namespace Team3_ProjectB
             {
                 keyInfo = Console.ReadKey(true);
 
-                if (keyInfo.Key == ConsoleKey.Enter && int.TryParse(input, out int amount) && amount > 0)
+                if (keyInfo.Key == ConsoleKey.Enter)
                 {
-                    AmountSeats = amount;
-                    NavigationService.Navigate(() => SeatSelectionMap(auditoriumId, movieName, sessionTime, reservationId, sessionId));
-                    return AmountSeats;
+                    if (int.TryParse(input, out int amount) && amount > 0 && amount <= maxSeats)
+                    {
+                        AmountSeats = amount;
+                        NavigationService.Navigate(() => SeatSelectionMap(auditoriumId, movieName, sessionTime, reservationId, sessionId));
+                        return AmountSeats;
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine($"\nInvalid input. Please enter a number between 1 and {maxSeats}.");
+                        Console.ResetColor();
+                        input = "";
+                    }
                 }
                 else if (keyInfo.Key == ConsoleKey.Backspace)
                 {
@@ -256,18 +280,17 @@ namespace Team3_ProjectB
                             Console.ResetColor();
                             Console.WriteLine("\nDruk op een toets om terug te keren...");
                             Console.ReadKey(true);
-                           
+
                             continue;
                         }
                         else
                         {
-                           
                             goto ConfirmSelection;
                         }
                 }
             }
 
-        ConfirmSelection:
+ConfirmSelection:
 
             Console.Clear();
             LoginStatusHelper.ShowLoginStatus();

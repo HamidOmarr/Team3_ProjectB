@@ -51,17 +51,26 @@ namespace Team3_ProjectB
                 string? email = CustomInput("Please enter your email address (Press Backspace to go back): ");
                 if (email == null) { NavigationService.GoBack(); return null; }
 
+                var acc = accountsLogic.GetAccountByEmail(email);
+                if (acc != null && acc.AccountType == "guest")
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Sorry, this account doesn't exist.");
+                    Console.ResetColor();
+                    continue;
+                }
+
                 string? password = CustomInput("Please enter your password (Press Backspace to go back): ", maskInput: true);
                 if (password == null) { NavigationService.GoBack(); return null; }
 
-                AccountModel acc = accountsLogic.CheckLogin(email, password);
+                var loggedInAcc = accountsLogic.CheckLogin(email, password);
 
-                if (acc != null)
+                if (loggedInAcc != null)
                 {
-                    Console.WriteLine($"Welcome back, {acc.Name}!");
-                    Console.WriteLine($"Your email address is: {acc.Email}");
-                    Console.WriteLine($"Your account type is: {acc.AccountType}");
-                    return acc;
+                    Console.WriteLine($"Welcome back, {loggedInAcc.Name}!");
+                    Console.WriteLine($"Your email address is: {loggedInAcc.Email}");
+                    Console.WriteLine($"Your account type is: {loggedInAcc.AccountType}");
+                    return loggedInAcc;
                 }
                 else
                 {
@@ -69,6 +78,7 @@ namespace Team3_ProjectB
                 }
             }
         }
+
 
         public static void Register()
         {

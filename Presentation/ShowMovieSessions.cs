@@ -72,24 +72,6 @@ namespace Team3_ProjectB
 
             var selectedSession = sessions[selectedIndex];
 
-            long userId = AccountsLogic.CurrentAccount?.Id ?? 0;
-            if (userId == 0)
-            {
-                AccountsLogic accountsLogic = new AccountsLogic();
-                var uniqueGuestEmail = $"guest_{Guid.NewGuid()}@example.com";
-                var guestUser = new AccountModel(0, "Guest", uniqueGuestEmail, "guest_password", "guest");
-                userId = accountsLogic.WriteAccount(guestUser);
-            }
-
-            ReservationsLogic reservationsLogic = new ReservationsLogic();
-            var reservation = new ReservationModel
-            {
-                UserId = userId,
-                TotalPrice = 0,
-                Status = "pending"
-            };
-            long reservationId = reservationsLogic.CreateReservation(reservation);
-
             Console.Clear();
             LoginStatusHelper.ShowLoginStatus();
 
@@ -98,7 +80,7 @@ namespace Team3_ProjectB
                     selectedSession.AuditoriumId,
                     selectedSession.MovieModel.Title,
                     selectedSession.StartTime.ToString("yyyy-MM-dd HH:mm"),
-                    reservationId,
+                    0,
                     selectedSession.Id
                 )
             );
