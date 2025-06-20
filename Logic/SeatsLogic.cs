@@ -1,4 +1,6 @@
-﻿namespace Team3_ProjectB
+﻿using System.Linq;
+
+namespace Team3_ProjectB
 {
     public class SeatsLogic
 {
@@ -20,7 +22,13 @@
         return new HashSet<int>(access.GetReservedSeatIds(movieSessionId));
     }
 
+    public List<SeatsModel> GetAvailableSeats(int auditoriumId, int movieSessionId)
+    {
+        var allSeats = GetSeatsByAuditorium(auditoriumId);
+        var reservedSeatIds = GetReservedSeatIds(movieSessionId);
+        return allSeats.Where(seat => !reservedSeatIds.Contains((int)seat.Id)).ToList();
+    }
 
 
-}
+    }
 }
