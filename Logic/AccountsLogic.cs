@@ -77,7 +77,6 @@ namespace Team3_ProjectB
                 @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
             );
         }
-
         public AccountModel GetOrCreateGuest(string name, string email)
         {
             var existing = GetAccountByEmail(email);
@@ -90,7 +89,8 @@ namespace Team3_ProjectB
                 }
                 return existing;
             }
-            var guest = new AccountModel(0, name, email, "guest_password", "guest");
+            var hashedPassword = BCrypt.Net.BCrypt.HashPassword("guest_password");
+            var guest = new AccountModel(0, name, email, hashedPassword, "guest");
             guest.Id = WriteAccount(guest);
             return guest;
         }
