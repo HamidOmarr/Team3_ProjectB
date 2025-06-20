@@ -16,7 +16,7 @@
                 Console.Clear();
                 LoginStatusHelper.ShowLoginStatus();
 
-                Console.WriteLine("Use ↑ ↓ to navigate, Space to add/remove, Enter to confirm, Backspace to go back:\n");
+                Console.WriteLine("Use ↑ ↓ to navigate, Space to add, [DELETE] to remove, Enter to confirm, Backspace to go back:\n");
                 Console.WriteLine("───────────────────────────────────────");
 
                 for (int i = 0; i < consumables.Count; i++)
@@ -38,7 +38,7 @@
                 }
 
                 Console.WriteLine("───────────────────────────────────────");
-                Console.WriteLine("↑ ↓ = Navigate  |  Space = Add/Remove  |  Enter = Confirm  |  Backspace = Go Back");
+                Console.WriteLine("↑ ↓ = Navigate  |  Space = Add  |  [DELETE] = Remove  |  Enter = Confirm  |  Backspace = Go Back");
 
                 key = Console.ReadKey(true).Key;
 
@@ -56,6 +56,18 @@
                     else
                     {
                         selectedItems[selectedItem.Id] = 1;
+                    }
+                }
+                else if (key == ConsoleKey.Delete)
+                {
+                    var selectedItem = consumables[selectedIndex];
+                    if (selectedItems.ContainsKey(selectedItem.Id))
+                    {
+                        selectedItems[selectedItem.Id]--;
+                        if (selectedItems[selectedItem.Id] <= 0)
+                        {
+                            selectedItems.Remove(selectedItem.Id);
+                        }
                     }
                 }
                 else if (key == ConsoleKey.Backspace)
